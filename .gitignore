@@ -1,0 +1,9 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+LiberatorY5/obj
+.vs/LiberatorY5/v17
+.vs
+*.suo
+packages

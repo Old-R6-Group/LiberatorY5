@@ -97,6 +97,7 @@ namespace LiberatorY5
                 labelMap.Visible = false;
                 labelEvent.Visible = false;
                 labelSelecting.Visible = false;
+                sendtoR6Button.Visible = false;
             }
             else
             {
@@ -104,11 +105,11 @@ namespace LiberatorY5
                 treeViewMap.Visible = true;
                 treeViewEvents.Visible = true;
                 label3.Visible = true;
-                labelGameMode.Visible=true;
-                labelMap.Visible=true;
+                labelGameMode.Visible = true;
+                labelMap.Visible = true;
                 labelEvent.Visible = true;
-                labelSelecting.Visible=true;
-
+                labelSelecting.Visible = true;
+                sendtoR6Button.Visible = true;
 
             }
         }

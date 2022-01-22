@@ -31,6 +31,7 @@
         //house => hereford => plane => university => favela => tower
         //house =) club =< oregon
         //house =) club => yacht => consulate => bank => canal => chalet => cafe => border => skyscraper => coastline => theme => villa => kasbah => outback
+        //-1504L -31L
 
         //gamemode
         // +32L = "=>" | -32L = "=<" | +64L = "=)"

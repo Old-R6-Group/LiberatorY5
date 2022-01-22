@@ -204,6 +204,7 @@
             treeNode102});
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.sendtoR6Button = new System.Windows.Forms.Button();
             this.labelEvent = new System.Windows.Forms.Label();
             this.labelMap = new System.Windows.Forms.Label();
             this.labelGameMode = new System.Windows.Forms.Label();
@@ -221,7 +222,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.checkBoxClientMode = new System.Windows.Forms.CheckBox();
-            this.sendtoR6Button = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -256,6 +256,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Gametypes";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // sendtoR6Button
+            // 
+            this.sendtoR6Button.Location = new System.Drawing.Point(440, 415);
+            this.sendtoR6Button.Name = "sendtoR6Button";
+            this.sendtoR6Button.Size = new System.Drawing.Size(85, 25);
+            this.sendtoR6Button.TabIndex = 8;
+            this.sendtoR6Button.Text = "Send to Siege";
+            this.sendtoR6Button.UseVisualStyleBackColor = true;
+            this.sendtoR6Button.Click += new System.EventHandler(this.sendtor6_Clicked);
             // 
             // labelEvent
             // 
@@ -326,8 +336,10 @@
             this.treeViewMap.Location = new System.Drawing.Point(195, 30);
             this.treeViewMap.Name = "treeViewMap";
             treeNode7.Name = "NodeHouse";
+            treeNode7.Tag = "house";
             treeNode7.Text = "House";
             treeNode8.Name = "NodeOregon";
+            treeNode8.Tag = "oregon";
             treeNode8.Text = "Oregon";
             treeNode9.Name = "NodeHerefordRework";
             treeNode9.Text = "Hereford Rework";
@@ -414,6 +426,7 @@
             this.treeViewGameMode.Location = new System.Drawing.Point(5, 30);
             this.treeViewGameMode.Name = "treeViewGameMode";
             treeNode29.Name = "NodeHostage";
+            treeNode29.Tag = "hostage";
             treeNode29.Text = "Hostage";
             treeNode30.Name = "NodeSecureArea";
             treeNode30.Text = "Secure Area";
@@ -674,15 +687,6 @@
             this.checkBoxClientMode.Text = "Client Mode";
             this.checkBoxClientMode.UseVisualStyleBackColor = true;
             this.checkBoxClientMode.CheckedChanged += new System.EventHandler(this.checkBoxClientMode_CheckedChanged);
-            // 
-            // sendtoR6Button
-            // 
-            this.sendtoR6Button.Location = new System.Drawing.Point(440, 415);
-            this.sendtoR6Button.Name = "sendtoR6Button";
-            this.sendtoR6Button.Size = new System.Drawing.Size(85, 25);
-            this.sendtoR6Button.TabIndex = 8;
-            this.sendtoR6Button.Text = "Send to Siege";
-            this.sendtoR6Button.UseVisualStyleBackColor = true;
             // 
             // LiberatorY5
             // 

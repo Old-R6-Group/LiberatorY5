@@ -27,8 +27,10 @@ namespace LiberatorY5
         //variables
         public Mem m = new Mem();
         bool procOpen = false;
-        string game = "RainbowSix.exe";
-        
+        string r6processname = "RainbowSix.exe";
+        string r6mem = "RainbowSix.exe+";
+
+
 
         public LiberatorY5()
         {
@@ -112,6 +114,39 @@ namespace LiberatorY5
                 sendtoR6Button.Visible = true;
 
             }
+        }
+
+        private void sendtor6_Clicked(object sender, EventArgs e)
+        {
+            /*
+            if (true)
+            {
+                string version = m.ReadString(r6mem + VoidEdge.versionCheck, "", 32, true);
+                if (version == VoidEdge.versionName)
+                {
+                    long house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
+                    string x = treeViewMap.SelectedNode.Tag.ToString();
+                    long tmp;
+                    long oregon = -1504L - 31L;
+                    long y = house - 1504L - 31L;
+                    if (x == "oregon")
+                    {
+                        tmp = house - oregon;
+                        logs.WriteLog(oregon.ToString());
+                        logs.WriteLog(y.ToString());
+                        m.WriteMemory(r6mem + VoidEdge.r6_map, "long", tmp.ToString(), "", null);
+                    }
+                }
+                else
+                {
+                    labelUpdate.Text = "Currently Void Edge supported";
+                }
+            }
+            else
+            {
+                labelUpdate.Text = "no r6 process";
+            }
+            */
         }
     }
 }

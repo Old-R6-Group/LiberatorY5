@@ -151,6 +151,8 @@ namespace LiberatorY5
                 if (version == VoidEdge.versionName)
                 {
                     long house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
+                    long hostage = m.ReadLong(r6mem + VoidEdge.hostage_Offset, "");
+                    long elim = m.ReadLong(r6mem + VoidEdge.elim_Offset, "");
                     //map
                     if (mapname != null)
                     {
@@ -171,7 +173,23 @@ namespace LiberatorY5
                     }
                     if (events != null)
                     {
-                        
+                        long output_map;
+                        long output_gamemode;
+                        VoidEdge.EventConverter(events, house, hostage, out output_map, out output_gamemode);
+                        if (output_map != 0L | output_gamemode != 0L)
+                        {
+                            m.WriteMemory(r6mem + VoidEdge.r6_map, "long", output_map.ToString(), "", null);
+                            m.WriteMemory(r6mem + VoidEdge.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                        }
+                    }
+                    if (gamemode != null)
+                    {
+                        long output_gamemode;
+                        VoidEdge.GameModeConverter(gamemode, hostage, elim, out output_gamemode);
+                        if (output_gamemode != 0L)
+                        {
+                            m.WriteMemory(r6mem + VoidEdge.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                        }
                     }
                 }
                 else

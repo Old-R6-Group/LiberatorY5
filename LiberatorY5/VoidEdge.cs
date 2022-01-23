@@ -64,7 +64,7 @@
         public long stolenL = 352L;
         public long goldenGunL = 320L;
 
-        public static void MapConverter(string MapName,long house,out long output)
+        public static void MapConverter(string MapName, long house, out long output)
         {
             memoryHelper mh = new memoryHelper();
             output = 0L;
@@ -147,7 +147,7 @@
             }
         }
 
-        public static void EventConverter(string EventName, long house, long gamemode, out long output_map,out long output_mode)
+        public static void EventConverter(string EventName, long house, long gamemode, out long output_map, out long output_mode)
         {
             output_map = 0L;
             output_mode = 0L;
@@ -164,6 +164,12 @@
                 default:
                     return;
             }
+        }
+
+        public static void GameModeConverter(string ModeName, long gamemode, long elim, out long output_mode)
+        {
+            output_mode = 0L;
+            //soon
         }
     }
 }

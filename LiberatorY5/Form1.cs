@@ -78,10 +78,31 @@ namespace LiberatorY5
                 labelMap.Text = "Map";
             }
         }
-
+        //search for siege and hook
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            procOpen = m.OpenProcess("RainbowSix.exe");
+            if (!procOpen)
+            {
+                Thread.Sleep(100);
+                return;
+            }
 
+            Thread.Sleep(1000);
+            backgroundWorker.ReportProgress(0);
+        }
+
+        //updates the label ath the bottom
+        private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (procOpen)
+            {
+                labelUpdate.Text = "Game found";
+            }
+            else
+            {
+                labelUpdate.Text = "Can't find siege. Make sure Battleye is disabled and the game is at the main menu!";
+            }
         }
 
         private void checkBoxClientMode_CheckedChanged(object sender, EventArgs e)
@@ -148,5 +169,7 @@ namespace LiberatorY5
             }
             */
         }
+
+        
     }
 }

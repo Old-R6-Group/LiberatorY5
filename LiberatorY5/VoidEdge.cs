@@ -7,17 +7,17 @@
         public static string versionName = "14303219";
         public static string playlistManager = "05393908";
         public static string firstOffset = "90";
-        public static string day_Offset = "05393908,90,38,0";
+        public static string day_Offset = "05393908,90,38,0"; //thats probably some issue somewhen
         public static string oldHereford_Offset = "05396158,68,28,110,D8,60,48,8";
         public static string easyDifficulty_Offset = "05390320,88,110,70,110,60,120,8,160";
         public static string house_Offset = "05393A20,90,180,F8,120,20,120,180,0";
         public static string elim_Offset = "05393A20,108,180,120,68";
         public static string hostage_Offset = "05393A20,120,140,40,E8,40,78";
         private static string playlist = playlistManager + "," + firstOffset;
-        public static string r6_daynight = playlist + "38,0";
-        public static string r6_map = playlist + "10";
-        public static string r6_gamemode = playlist + "8";
-        public static string r6_difficulty = playlist + "30";
+        public static string r6_daynight = playlist + ",38,0";
+        public static string r6_map = playlist + ",10";
+        public static string r6_gamemode = playlist + ",8";
+        public static string r6_difficulty = playlist + ",30";
 
         // All things is LONG
 
@@ -31,7 +31,6 @@
         //house => hereford => plane => university => favela => tower
         //house =) club =< oregon
         //house =) club => yacht => consulate => bank => canal => chalet => cafe => border => skyscraper => coastline => theme => villa => kasbah => outback
-        //-1504L -31L
 
         //gamemode
         // +32L = "=>" | -32L = "=<" | +64L = "=)"
@@ -56,5 +55,92 @@
         //stolenShit = elim +352L
         //goldenGun = elim +320L
 
+        public long canisterL = 160L;
+        public long camTeleL = 192L;
+        public long bombPreplessL = 288L;
+        public long flyByL = 192L;
+        public long explosioneL = 224L;
+        public long stolenL = 352L;
+        public long goldenGunL = 320L;
+
+        public static void MapConverter(string MapName,long house,out long output)
+        {
+            memoryHelper mh = new memoryHelper();
+            output = 0L;
+            if (MapName != "house")
+            {
+                switch (MapName)
+                {
+                    case "hereford":
+                        output = house + mh.plus64;
+                        return;
+                    case "plane":
+                        output = house + mh.plus64 + mh.plus64;
+                        return;
+                    case "university":
+                        output = house + mh.plus64 + mh.plus64 + mh.plus64;
+                        return;
+                    case "favela":
+                        output = house + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64;
+                        return;
+                    case "tower":
+                        output = house + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64;
+                        return;
+                    case "club":
+                        output = house - mh.big;
+                        return;
+                    case "oregon":
+                        output = house - mh.big + mh.min32;
+                        return;
+                    case "yacht":
+                        output = house - mh.big + mh.plus64;
+                        return;
+                    case "consulate":
+                        output = house - mh.big + mh.plus64 + mh.plus64;
+                        return;
+                    case "bank":
+                        output = house - mh.big + mh.plus64 + mh.plus64 + mh.plus64;
+                        return;
+                    case "kanal":
+                        output = house - mh.big + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64;
+                        return;
+                    case "chalet":
+                        output = house - mh.big + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64;
+                        return;
+                    case "cafe":
+                        output = house - mh.big + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64;
+                        return;
+                    case "border":
+                        output = house - mh.big + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64;
+                        return;
+                    case "skyscraper":
+                        output = house - mh.big + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64;
+                        return;
+                    case "coastline":
+                        output = house - mh.big + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64;
+                        return;
+                    case "theme":
+                        output = house - mh.big + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64;
+                        return;
+                    case "villa":
+                        output = house - mh.big + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64;
+                        return;
+                    case "fortress":
+                        output = house - mh.big + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64;
+                        return;
+                    case "outback":
+                        output = house - mh.big + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64;
+                        return;
+                    case "oldhereford":
+                        return;
+                    default:
+                        return;
+                }
+            }
+            else
+            {
+                output = house;
+            }
+        }
     }
 }

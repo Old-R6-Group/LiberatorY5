@@ -222,6 +222,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.checkBoxClientMode = new System.Windows.Forms.CheckBox();
+            this.manual_hookButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -342,44 +343,64 @@
             treeNode8.Tag = "oregon";
             treeNode8.Text = "Oregon";
             treeNode9.Name = "NodeHerefordRework";
+            treeNode9.Tag = "hereford";
             treeNode9.Text = "Hereford Rework";
             treeNode10.Name = "NodeOldHereford";
+            treeNode10.Tag = "oldhereford";
             treeNode10.Text = "Old Hereford";
             treeNode11.Name = "NodeClubHouse";
+            treeNode11.Tag = "club";
             treeNode11.Text = "Club House";
             treeNode12.Name = "NodePresedentialPlane";
+            treeNode12.Tag = "plane";
             treeNode12.Text = "Presedential Plane";
             treeNode13.Name = "NodeYacht";
+            treeNode13.Tag = "yacht";
             treeNode13.Text = "Yacht";
             treeNode14.Name = "NodeConsulate";
+            treeNode14.Tag = "consulate";
             treeNode14.Text = "Consulate";
             treeNode15.Name = "NodeBank";
+            treeNode15.Tag = "bank";
             treeNode15.Text = "Bank";
             treeNode16.Name = "NodeKanal";
+            treeNode16.Tag = "kanal";
             treeNode16.Text = "Kanal";
             treeNode17.Name = "NodeChalet";
+            treeNode17.Tag = "chalet";
             treeNode17.Text = "Chalet";
             treeNode18.Name = "NodeBartlettUniversity";
+            treeNode18.Tag = "university";
             treeNode18.Text = "Bartlett University";
             treeNode19.Name = "NodeRussianKafe";
+            treeNode19.Tag = "cafe";
             treeNode19.Text = "Russian Kafe";
             treeNode20.Name = "NodeBorder";
+            treeNode20.Tag = "border";
             treeNode20.Text = "Border";
             treeNode21.Name = "NodeFavela";
+            treeNode21.Tag = "favela";
             treeNode21.Text = "Favela";
             treeNode22.Name = "NodeSkyscraper";
+            treeNode22.Tag = "skyscraper";
             treeNode22.Text = "Skyscraper";
             treeNode23.Name = "NodeCoastline";
+            treeNode23.Tag = "coastline";
             treeNode23.Text = "Coastline";
             treeNode24.Name = "NodeThemePark";
+            treeNode24.Tag = "theme";
             treeNode24.Text = "Theme Park";
             treeNode25.Name = "NodeTower";
+            treeNode25.Tag = "tower";
             treeNode25.Text = "Tower";
             treeNode26.Name = "NodeVilla";
+            treeNode26.Tag = "villa";
             treeNode26.Text = "Villa";
             treeNode27.Name = "NodeFortress";
+            treeNode27.Tag = "fortress";
             treeNode27.Text = "Fortress";
             treeNode28.Name = "NodeOutback";
+            treeNode28.Tag = "outback";
             treeNode28.Text = "Outback";
             this.treeViewMap.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode7,
@@ -675,7 +696,9 @@
             // 
             // backgroundWorker
             // 
+            this.backgroundWorker.WorkerReportsProgress = true;
             this.backgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker_DoWork);
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             // 
             // checkBoxClientMode
             // 
@@ -688,12 +711,23 @@
             this.checkBoxClientMode.UseVisualStyleBackColor = true;
             this.checkBoxClientMode.CheckedChanged += new System.EventHandler(this.checkBoxClientMode_CheckedChanged);
             // 
+            // manual_hookButton
+            // 
+            this.manual_hookButton.Location = new System.Drawing.Point(428, 490);
+            this.manual_hookButton.Name = "manual_hookButton";
+            this.manual_hookButton.Size = new System.Drawing.Size(106, 23);
+            this.manual_hookButton.TabIndex = 9;
+            this.manual_hookButton.Text = "Manually Hook";
+            this.manual_hookButton.UseVisualStyleBackColor = true;
+            this.manual_hookButton.Click += new System.EventHandler(this.manual_hookClicked);
+            // 
             // LiberatorY5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(549, 546);
+            this.Controls.Add(this.manual_hookButton);
             this.Controls.Add(this.checkBoxClientMode);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
@@ -734,6 +768,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker;
         private System.Windows.Forms.CheckBox checkBoxClientMode;
         private System.Windows.Forms.Button sendtoR6Button;
+        private System.Windows.Forms.Button manual_hookButton;
     }
 }
 

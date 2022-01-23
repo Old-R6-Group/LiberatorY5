@@ -26,10 +26,13 @@ namespace LiberatorY5
 
         //variables
         public Mem m = new Mem();
+        public memoryHelper mh = new memoryHelper();
         bool procOpen = false;
-        string r6processname = "RainbowSix.exe";
+        readonly string r6processname = "RainbowSix.exe";
         string r6mem = "RainbowSix.exe+";
-
+        string mapname;
+        string gamemode;
+        string evnt;
 
 
         public LiberatorY5()
@@ -81,7 +84,8 @@ namespace LiberatorY5
         //search for siege and hook
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
-            procOpen = m.OpenProcess("RainbowSix.exe");
+            procOpen = m.OpenProcess(r6processname, out string fail);
+            logs.WriteLog(fail);
             if (!procOpen)
             {
                 Thread.Sleep(100);
@@ -95,6 +99,7 @@ namespace LiberatorY5
         //updates the label ath the bottom
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            logs.WriteLog("idk " + procOpen);
             if (procOpen)
             {
                 labelUpdate.Text = "Game found";
@@ -133,29 +138,24 @@ namespace LiberatorY5
                 labelEvent.Visible = true;
                 labelSelecting.Visible = true;
                 sendtoR6Button.Visible = true;
-
             }
         }
 
         private void sendtor6_Clicked(object sender, EventArgs e)
         {
-            /*
-            if (true)
+            if (procOpen)
             {
                 string version = m.ReadString(r6mem + VoidEdge.versionCheck, "", 32, true);
                 if (version == VoidEdge.versionName)
                 {
                     long house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
-                    string x = treeViewMap.SelectedNode.Tag.ToString();
-                    long tmp;
-                    long oregon = -1504L - 31L;
-                    long y = house - 1504L - 31L;
-                    if (x == "oregon")
+                    string mapname = treeViewMap.SelectedNode.Tag.ToString();
+                    long output_map;
+                    VoidEdge.MapConverter(mapname,house,out output_map);
+                    //logs.WriteLog(mapname + " " + output_map.ToString()  + " " + output_map + " " + r6mem + VoidEdge.r6_map + " " + r6mem + VoidEdge.house_Offset);
+                    if (output_map != 0L)
                     {
-                        tmp = house - oregon;
-                        logs.WriteLog(oregon.ToString());
-                        logs.WriteLog(y.ToString());
-                        m.WriteMemory(r6mem + VoidEdge.r6_map, "long", tmp.ToString(), "", null);
+                        m.WriteMemory(r6mem + VoidEdge.r6_map, "long", output_map.ToString(), "", null);
                     }
                 }
                 else
@@ -165,11 +165,30 @@ namespace LiberatorY5
             }
             else
             {
-                labelUpdate.Text = "no r6 process";
+                labelUpdate.Text = "Can't find siege";
             }
-            */
         }
 
-        
+        private void manual_hookClicked(object sender, EventArgs e)
+        {
+            procOpen = m.OpenProcess(r6processname, out string fail);
+            logs.WriteLog("Failed? " + fail);
+            if (!procOpen)
+            {
+                Thread.Sleep(100);
+                return;
+            }
+
+            Thread.Sleep(1000);
+            logs.WriteLog("idk " + procOpen);
+            if (procOpen)
+            {
+                labelUpdate.Text = "Game found";
+            }
+            else
+            {
+                labelUpdate.Text = "Can't find siege. Make sure Battleye is disabled and the game is at the main menu!";
+            }
+        }
     }
 }

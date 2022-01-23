@@ -3,7 +3,7 @@ using System.IO;
 
 namespace LiberatorY5
 {
-    internal class logs
+    public class logs
     {
         private static string LoggingTXT = "logging.txt";
         public static void WriteLog(string strLog)

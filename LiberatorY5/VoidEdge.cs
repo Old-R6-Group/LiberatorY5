@@ -31,6 +31,7 @@
         //house => hereford => plane => university => favela => tower
         //house =) club =< oregon
         //house =) club => yacht => consulate => bank => canal => chalet => cafe => border => skyscraper => coastline => theme => villa => kasbah => outback
+        //house +1752798400L = grandlarceny map
 
         //gamemode
         // +32L = "=>" | -32L = "=<" | +64L = "=)"
@@ -131,6 +132,9 @@
                     case "outback":
                         output = house - mh.big + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64 + mh.plus64;
                         return;
+                    case "grandlarceny":
+                        output = house + 1752798400L;
+                        return;
                     case "oldhereford":
                         return;
                     default:
@@ -140,6 +144,25 @@
             else
             {
                 output = house;
+            }
+        }
+
+        public static void EventConverter(string EventName, long house, long gamemode, out long output_map,out long output_mode)
+        {
+            output_map = 0L;
+            output_mode = 0L;
+            switch (EventName)
+            {
+                case "grandlarceny":
+                    output_map = house + 1752798400L;
+                    output_mode = gamemode + 328640L;
+                    return;
+                case "goldengun":
+                    output_map = house + 1752798400L;
+                    output_mode = gamemode + 328640L - 32L;
+                    return;
+                default:
+                    return;
             }
         }
     }

@@ -309,16 +309,22 @@
             this.treeViewEvents.Location = new System.Drawing.Point(370, 30);
             this.treeViewEvents.Name = "treeViewEvents";
             treeNode1.Name = "NodeGoldenGunVE";
+            treeNode1.Tag = "goldengun";
             treeNode1.Text = "Golden Gun";
             treeNode2.Name = "NodeGrandLarceny";
+            treeNode2.Tag = "grandlarceny";
             treeNode2.Text = "Grand Larceny";
             treeNode3.Name = "NodeMute";
+            treeNode3.Tag = "mute";
             treeNode3.Text = "M.U.T.E Protocol";
             treeNode4.Name = "NodeAttrition";
+            treeNode4.Tag = "attrition";
             treeNode4.Text = "Attrition";
             treeNode5.Name = "NodeReverseHostage";
+            treeNode5.Tag = "reversehostage";
             treeNode5.Text = "Reverse Hostage";
             treeNode6.Name = "NodeSugarFright";
+            treeNode6.Tag = "sugarfright";
             treeNode6.Text = "Sugar Fright";
             this.treeViewEvents.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode1,

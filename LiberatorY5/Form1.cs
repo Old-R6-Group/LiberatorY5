@@ -30,10 +30,9 @@ namespace LiberatorY5
         bool procOpen = false;
         readonly string r6processname = "RainbowSix.exe";
         string r6mem = "RainbowSix.exe+";
-        string mapname;
+        string events;
         string gamemode;
-        string evnt;
-
+        string mapname;
 
         public LiberatorY5()
         {
@@ -55,6 +54,7 @@ namespace LiberatorY5
             if (treeViewGameMode.SelectedNode.IsSelected)
             {
                 labelGameMode.Text = treeViewGameMode.SelectedNode.FullPath;
+                gamemode = treeViewGameMode.SelectedNode.Tag.ToString();
                 labelEvent.Text = "Event";
                 //treeViewEvents = null;
             }
@@ -65,6 +65,7 @@ namespace LiberatorY5
             if (treeViewMap.SelectedNode.IsSelected)
             {
                 labelMap.Text = treeViewMap.SelectedNode.FullPath;
+                mapname = treeViewMap.SelectedNode.Tag.ToString();
                 labelEvent.Text = "Event";
                 //treeViewEvents = null;
             }
@@ -75,6 +76,7 @@ namespace LiberatorY5
             if (treeViewEvents.SelectedNode.IsSelected)
             {
                 labelEvent.Text = treeViewEvents.SelectedNode.FullPath;
+                events = treeViewEvents.SelectedNode.Tag.ToString();
                 //treeViewGameMode = null;
                 //treeViewMap = null;
                 labelGameMode.Text = "Game Mode";
@@ -149,13 +151,27 @@ namespace LiberatorY5
                 if (version == VoidEdge.versionName)
                 {
                     long house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
-                    string mapname = treeViewMap.SelectedNode.Tag.ToString();
-                    long output_map;
-                    VoidEdge.MapConverter(mapname,house,out output_map);
-                    //logs.WriteLog(mapname + " " + output_map.ToString()  + " " + output_map + " " + r6mem + VoidEdge.r6_map + " " + r6mem + VoidEdge.house_Offset);
-                    if (output_map != 0L)
+                    //map
+                    if (mapname != null)
                     {
-                        m.WriteMemory(r6mem + VoidEdge.r6_map, "long", output_map.ToString(), "", null);
+                        if (mapname == "oldhereford")
+                        {
+                            long oldhereford = m.ReadLong(r6mem + VoidEdge.oldHereford_Offset, "");
+                            m.WriteMemory(r6mem + VoidEdge.r6_map, "long", oldhereford.ToString(), "", null);
+                        }
+                        else
+                        {
+                            long output_map;
+                            VoidEdge.MapConverter(mapname, house, out output_map);
+                            if (output_map != 0L)
+                            {
+                                m.WriteMemory(r6mem + VoidEdge.r6_map, "long", output_map.ToString(), "", null);
+                            }
+                        }
+                    }
+                    if (events != null)
+                    {
+                        
                     }
                 }
                 else

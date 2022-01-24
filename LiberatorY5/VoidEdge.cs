@@ -1,8 +1,11 @@
-﻿namespace LiberatorY5
+﻿using System;
+
+namespace LiberatorY5
 {
     internal class VoidEdge
     {
         //THANK YOU SO MUCH IMAREALPERSON!!
+        public static string FuillBuildID = "Y5S1.2.0.1_C5183038_D967006_S37789_14303219";
         public static string versionCheck = "3E76BD3";
         public static string versionName = "14303219";
         public static string playlistManager = "05393908";
@@ -146,7 +149,6 @@
                 output = house;
             }
         }
-
         public static void EventConverter(string EventName, long house, long gamemode, out long output_map, out long output_mode)
         {
             output_map = 0L;
@@ -165,11 +167,78 @@
                     return;
             }
         }
-
-        public static void GameModeConverter(string ModeName, long gamemode, long elim, out long output_mode)
+        public static void GameModeConverter(string ModeName,string ParentMode, long gamemode, long elim, out long output_mode,out long difficulty)
         {
             output_mode = 0L;
+            difficulty = 0L;
             //soon
+        }
+        public static void MatchMaking(string CasOrRanked,string mode,long house,long gamemode,out long outmode, out long outmap) 
+        {
+            outmode = 0L;
+            outmap = 0L;
+            if (CasOrRanked == "Casual")
+            {
+                switch (mode)
+                {
+                    case "hostage":
+                        outmode = gamemode;
+                        MapConverter(RandomMap(0),house,out outmap);
+                        return;
+                    case "secure":
+                        outmode = gamemode + 32L;
+                        MapConverter(RandomMap(0), house, out outmap);
+                        return;
+                    case "bomb":
+                        outmode = gamemode - 32L;
+                        MapConverter(RandomMap(0), house, out outmap);
+                        return;
+                    default:
+                        return;
+                }
+            }
+            if (CasOrRanked == "Ranked")
+            {
+                switch (mode)
+                {
+                    case "hostage":
+                        outmode = gamemode;
+                        MapConverter(RandomMap(1), house, out outmap);
+                        return;
+                    case "secure":
+                        outmode = gamemode + 32L;
+                        MapConverter(RandomMap(1), house, out outmap);
+                        return;
+                    case "bomb":
+                        outmode = gamemode - 32L;
+                        MapConverter(RandomMap(1), house, out outmap);
+                        return;
+                    default:
+                        return;
+                }
+            }
+        }
+        public static string RandomMap(int casorranked)
+        {
+            string map = null;
+            Random rnd = new Random();
+            int maxmap = 20;
+            string maps = null;
+            if (casorranked == 0)
+            {
+                maps = "house,hereford,plane,university,favela,tower,club,oregon,yacht,consulate,bank,kanal,chalet,cafe,border,skyscraper,coastline,theme,villa,fortress,outback";
+                maxmap = 20;
+            }
+            if (casorranked == 1)
+            {
+                maps = "consulate,chalet,border,club,outback,theme,oregon,villa,kafe,kanal,bank,coastline";
+                maxmap = 11;
+            }
+            
+            int numb = rnd.Next(0, maxmap);
+            string[] splittedmaps = maps.Split(',');
+            map = splittedmaps[numb];
+            return map;
         }
     }
 }

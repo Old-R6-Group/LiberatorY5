@@ -32,7 +32,9 @@ namespace LiberatorY5
         string r6mem = "RainbowSix.exe+";
         string events;
         string gamemode;
+        string gamemode_parent;
         string mapname;
+        string FulllbuildID;
 
         public LiberatorY5()
         {
@@ -55,6 +57,7 @@ namespace LiberatorY5
             {
                 labelGameMode.Text = treeViewGameMode.SelectedNode.FullPath;
                 gamemode = treeViewGameMode.SelectedNode.Tag.ToString();
+                gamemode_parent = treeViewGameMode.SelectedNode.Parent.Tag.ToString();
                 labelEvent.Text = "Event";
                 //treeViewEvents = null;
             }
@@ -87,7 +90,7 @@ namespace LiberatorY5
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
             procOpen = m.OpenProcess(r6processname, out string fail);
-            logs.WriteLog(fail);
+            //logs.WriteLog(fail);
             if (!procOpen)
             {
                 Thread.Sleep(100);
@@ -101,14 +104,16 @@ namespace LiberatorY5
         //updates the label ath the bottom
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            logs.WriteLog("idk " + procOpen);
+            //logs.WriteLog("idk " + procOpen);
             if (procOpen)
             {
-                labelUpdate.Text = "Game found";
+                Once_BuildID();
+                labelUpdate.Text = "Game found: " + FulllbuildID;  
             }
             else
             {
                 labelUpdate.Text = "Can't find siege. Make sure Battleye is disabled and the game is at the main menu!";
+                FulllbuildID = null;
             }
         }
 
@@ -143,12 +148,25 @@ namespace LiberatorY5
             }
         }
 
+        private async void Once_BuildID()
+        {
+            if (FulllbuildID == null)
+            {
+                IEnumerable<long> x = await m.AoBScan("59 ?? 53 ?? 2E ?? 2E ?? 2E ?? 5F 43", true, false, "").ConfigureAwait(false);
+                //older version may have this as sig: 59 ?? 53 ?? 2E ?? 5F 43
+                long firstaddress = x.FirstOrDefault();
+                string address = string.Format("{0:X}", firstaddress);
+                FulllbuildID = m.ReadString(address, "", 43, true);
+                logs.WriteLog("Game Build ID: " + FulllbuildID);
+            }
+        }
+
         private void sendtor6_Clicked(object sender, EventArgs e)
         {
             if (procOpen)
             {
-                string version = m.ReadString(r6mem + VoidEdge.versionCheck, "", 32, true);
-                if (version == VoidEdge.versionName)
+                //string version = m.ReadString(r6mem + VoidEdge.versionCheck, "", 32, true);
+                if (FulllbuildID == VoidEdge.FuillBuildID)
                 {
                     long house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
                     long hostage = m.ReadLong(r6mem + VoidEdge.hostage_Offset, "");
@@ -163,8 +181,7 @@ namespace LiberatorY5
                         }
                         else
                         {
-                            long output_map;
-                            VoidEdge.MapConverter(mapname, house, out output_map);
+                            VoidEdge.MapConverter(mapname, house, out long output_map);
                             if (output_map != 0L)
                             {
                                 m.WriteMemory(r6mem + VoidEdge.r6_map, "long", output_map.ToString(), "", null);
@@ -173,9 +190,7 @@ namespace LiberatorY5
                     }
                     if (events != null)
                     {
-                        long output_map;
-                        long output_gamemode;
-                        VoidEdge.EventConverter(events, house, hostage, out output_map, out output_gamemode);
+                        VoidEdge.EventConverter(events, house, hostage, out long output_map, out long output_gamemode);
                         if (output_map != 0L | output_gamemode != 0L)
                         {
                             m.WriteMemory(r6mem + VoidEdge.r6_map, "long", output_map.ToString(), "", null);
@@ -184,11 +199,11 @@ namespace LiberatorY5
                     }
                     if (gamemode != null)
                     {
-                        long output_gamemode;
-                        VoidEdge.GameModeConverter(gamemode, hostage, elim, out output_gamemode);
+                        VoidEdge.GameModeConverter(gamemode, gamemode_parent, hostage, elim, out long output_gamemode, out long difficulty);
                         if (output_gamemode != 0L)
                         {
                             m.WriteMemory(r6mem + VoidEdge.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                            m.WriteMemory(r6mem + VoidEdge.r6_difficulty, "long", difficulty.ToString(), "", null);
                         }
                     }
                 }
@@ -200,6 +215,7 @@ namespace LiberatorY5
             else
             {
                 labelUpdate.Text = "Can't find siege";
+                FulllbuildID = null;
             }
         }
 
@@ -212,16 +228,26 @@ namespace LiberatorY5
                 Thread.Sleep(100);
                 return;
             }
-
             Thread.Sleep(1000);
             logs.WriteLog("idk " + procOpen);
             if (procOpen)
             {
-                labelUpdate.Text = "Game found";
+                Once_BuildID();
+                if (!string.IsNullOrEmpty(FulllbuildID))
+                {
+                    
+                    labelUpdate.Text = "Game found: " + FulllbuildID;
+                }
+                else
+                {
+                    labelUpdate.Text = "Something broken";
+                }
+
             }
             else
             {
                 labelUpdate.Text = "Can't find siege. Make sure Battleye is disabled and the game is at the main menu!";
+                FulllbuildID = null;
             }
         }
         //added this to have the background acync

@@ -224,5 +224,15 @@ namespace LiberatorY5
                 labelUpdate.Text = "Can't find siege. Make sure Battleye is disabled and the game is at the main menu!";
             }
         }
+        //added this to have the background acync
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            backgroundWorker.RunWorkerAsync(e);
+        }
+        
+        private void LiberatorY5_Shown(object sender, EventArgs e)
+        {
+            backgroundWorker.RunWorkerAsync(e);
+        }
     }
 }

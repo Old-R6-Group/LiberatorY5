@@ -22,6 +22,8 @@ namespace LiberatorY5
         public static string r6_gamemode = playlist + ",8";
         public static string r6_difficulty = playlist + ",30";
 
+        public static string[] EventView_Tag = { "goldengun", "grandlarceny",};
+        public static string[] EventView = {"Golden Gun", "Grand Larceny" };
         // All things is LONG
 
         //day = day_Offset  |   night  = day + 32L
@@ -171,6 +173,8 @@ namespace LiberatorY5
         {
             output_mode = 0L;
             difficulty = 0L;
+            if (ParentMode == "")
+            { }
             //soon
         }
         public static void MatchMaking(string CasOrRanked,string mode,long house,long gamemode,out long outmode, out long outmap) 
@@ -278,5 +282,15 @@ namespace LiberatorY5
         public static string r6_map = playlist + ",10";
         public static string r6_gamemode = playlist + ",8";
         public static string r6_difficulty = playlist + ",30";
+        /*
+  public static ulong ulong_0 = 100916496;
+  public static ulong ulong_1 = 89380200;
+  public static ulong ulong_2 = 26340099;
+  public static ulong ulong_3 = 23008441;
+  public static ulong ulong_4 = 23551034;
+  public static ulong ulong_5 = 23492219;
+  public static ulong ulong_6 = 89503312;
+
+         */
     }
 }

@@ -84,6 +84,7 @@ namespace LiberatorY5
                 //treeViewMap = null;
                 labelGameMode.Text = "Game Mode";
                 labelMap.Text = "Map";
+                logs.WriteLog(events);
             }
         }
         //search for siege and hook
@@ -168,6 +169,15 @@ namespace LiberatorY5
                 //string version = m.ReadString(r6mem + VoidEdge.versionCheck, "", 32, true);
                 if (FulllbuildID == VoidEdge.FuillBuildID)
                 {
+                    treeViewEvents.Nodes.Clear();
+                    for (int index = 0; index < VoidEdge.EventView.Length; index++)
+                    {
+                        var item = VoidEdge.EventView[index];
+                        var item2 = VoidEdge.EventView_Tag[index];
+                        treeViewEvents.Nodes.Add(item);
+                        treeViewEvents.Nodes[index].Tag = item2;
+
+                    }
                     long house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
                     long hostage = m.ReadLong(r6mem + VoidEdge.hostage_Offset, "");
                     long elim = m.ReadLong(r6mem + VoidEdge.elim_Offset, "");
@@ -259,6 +269,11 @@ namespace LiberatorY5
         private void LiberatorY5_Shown(object sender, EventArgs e)
         {
             backgroundWorker.RunWorkerAsync(e);
+        }
+
+        private void LibY5_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

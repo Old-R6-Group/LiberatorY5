@@ -57,7 +57,14 @@ namespace LiberatorY5
             {
                 labelGameMode.Text = treeViewGameMode.SelectedNode.FullPath;
                 gamemode = treeViewGameMode.SelectedNode.Tag.ToString();
-                gamemode_parent = treeViewGameMode.SelectedNode.Parent.Tag.ToString();
+                if (treeViewGameMode.SelectedNode.Parent != null)
+                {
+                    gamemode_parent = treeViewGameMode.SelectedNode.Parent.Tag.ToString();
+                }
+                else
+                {
+                    gamemode_parent = treeViewGameMode.SelectedNode.Tag.ToString();
+                }
                 labelEvent.Text = "Event";
                 //treeViewEvents = null;
             }
@@ -209,11 +216,12 @@ namespace LiberatorY5
                     }
                     if (gamemode != null)
                     {
-                        VoidEdge.GameModeConverter(gamemode, gamemode_parent, hostage, elim, out long output_gamemode, out long difficulty);
+                        VoidEdge.GameModeConverter(gamemode, gamemode_parent, house ,hostage, elim, out long output_gamemode, out long difficulty,out long outmap);
                         if (output_gamemode != 0L)
                         {
                             m.WriteMemory(r6mem + VoidEdge.r6_gamemode, "long", output_gamemode.ToString(), "", null);
                             m.WriteMemory(r6mem + VoidEdge.r6_difficulty, "long", difficulty.ToString(), "", null);
+                            m.WriteMemory(r6mem + VoidEdge.r6_map, "long", outmap.ToString(), "", null);
                         }
                     }
                 }
@@ -239,7 +247,7 @@ namespace LiberatorY5
                 return;
             }
             Thread.Sleep(1000);
-            logs.WriteLog("idk " + procOpen);
+            logs.WriteLog("Process is Opened already? " + procOpen);
             if (procOpen)
             {
                 Once_BuildID();

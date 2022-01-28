@@ -81,7 +81,6 @@
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="logs.cs" />
-    <Compile Include="memoryHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sesasons.cs" />

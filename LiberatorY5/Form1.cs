@@ -26,7 +26,6 @@ namespace LiberatorY5
 
         //variables
         public Mem m = new Mem();
-        public memoryHelper mh = new memoryHelper();
         bool procOpen = false;
         readonly string r6processname = "RainbowSix.exe";
         string r6mem = "RainbowSix.exe+";
@@ -35,6 +34,9 @@ namespace LiberatorY5
         string gamemode_parent;
         string mapname;
         string FulllbuildID;
+        long house = long.MaxValue;
+        long hostage = long.MaxValue;
+        long easy = long.MaxValue;
 
         public LiberatorY5()
         {
@@ -87,11 +89,12 @@ namespace LiberatorY5
             {
                 labelEvent.Text = treeViewEvents.SelectedNode.FullPath;
                 events = treeViewEvents.SelectedNode.Tag.ToString();
+                mapname = null;
+                gamemode = null;
                 //treeViewGameMode = null;
                 //treeViewMap = null;
                 labelGameMode.Text = "Game Mode";
                 labelMap.Text = "Map";
-                logs.WriteLog(events);
             }
         }
         //search for siege and hook
@@ -141,6 +144,7 @@ namespace LiberatorY5
                 labelEvent.Visible = false;
                 labelSelecting.Visible = false;
                 sendtoR6Button.Visible = false;
+                randomButton.Visible = false;
             }
             else
             {
@@ -153,18 +157,22 @@ namespace LiberatorY5
                 labelEvent.Visible = true;
                 labelSelecting.Visible = true;
                 sendtoR6Button.Visible = true;
+                randomButton.Visible = true;
             }
         }
 
-        private async void Once_BuildID()
+        private /*async*/ void Once_BuildID()
         {
             if (FulllbuildID == null)
             {
+                string version = m.ReadString(r6mem + "0x53CF449", "", 43, true);
+                FulllbuildID = version;
+                /*
                 IEnumerable<long> x = await m.AoBScan("59 ?? 53 ?? 2E ?? 2E ?? 2E ?? 5F 43", true, false, "").ConfigureAwait(false);
                 //older version may have this as sig: 59 ?? 53 ?? 2E ?? 5F 43
                 long firstaddress = x.FirstOrDefault();
                 string address = string.Format("{0:X}", firstaddress);
-                FulllbuildID = m.ReadString(address, "", 43, true);
+                FulllbuildID = m.ReadString(address, "", 43, true);*/
                 logs.WriteLog("Game Build ID: " + FulllbuildID);
             }
         }
@@ -185,9 +193,10 @@ namespace LiberatorY5
                         treeViewEvents.Nodes[index].Tag = item2;
 
                     }
-                    long house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
-                    long hostage = m.ReadLong(r6mem + VoidEdge.hostage_Offset, "");
-                    long elim = m.ReadLong(r6mem + VoidEdge.elim_Offset, "");
+                    house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
+                    hostage = m.ReadLong(r6mem + VoidEdge.hostage_Offset, "");
+                    easy = m.ReadLong(r6mem + VoidEdge.easyDifficulty_Offset, "");
+                    //long test = m.ReadLong(r6mem + VoidEdge.somethingTEST, "");
                     //map
                     if (mapname != null)
                     {
@@ -216,12 +225,24 @@ namespace LiberatorY5
                     }
                     if (gamemode != null)
                     {
-                        VoidEdge.GameModeConverter(gamemode, gamemode_parent, house ,hostage, elim, out long output_gamemode, out long difficulty,out long outmap);
+                        VoidEdge.GameModeConverter(gamemode, gamemode_parent, house ,hostage,easy, out long output_gamemode, out long difficulty,out long outmap);
                         if (output_gamemode != 0L)
                         {
                             m.WriteMemory(r6mem + VoidEdge.r6_gamemode, "long", output_gamemode.ToString(), "", null);
                             m.WriteMemory(r6mem + VoidEdge.r6_difficulty, "long", difficulty.ToString(), "", null);
-                            m.WriteMemory(r6mem + VoidEdge.r6_map, "long", outmap.ToString(), "", null);
+                            if (outmap == 0L)
+                            {
+                                VoidEdge.MapConverter(mapname, house, out long output_map);
+                                if (output_map != 0L)
+                                {
+                                    m.WriteMemory(r6mem + VoidEdge.r6_map, "long", output_map.ToString(), "", null);
+                                }
+                            }
+                            else
+                            {
+                                m.WriteMemory(r6mem + VoidEdge.r6_map, "long", outmap.ToString(), "", null);
+                            }
+                            
                         }
                     }
                 }
@@ -282,6 +303,36 @@ namespace LiberatorY5
         private void LibY5_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void randomButton_Click(object sender, EventArgs e)
+        {
+            //NOW ONLY voidEdge,but soon we doing the steel wave
+            if (house == long.MaxValue)
+            {
+                house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
+                hostage = m.ReadLong(r6mem + VoidEdge.hostage_Offset, "");
+                easy = m.ReadLong(r6mem + VoidEdge.easyDifficulty_Offset, "");
+            }
+            VoidEdge.GameModeConverter("Random", "Random", house, hostage, easy, out long output_gamemode, out long difficulty, out long outmap);
+            if (output_gamemode != 0L)
+            {
+                m.WriteMemory(r6mem + VoidEdge.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                m.WriteMemory(r6mem + VoidEdge.r6_difficulty, "long", difficulty.ToString(), "", null);
+                if (outmap == 0L)
+                {
+                    VoidEdge.MapConverter(mapname, house, out long output_map);
+                    if (output_map != 0L)
+                    {
+                        m.WriteMemory(r6mem + VoidEdge.r6_map, "long", output_map.ToString(), "", null);
+                    }
+                }
+                else
+                {
+                    m.WriteMemory(r6mem + VoidEdge.r6_map, "long", outmap.ToString(), "", null);
+                }
+
+            }
         }
     }
 }

@@ -223,6 +223,7 @@
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.checkBoxClientMode = new System.Windows.Forms.CheckBox();
             this.manual_hookButton = new System.Windows.Forms.Button();
+            this.randomButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -241,6 +242,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.randomButton);
             this.tabPage1.Controls.Add(this.sendtoR6Button);
             this.tabPage1.Controls.Add(this.labelEvent);
             this.tabPage1.Controls.Add(this.labelMap);
@@ -794,6 +796,16 @@
             this.manual_hookButton.UseVisualStyleBackColor = true;
             this.manual_hookButton.Click += new System.EventHandler(this.manual_hookClicked);
             // 
+            // randomButton
+            // 
+            this.randomButton.Location = new System.Drawing.Point(195, 419);
+            this.randomButton.Name = "randomButton";
+            this.randomButton.Size = new System.Drawing.Size(75, 23);
+            this.randomButton.TabIndex = 9;
+            this.randomButton.Text = "random";
+            this.randomButton.UseVisualStyleBackColor = true;
+            this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
+            // 
             // LiberatorY5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -844,6 +856,7 @@
         private System.Windows.Forms.CheckBox checkBoxClientMode;
         private System.Windows.Forms.Button sendtoR6Button;
         private System.Windows.Forms.Button manual_hookButton;
+        private System.Windows.Forms.Button randomButton;
     }
 }
 

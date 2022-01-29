@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
 using System.Threading;
@@ -37,6 +31,7 @@ namespace LiberatorY5
         long house = long.MaxValue;
         long hostage = long.MaxValue;
         long easy = long.MaxValue;
+        long day = long.MaxValue;
 
         public LiberatorY5()
         {
@@ -119,7 +114,15 @@ namespace LiberatorY5
             if (procOpen)
             {
                 Once_BuildID();
-                labelUpdate.Text = "Game found: " + FulllbuildID;  
+                if (!string.IsNullOrWhiteSpace(FulllbuildID))
+                {
+
+                    labelUpdate.Text = "Game found: " + FulllbuildID;
+                }
+                else
+                {
+                    labelUpdate.Text = "This Build is NOT supported!";
+                } 
             }
             else
             {
@@ -145,6 +148,7 @@ namespace LiberatorY5
                 labelSelecting.Visible = false;
                 sendtoR6Button.Visible = false;
                 randomButton.Visible = false;
+                daynightCheckbox.Visible = false;
             }
             else
             {
@@ -158,17 +162,55 @@ namespace LiberatorY5
                 labelSelecting.Visible = true;
                 sendtoR6Button.Visible = true;
                 randomButton.Visible = true;
+                daynightCheckbox.Visible = true;
             }
         }
 
         private /*async*/ void Once_BuildID()
         {
+            string version;
             if (FulllbuildID == null)
             {
-                string version = m.ReadString(r6mem + "0x53CF449", "", 43, true);
-                FulllbuildID = version;
+                version = m.ReadString(r6mem + VoidEdge.BuildID_Check, "", 43, true);
+                if (version == VoidEdge.FuillBuildID)
+                {
+                    house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
+                    hostage = m.ReadLong(r6mem + VoidEdge.hostage_Offset, "");
+                    easy = m.ReadLong(r6mem + VoidEdge.easyDifficulty_Offset, "");
+                    day = m.ReadLong(r6mem + VoidEdge.day_Offset, "");
+                    treeViewEvents.Nodes.Clear();
+                    for (int index = 0; index < VoidEdge.EventView.Length; index++)
+                    {
+                        var item = VoidEdge.EventView[index];
+                        var item2 = VoidEdge.EventView_Tag[index];
+                        treeViewEvents.Nodes.Add(item);
+                        treeViewEvents.Nodes[index].Tag = item2;
+                    }
+                    FulllbuildID = version;
+                    logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
+                }
+                version = m.ReadString(r6mem + SteelWave.BuildID_Check, "", 46, true);
+                if (version == SteelWave.FuillBuildID)
+                {
+                    house = m.ReadLong(r6mem + SteelWave.house_Offset, "");
+                    hostage = m.ReadLong(r6mem + SteelWave.hostage_Offset, "");
+                    easy = m.ReadLong(r6mem + SteelWave.easyDifficulty_Offset, "");
+                    day = m.ReadLong(r6mem + SteelWave.day_Offset, "");
+                    treeViewEvents.Nodes.Clear();
+                    for (int index = 0; index < SteelWave.EventView.Length; index++)
+                    {
+                        var item = SteelWave.EventView[index];
+                        var item2 = SteelWave.EventView_Tag[index];
+                        treeViewEvents.Nodes.Add(item);
+                        treeViewEvents.Nodes[index].Tag = item2;
+                    }
+                    FulllbuildID = version;
+                    logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
+                }
                 /*
                 IEnumerable<long> x = await m.AoBScan("59 ?? 53 ?? 2E ?? 2E ?? 2E ?? 5F 43", true, false, "").ConfigureAwait(false);
+                59 ?? 53 ?? 2E ?? 2E ?? 2E ?? 5F 43 =>  Y?S?.?.?.?_C
+                59 ?? 53 ?? 2E ?? 2E ?? 2E ?? 70 63 5F 43 =>  Y?S?.?.?.?pc_C
                 //older version may have this as sig: 59 ?? 53 ?? 2E ?? 5F 43
                 long firstaddress = x.FirstOrDefault();
                 string address = string.Format("{0:X}", firstaddress);
@@ -181,23 +223,8 @@ namespace LiberatorY5
         {
             if (procOpen)
             {
-                //string version = m.ReadString(r6mem + VoidEdge.versionCheck, "", 32, true);
                 if (FulllbuildID == VoidEdge.FuillBuildID)
                 {
-                    treeViewEvents.Nodes.Clear();
-                    for (int index = 0; index < VoidEdge.EventView.Length; index++)
-                    {
-                        var item = VoidEdge.EventView[index];
-                        var item2 = VoidEdge.EventView_Tag[index];
-                        treeViewEvents.Nodes.Add(item);
-                        treeViewEvents.Nodes[index].Tag = item2;
-
-                    }
-                    house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
-                    hostage = m.ReadLong(r6mem + VoidEdge.hostage_Offset, "");
-                    easy = m.ReadLong(r6mem + VoidEdge.easyDifficulty_Offset, "");
-                    //long test = m.ReadLong(r6mem + VoidEdge.somethingTEST, "");
-                    //map
                     if (mapname != null)
                     {
                         if (mapname == "oldhereford")
@@ -246,9 +273,59 @@ namespace LiberatorY5
                         }
                     }
                 }
+                if (FulllbuildID == SteelWave.FuillBuildID)
+                {
+                    if (mapname != null)
+                    {
+                        if (mapname == "oldhereford")
+                        {
+                            long oldhereford = m.ReadLong(r6mem + SteelWave.oldHereford_Offset, "");
+                            m.WriteMemory(r6mem + SteelWave.r6_map, "long", oldhereford.ToString(), "", null);
+                        }
+                        else
+                        {
+                            SteelWave.MapConverter(mapname, house, out long output_map);
+                            if (output_map != 0L)
+                            {
+                                m.WriteMemory(r6mem + SteelWave.r6_map, "long", output_map.ToString(), "", null);
+                            }
+                        }
+                    }
+                    if (events != null)
+                    {
+                        SteelWave.EventConverter(events, house, hostage, out long output_map, out long output_gamemode);
+                        if (output_map != 0L | output_gamemode != 0L)
+                        {
+                            m.WriteMemory(r6mem + SteelWave.r6_map, "long", output_map.ToString(), "", null);
+                            m.WriteMemory(r6mem + SteelWave.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                        }
+                    }
+                    if (gamemode != null)
+                    {
+                        SteelWave.GameModeConverter(gamemode, gamemode_parent, house, hostage, easy, out long output_gamemode, out long difficulty, out long outmap);
+                        if (output_gamemode != 0L)
+                        {
+                            m.WriteMemory(r6mem + SteelWave.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                            m.WriteMemory(r6mem + SteelWave.r6_difficulty, "long", difficulty.ToString(), "", null);
+                            if (outmap == 0L)
+                            {
+                                SteelWave.MapConverter(mapname, house, out long output_map);
+                                if (output_map != 0L)
+                                {
+                                    m.WriteMemory(r6mem + SteelWave.r6_map, "long", output_map.ToString(), "", null);
+                                }
+                            }
+                            else
+                            {
+                                m.WriteMemory(r6mem + SteelWave.r6_map, "long", outmap.ToString(), "", null);
+                            }
+
+                        }
+                    }
+                }
                 else
                 {
-                    labelUpdate.Text = "Currently Void Edge supported";
+                    labelUpdate.Text = "Build Currently NOT supported";
                 }
             }
             else
@@ -272,7 +349,7 @@ namespace LiberatorY5
             if (procOpen)
             {
                 Once_BuildID();
-                if (!string.IsNullOrEmpty(FulllbuildID))
+                if (!string.IsNullOrWhiteSpace(FulllbuildID))
                 {
                     
                     labelUpdate.Text = "Game found: " + FulllbuildID;
@@ -307,31 +384,68 @@ namespace LiberatorY5
 
         private void randomButton_Click(object sender, EventArgs e)
         {
-            //NOW ONLY voidEdge,but soon we doing the steel wave
-            if (house == long.MaxValue)
+            if (FulllbuildID == VoidEdge.FuillBuildID)
             {
-                house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
-                hostage = m.ReadLong(r6mem + VoidEdge.hostage_Offset, "");
-                easy = m.ReadLong(r6mem + VoidEdge.easyDifficulty_Offset, "");
-            }
-            VoidEdge.GameModeConverter("Random", "Random", house, hostage, easy, out long output_gamemode, out long difficulty, out long outmap);
-            if (output_gamemode != 0L)
-            {
-                m.WriteMemory(r6mem + VoidEdge.r6_gamemode, "long", output_gamemode.ToString(), "", null);
-                m.WriteMemory(r6mem + VoidEdge.r6_difficulty, "long", difficulty.ToString(), "", null);
-                if (outmap == 0L)
+                VoidEdge.GameModeConverter("Random", "Random", house, hostage, easy, out long output_gamemode, out long difficulty, out long outmap);
+                if (output_gamemode != 0L)
                 {
-                    VoidEdge.MapConverter(mapname, house, out long output_map);
-                    if (output_map != 0L)
+                    m.WriteMemory(r6mem + VoidEdge.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                    m.WriteMemory(r6mem + VoidEdge.r6_difficulty, "long", difficulty.ToString(), "", null);
+                    if (outmap == 0L)
                     {
-                        m.WriteMemory(r6mem + VoidEdge.r6_map, "long", output_map.ToString(), "", null);
+                        VoidEdge.MapConverter(mapname, house, out long output_map);
+                        if (output_map != 0L)
+                        {
+                            m.WriteMemory(r6mem + VoidEdge.r6_map, "long", output_map.ToString(), "", null);
+                        }
                     }
+                    else
+                    {
+                        m.WriteMemory(r6mem + VoidEdge.r6_map, "long", outmap.ToString(), "", null);
+                    }
+                    var random = new Random();
+                    GlobalStuff.DayChange((random.Next(2) == 1), day, out long daynight);
+                    m.WriteMemory(r6mem + VoidEdge.r6_daynight, "long", daynight.ToString(), "", null);
                 }
-                else
+            }
+            if (FulllbuildID == SteelWave.FuillBuildID)
+            {
+                SteelWave.GameModeConverter("Random", "Random", house, hostage, easy, out long output_gamemode, out long difficulty, out long outmap);
+                if (output_gamemode != 0L)
                 {
-                    m.WriteMemory(r6mem + VoidEdge.r6_map, "long", outmap.ToString(), "", null);
+                    m.WriteMemory(r6mem + SteelWave.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                    m.WriteMemory(r6mem + SteelWave.r6_difficulty, "long", difficulty.ToString(), "", null);
+                    if (outmap == 0L)
+                    {
+                        SteelWave.MapConverter(mapname, house, out long output_map);
+                        if (output_map != 0L)
+                        {
+                            m.WriteMemory(r6mem + SteelWave.r6_map, "long", output_map.ToString(), "", null);
+                        }
+                    }
+                    else
+                    {
+                        m.WriteMemory(r6mem + SteelWave.r6_map, "long", outmap.ToString(), "", null);
+                    }
+                    var random = new Random();
+                    GlobalStuff.DayChange((random.Next(2) == 1), day, out long daynight);
+                    m.WriteMemory(r6mem + SteelWave.r6_daynight, "long", daynight.ToString(), "", null);
                 }
+            }
+        }
 
+        private void daynightCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            long daynight;
+            if (FulllbuildID == VoidEdge.FuillBuildID)
+            {
+                GlobalStuff.DayChange(daynightCheckbox.Checked, day, out daynight);
+                m.WriteMemory(r6mem + VoidEdge.r6_daynight, "long", daynight.ToString(), "", null);
+            }
+            if (FulllbuildID == SteelWave.FuillBuildID)
+            {
+                GlobalStuff.DayChange(daynightCheckbox.Checked, day, out daynight);
+                m.WriteMemory(r6mem + SteelWave.r6_daynight, "long", daynight.ToString(), "", null);
             }
         }
     }

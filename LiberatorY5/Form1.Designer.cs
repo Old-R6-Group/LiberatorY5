@@ -204,6 +204,7 @@
             treeNode102});
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.randomButton = new System.Windows.Forms.Button();
             this.sendtoR6Button = new System.Windows.Forms.Button();
             this.labelEvent = new System.Windows.Forms.Label();
             this.labelMap = new System.Windows.Forms.Label();
@@ -223,7 +224,7 @@
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.checkBoxClientMode = new System.Windows.Forms.CheckBox();
             this.manual_hookButton = new System.Windows.Forms.Button();
-            this.randomButton = new System.Windows.Forms.Button();
+            this.daynightCheckbox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage3.SuspendLayout();
@@ -242,6 +243,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.daynightCheckbox);
             this.tabPage1.Controls.Add(this.randomButton);
             this.tabPage1.Controls.Add(this.sendtoR6Button);
             this.tabPage1.Controls.Add(this.labelEvent);
@@ -259,6 +261,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Gametypes";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // randomButton
+            // 
+            this.randomButton.Location = new System.Drawing.Point(313, 416);
+            this.randomButton.Name = "randomButton";
+            this.randomButton.Size = new System.Drawing.Size(75, 23);
+            this.randomButton.TabIndex = 9;
+            this.randomButton.Text = "random";
+            this.randomButton.UseVisualStyleBackColor = true;
+            this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
             // 
             // sendtoR6Button
             // 
@@ -796,15 +808,16 @@
             this.manual_hookButton.UseVisualStyleBackColor = true;
             this.manual_hookButton.Click += new System.EventHandler(this.manual_hookClicked);
             // 
-            // randomButton
+            // daynightCheckbox
             // 
-            this.randomButton.Location = new System.Drawing.Point(195, 419);
-            this.randomButton.Name = "randomButton";
-            this.randomButton.Size = new System.Drawing.Size(75, 23);
-            this.randomButton.TabIndex = 9;
-            this.randomButton.Text = "random";
-            this.randomButton.UseVisualStyleBackColor = true;
-            this.randomButton.Click += new System.EventHandler(this.randomButton_Click);
+            this.daynightCheckbox.AutoSize = true;
+            this.daynightCheckbox.Location = new System.Drawing.Point(195, 417);
+            this.daynightCheckbox.Name = "daynightCheckbox";
+            this.daynightCheckbox.Size = new System.Drawing.Size(81, 17);
+            this.daynightCheckbox.TabIndex = 10;
+            this.daynightCheckbox.Text = "Day / Night";
+            this.daynightCheckbox.UseVisualStyleBackColor = true;
+            this.daynightCheckbox.CheckedChanged += new System.EventHandler(this.daynightCheckbox_CheckedChanged);
             // 
             // LiberatorY5
             // 
@@ -857,6 +870,7 @@
         private System.Windows.Forms.Button sendtoR6Button;
         private System.Windows.Forms.Button manual_hookButton;
         private System.Windows.Forms.Button randomButton;
+        private System.Windows.Forms.CheckBox daynightCheckbox;
     }
 }
 

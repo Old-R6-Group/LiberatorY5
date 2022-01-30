@@ -176,7 +176,6 @@ namespace LiberatorY5
                 logs.WriteLog(ModeName);
 
             }
-            //soon
         }
         private static void ModeConverter(string mode, long gamemode, out long outmode, out bool isTH)
         {
@@ -442,7 +441,6 @@ namespace LiberatorY5
                 logs.WriteLog(ModeName);
 
             }
-            //soon
         }
         private static void ModeConverter(string mode, long gamemode, out long outmode, out bool isTH)
         {

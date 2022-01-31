@@ -21,6 +21,7 @@ namespace LiberatorY5
         public static string r6_map = playlist + ",10";
         public static string r6_gamemode = playlist + ",8";
         public static string r6_difficulty = playlist + ",30";
+        public static string gamestate = "05393908,F0"; //7 Fully loaded! 3 in matchmaking, 2 to be in mainmenu | BYTE!!
 
         public static string[] EventView_Tag = { "goldengun", "grandlarceny" };
         public static string[] EventView = { "Golden Gun", "Grand Larceny" };
@@ -281,6 +282,8 @@ namespace LiberatorY5
         public static string r6_map = playlist + ",10";
         public static string r6_gamemode = playlist + ",8";
         public static string r6_difficulty = playlist + ",30";
+        public static string gamestate = "603DD10,114"; //7 Fully loaded! 3 in match, 2 to be in mainmenu | BYTE!!
+        //public static string infinity_time = "603DD10,96C";
 
         public static string[] EventView_Tag = { "goldengun", "mute", "attrition" };
         public static string[] EventView = { "Golden Gun", "MUTE Protocol", "Attrition" };

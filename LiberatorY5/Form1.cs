@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Threading;
 using Memory;
+using System.Linq;
 
 namespace LiberatorY5
 {
@@ -99,6 +100,8 @@ namespace LiberatorY5
             //logs.WriteLog(fail);
             if (!procOpen)
             {
+                labelUpdate.Text = "Can't find siege. Make sure Battleye is disabled and the game is at the main menu!";
+                FulllbuildID = null;
                 Thread.Sleep(100);
                 return;
             }
@@ -110,25 +113,20 @@ namespace LiberatorY5
         //updates the label ath the bottom
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            //logs.WriteLog("idk " + procOpen);
             if (procOpen)
             {
+
                 Once_BuildID();
                 if (!string.IsNullOrWhiteSpace(FulllbuildID))
                 {
-
                     labelUpdate.Text = "Game found: " + FulllbuildID;
                 }
                 else
                 {
-                    labelUpdate.Text = "This Build is NOT supported!";
-                } 
+                    labelUpdate.Text = "This Build is NOT supported! or Currently Reading from your Game";
+                }
             }
-            else
-            {
-                labelUpdate.Text = "Can't find siege. Make sure Battleye is disabled and the game is at the main menu!";
-                FulllbuildID = null;
-            }
+
         }
 
         private void checkBoxClientMode_CheckedChanged(object sender, EventArgs e)
@@ -174,38 +172,47 @@ namespace LiberatorY5
                 version = m.ReadString(r6mem + VoidEdge.BuildID_Check, "", 43, true);
                 if (version == VoidEdge.FuillBuildID)
                 {
-                    house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
-                    hostage = m.ReadLong(r6mem + VoidEdge.hostage_Offset, "");
-                    easy = m.ReadLong(r6mem + VoidEdge.easyDifficulty_Offset, "");
-                    day = m.ReadLong(r6mem + VoidEdge.day_Offset, "");
-                    treeViewEvents.Nodes.Clear();
-                    for (int index = 0; index < VoidEdge.EventView.Length; index++)
+                    int state = m.ReadInt(r6mem + VoidEdge.gamestate,"");
+                    logs.WriteLog("Game State: " + state.ToString());
+                    if (state >= 2)
                     {
-                        var item = VoidEdge.EventView[index];
-                        var item2 = VoidEdge.EventView_Tag[index];
-                        treeViewEvents.Nodes.Add(item);
-                        treeViewEvents.Nodes[index].Tag = item2;
+                        treeViewEvents.Nodes.Clear();
+                        for (int index = 0; index < VoidEdge.EventView.Length; index++)
+                        {
+                            var item = VoidEdge.EventView[index];
+                            var item2 = VoidEdge.EventView_Tag[index];
+                            treeViewEvents.Nodes.Add(item);
+                            treeViewEvents.Nodes[index].Tag = item2;
+                        }
+                        house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
+                        hostage = m.ReadLong(r6mem + VoidEdge.hostage_Offset, "");
+                        easy = m.ReadLong(r6mem + VoidEdge.easyDifficulty_Offset, "");
+                        day = m.ReadLong(r6mem + VoidEdge.day_Offset, "");
+                        FulllbuildID = version;
+                        logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
                     }
-                    FulllbuildID = version;
-                    logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
                 }
                 version = m.ReadString(r6mem + SteelWave.BuildID_Check, "", 46, true);
                 if (version == SteelWave.FuillBuildID)
                 {
-                    house = m.ReadLong(r6mem + SteelWave.house_Offset, "");
-                    hostage = m.ReadLong(r6mem + SteelWave.hostage_Offset, "");
-                    easy = m.ReadLong(r6mem + SteelWave.easyDifficulty_Offset, "");
-                    day = m.ReadLong(r6mem + SteelWave.day_Offset, "");
-                    treeViewEvents.Nodes.Clear();
-                    for (int index = 0; index < SteelWave.EventView.Length; index++)
+                    int state = m.ReadInt(r6mem + SteelWave.gamestate, "");
+                    if (state >= 2)
                     {
-                        var item = SteelWave.EventView[index];
-                        var item2 = SteelWave.EventView_Tag[index];
-                        treeViewEvents.Nodes.Add(item);
-                        treeViewEvents.Nodes[index].Tag = item2;
+                        treeViewEvents.Nodes.Clear();
+                        for (int index = 0; index < SteelWave.EventView.Length; index++)
+                        {
+                            var item = SteelWave.EventView[index];
+                            var item2 = SteelWave.EventView_Tag[index];
+                            treeViewEvents.Nodes.Add(item);
+                            treeViewEvents.Nodes[index].Tag = item2;
+                        }
+                        house = m.ReadLong(r6mem + SteelWave.house_Offset, "");
+                        hostage = m.ReadLong(r6mem + SteelWave.hostage_Offset, "");
+                        easy = m.ReadLong(r6mem + SteelWave.easyDifficulty_Offset, "");
+                        day = m.ReadLong(r6mem + SteelWave.day_Offset, "");
+                        FulllbuildID = version;
+                        logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
                     }
-                    FulllbuildID = version;
-                    logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
                 }
                 /*
                 IEnumerable<long> x = await m.AoBScan("59 ?? 53 ?? 2E ?? 2E ?? 2E ?? 5F 43", true, false, "").ConfigureAwait(false);
@@ -215,7 +222,7 @@ namespace LiberatorY5
                 long firstaddress = x.FirstOrDefault();
                 string address = string.Format("{0:X}", firstaddress);
                 FulllbuildID = m.ReadString(address, "", 43, true);*/
-                logs.WriteLog("Game Build ID: " + FulllbuildID);
+                if (!string.IsNullOrWhiteSpace(FulllbuildID)) logs.WriteLog("Game Build ID: " + FulllbuildID);
             }
         }
 
@@ -337,33 +344,46 @@ namespace LiberatorY5
 
         private void manual_hookClicked(object sender, EventArgs e)
         {
-            procOpen = m.OpenProcess(r6processname, out string fail);
-            logs.WriteLog("Failed? " + fail);
-            if (!procOpen)
+            if (!string.IsNullOrWhiteSpace(FulllbuildID))
             {
-                Thread.Sleep(100);
-                return;
-            }
-            Thread.Sleep(1000);
-            logs.WriteLog("Process is Opened already? " + procOpen);
-            if (procOpen)
-            {
-                Once_BuildID();
-                if (!string.IsNullOrWhiteSpace(FulllbuildID))
+                if (FulllbuildID == VoidEdge.FuillBuildID)
                 {
-                    
-                    labelUpdate.Text = "Game found: " + FulllbuildID;
+                    treeViewEvents.Nodes.Clear();
+                    for (int index = 0; index < VoidEdge.EventView.Length; index++)
+                    {
+                        var item = VoidEdge.EventView[index];
+                        var item2 = VoidEdge.EventView_Tag[index];
+                        treeViewEvents.Nodes.Add(item);
+                        treeViewEvents.Nodes[index].Tag = item2;
+                    }
+                    house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
+                    hostage = m.ReadLong(r6mem + VoidEdge.hostage_Offset, "");
+                    easy = m.ReadLong(r6mem + VoidEdge.easyDifficulty_Offset, "");
+                    day = m.ReadLong(r6mem + VoidEdge.day_Offset, "");
+                    logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
                 }
-                else
+                if (FulllbuildID == SteelWave.FuillBuildID)
                 {
-                    labelUpdate.Text = "Something broken";
-                }
+                    treeViewEvents.Nodes.Clear();
+                    for (int index = 0; index < SteelWave.EventView.Length; index++)
+                    {
+                        var item = SteelWave.EventView[index];
+                        var item2 = SteelWave.EventView_Tag[index];
+                        treeViewEvents.Nodes.Add(item);
+                        treeViewEvents.Nodes[index].Tag = item2;
+                    }
 
-            }
-            else
-            {
-                labelUpdate.Text = "Can't find siege. Make sure Battleye is disabled and the game is at the main menu!";
-                FulllbuildID = null;
+                    house = m.ReadLong(r6mem + SteelWave.house_Offset, "");
+                    hostage = m.ReadLong(r6mem + SteelWave.hostage_Offset, "");
+                    easy = m.ReadLong(r6mem + SteelWave.easyDifficulty_Offset, "");
+                    day = m.ReadLong(r6mem + SteelWave.day_Offset, "");
+                    logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
+                }
+                //treeViewGameMode.Nodes.Find("NodeHostage", true)[0].Remove();
+                //This will remove existing nodes!
+                //Helped for future
+
+                labelUpdate.Text = "Reading addresses again!";
             }
         }
         //added this to have the background acync
@@ -379,7 +399,6 @@ namespace LiberatorY5
 
         private void LibY5_Load(object sender, EventArgs e)
         {
-
         }
 
         private void randomButton_Click(object sender, EventArgs e)
@@ -446,6 +465,30 @@ namespace LiberatorY5
             {
                 GlobalStuff.DayChange(daynightCheckbox.Checked, day, out daynight);
                 m.WriteMemory(r6mem + SteelWave.r6_daynight, "long", daynight.ToString(), "", null);
+            }
+        }
+
+        private void endRoundButton_Click(object sender, EventArgs e)
+        {
+            if (FulllbuildID == VoidEdge.FuillBuildID)
+            {
+                m.WriteMemory(r6mem + VoidEdge.gamestate, "int", "2", "", null);
+            }
+            if (FulllbuildID == SteelWave.FuillBuildID)
+            {
+                m.WriteMemory(r6mem + SteelWave.gamestate, "int", "2", "", null);
+            }
+        }
+
+        private void endMatchButton_Click(object sender, EventArgs e)
+        {
+            if (FulllbuildID == VoidEdge.FuillBuildID)
+            {
+                m.WriteMemory(r6mem + VoidEdge.gamestate, "int", "3", "", null);
+            }
+            if (FulllbuildID == SteelWave.FuillBuildID)
+            {
+                m.WriteMemory(r6mem + SteelWave.gamestate, "int", "3", "", null);
             }
         }
     }

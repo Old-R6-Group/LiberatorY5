@@ -21,7 +21,7 @@ namespace LiberatorY5
         public static string r6_map = playlist + ",10";
         public static string r6_gamemode = playlist + ",8";
         public static string r6_difficulty = playlist + ",30";
-        public static string gamestate = "05393908,F0"; //7 Fully loaded! 3 in matchmaking, 2 to be in mainmenu | BYTE!!
+        public static string gamestate = "05393908,F0";
 
         public static string[] EventView_Tag = { "goldengun", "grandlarceny" };
         public static string[] EventView = { "Golden Gun", "Grand Larceny" };
@@ -282,8 +282,7 @@ namespace LiberatorY5
         public static string r6_map = playlist + ",10";
         public static string r6_gamemode = playlist + ",8";
         public static string r6_difficulty = playlist + ",30";
-        public static string gamestate = "603DD10,114"; //7 Fully loaded! 3 in match, 2 to be in mainmenu | BYTE!!
-        //public static string infinity_time = "603DD10,96C";
+        public static string gamestate = "603DD10,114";
 
         public static string[] EventView_Tag = { "goldengun", "mute", "attrition" };
         public static string[] EventView = { "Golden Gun", "MUTE Protocol", "Attrition" };
@@ -658,6 +657,30 @@ namespace LiberatorY5
             else
             {
                 daynight = day;
+            }
+            logs.WriteLog("D/N has been changed!");
+        }
+
+        public static string StateChange(int day)
+        {
+            switch (day)
+            {
+                case 1:
+                    return "Is Launching";
+                case 2:
+                    return "In Menu"; //load that for end round
+                case 3:
+                    return "In Lobby"; //load that for end match
+                case 4:
+                    return "In Match";
+                case 5:
+                    return "In Choosing Option";
+                case 6:
+                    return "In Loading";
+                case 7:
+                    return "Is Playing";
+                default:
+                    return day.ToString();
             }
         }
     }

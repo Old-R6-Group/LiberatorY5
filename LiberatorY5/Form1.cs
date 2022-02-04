@@ -10,7 +10,6 @@ namespace LiberatorY5
 {
     public partial class LiberatorY5 : Form
     {
-
         //array gamemode (void edge, steel wave, shadow legacy)
         //array maps (void edge, steel wave, shadow legacy)
         //array events(void edge, steel wave, shadow legacy)
@@ -18,7 +17,7 @@ namespace LiberatorY5
         //array ranked maps(void edge, steel wave, shadow legacy)
         //select first gamemode then map or vice versa
         //if select event gamemode and map will be ereased
-
+        #region Variables
         //variables
         public Mem m = new Mem();
         bool procOpen = false;
@@ -33,12 +32,15 @@ namespace LiberatorY5
         long hostage = long.MaxValue;
         long easy = long.MaxValue;
         long day = long.MaxValue;
-
+        #endregion
+        #region Clicking/Select and Load
         public LiberatorY5()
         {
             InitializeComponent();
         }
-
+        private void LibY5_Load(object sender, EventArgs e)
+        {
+        }
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://r6downloads.com");
@@ -64,7 +66,6 @@ namespace LiberatorY5
                     gamemode_parent = treeViewGameMode.SelectedNode.Tag.ToString();
                 }
                 labelEvent.Text = "Event";
-                //treeViewEvents = null;
             }
         }
 
@@ -75,7 +76,6 @@ namespace LiberatorY5
                 labelMap.Text = treeViewMap.SelectedNode.FullPath;
                 mapname = treeViewMap.SelectedNode.Tag.ToString();
                 labelEvent.Text = "Event";
-                //treeViewEvents = null;
             }
         }
 
@@ -87,48 +87,10 @@ namespace LiberatorY5
                 events = treeViewEvents.SelectedNode.Tag.ToString();
                 mapname = null;
                 gamemode = null;
-                //treeViewGameMode = null;
-                //treeViewMap = null;
                 labelGameMode.Text = "Game Mode";
                 labelMap.Text = "Map";
             }
         }
-        //search for siege and hook
-        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            procOpen = m.OpenProcess(r6processname, out string fail);
-            //logs.WriteLog(fail);
-            if (!procOpen)
-            {
-                labelUpdate.Text = "Can't find siege. Make sure Battleye is disabled and the game is at the main menu!";
-                FulllbuildID = null;
-                Thread.Sleep(100);
-                return;
-            }
-
-            Thread.Sleep(1000);
-            backgroundWorker.ReportProgress(0);
-        }
-
-        //updates the label ath the bottom
-        private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
-        {
-            if (procOpen)
-            {
-
-                Once_BuildID();
-                if (!string.IsNullOrWhiteSpace(FulllbuildID))
-                {
-                    labelUpdate.Text = "Game found: " + FulllbuildID;
-                }
-                else
-                {
-                    labelUpdate.Text = "This Build is NOT supported! or Currently Reading from your Game";
-                }
-            }
-
-        }
-
         private void checkBoxClientMode_CheckedChanged(object sender, EventArgs e)
         {
             if (checkBoxClientMode.Checked == true && checkBoxClientMode.Enabled == true)
@@ -163,8 +125,49 @@ namespace LiberatorY5
                 daynightCheckbox.Visible = true;
             }
         }
+        #endregion
+        #region Hooking background stuff
+        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            procOpen = m.OpenProcess(r6processname, out string fail);
+            //logs.WriteLog(fail);
+            if (!procOpen)
+            {
+                labelUpdate.Text = "Can't find siege. Make sure Battleye is disabled and the game is at the main menu!";
+                FulllbuildID = null;
+                Thread.Sleep(100);
+                return;
+            }
 
-        private /*async*/ void Once_BuildID()
+            Thread.Sleep(1000);
+            backgroundWorker.ReportProgress(0);
+        }
+        private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            if (procOpen)
+            {
+
+                Once_BuildID();
+                if (!string.IsNullOrWhiteSpace(FulllbuildID))
+                {
+                    labelUpdate.Text = "Game found: " + FulllbuildID;
+                }
+                else
+                {
+                    labelUpdate.Text = "This Build is NOT supported! or Currently Reading from your Game";
+                }
+            }
+
+        }
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            backgroundWorker.RunWorkerAsync(e);
+        }
+        private void LiberatorY5_Shown(object sender, EventArgs e)
+        {
+            backgroundWorker.RunWorkerAsync(e);
+        }
+        private void Once_BuildID()
         {
             string version;
             if (FulllbuildID == null)
@@ -172,7 +175,7 @@ namespace LiberatorY5
                 version = m.ReadString(r6mem + VoidEdge_Shey.BuildID_Check, "", 43, true);
                 if (version == VoidEdge_Shey.FuillBuildID)
                 {
-                    int state = m.ReadInt(r6mem + VoidEdge_Shey.gamestate,"");
+                    int state = m.ReadInt(r6mem + VoidEdge_Shey.gamestate, "");
                     logs.WriteLog("Game State: " + state.ToString());
                     if (state >= 2)
                     {
@@ -248,7 +251,8 @@ namespace LiberatorY5
                 if (!string.IsNullOrWhiteSpace(FulllbuildID)) logs.WriteLog("Game Build ID: " + FulllbuildID);
             }
         }
-
+        #endregion
+        #region Memory Stuffs
         private void sendtor6_Clicked(object sender, EventArgs e)
         {
             if (procOpen)
@@ -414,7 +418,6 @@ namespace LiberatorY5
                 FulllbuildID = null;
             }
         }
-
         private void manual_hookClicked(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(FulllbuildID))
@@ -475,21 +478,6 @@ namespace LiberatorY5
                 labelUpdate.Text = "Reading addresses again!";
             }
         }
-        //added this to have the background acync
-        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            backgroundWorker.RunWorkerAsync(e);
-        }
-        
-        private void LiberatorY5_Shown(object sender, EventArgs e)
-        {
-            backgroundWorker.RunWorkerAsync(e);
-        }
-
-        private void LibY5_Load(object sender, EventArgs e)
-        {
-        }
-
         private void randomButton_Click(object sender, EventArgs e)
         {
             if (FulllbuildID == VoidEdge_Shey.FuillBuildID)
@@ -541,7 +529,6 @@ namespace LiberatorY5
                 }
             }
         }
-
         private void daynightCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             long daynight;
@@ -556,7 +543,6 @@ namespace LiberatorY5
                 m.WriteMemory(r6mem + SteelWave.r6_daynight, "long", daynight.ToString(), "", null);
             }
         }
-
         private void endRoundButton_Click(object sender, EventArgs e)
         {
             if (FulllbuildID == VoidEdge_Shey.FuillBuildID)
@@ -572,7 +558,6 @@ namespace LiberatorY5
                 m.WriteMemory(r6mem + SteelWave.gamestate, "int", "2", "", null);
             }
         }
-
         private void endMatchButton_Click(object sender, EventArgs e)
         {
             if (FulllbuildID == VoidEdge_Shey.FuillBuildID)
@@ -588,5 +573,6 @@ namespace LiberatorY5
                 m.WriteMemory(r6mem + SteelWave.gamestate, "int", "3", "", null);
             }
         }
+        #endregion
     }
 }

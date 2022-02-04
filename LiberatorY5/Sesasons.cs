@@ -274,7 +274,7 @@ namespace LiberatorY5
         public static string day_Offset = "";
         public static string oldHereford_Offset = "";
         public static string easyDifficulty_Offset = "";
-        public static string house_Offset = "053AC048,20,20,E8,58,38,80,110";
+        public static string house_Offset = "053AC048,110,380,258,BC8,FA8";
         public static string hostage_Offset = "";
         private static string playlist = playlistManager + "," + firstOffset;
         public static string r6_daynight = playlist + ",38,0";

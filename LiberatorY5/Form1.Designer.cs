@@ -202,6 +202,7 @@
             System.Windows.Forms.TreeNode treeNode103 = new System.Windows.Forms.TreeNode("Match Making WIP", new System.Windows.Forms.TreeNode[] {
             treeNode98,
             treeNode102});
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LiberatorY5));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.sendtoR6Button = new System.Windows.Forms.Button();
@@ -865,6 +866,7 @@
             this.Controls.Add(this.checkBoxClientMode);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tabControl1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "LiberatorY5";
             this.Text = "LIberator Year 5";

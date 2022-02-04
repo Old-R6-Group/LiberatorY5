@@ -12,11 +12,19 @@ namespace LiberatorY5
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
+            string newui = "-newui";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LiberatorY5());
+            if (args.Contains(newui))
+            {
+                Application.Run(new NewUI());
+            }
+            else
+            {
+                Application.Run(new LiberatorY5());
+            }
         }
     }
 }

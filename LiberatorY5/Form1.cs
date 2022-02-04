@@ -169,25 +169,48 @@ namespace LiberatorY5
             string version;
             if (FulllbuildID == null)
             {
-                version = m.ReadString(r6mem + VoidEdge.BuildID_Check, "", 43, true);
-                if (version == VoidEdge.FuillBuildID)
+                version = m.ReadString(r6mem + VoidEdge_Shey.BuildID_Check, "", 43, true);
+                if (version == VoidEdge_Shey.FuillBuildID)
                 {
-                    int state = m.ReadInt(r6mem + VoidEdge.gamestate,"");
+                    int state = m.ReadInt(r6mem + VoidEdge_Shey.gamestate,"");
                     logs.WriteLog("Game State: " + state.ToString());
                     if (state >= 2)
                     {
                         treeViewEvents.Nodes.Clear();
-                        for (int index = 0; index < VoidEdge.EventView.Length; index++)
+                        for (int index = 0; index < VoidEdge_Shey.EventView.Length; index++)
                         {
-                            var item = VoidEdge.EventView[index];
-                            var item2 = VoidEdge.EventView_Tag[index];
+                            var item = VoidEdge_Shey.EventView[index];
+                            var item2 = VoidEdge_Shey.EventView_Tag[index];
                             treeViewEvents.Nodes.Add(item);
                             treeViewEvents.Nodes[index].Tag = item2;
                         }
-                        house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
-                        hostage = m.ReadLong(r6mem + VoidEdge.hostage_Offset, "");
-                        easy = m.ReadLong(r6mem + VoidEdge.easyDifficulty_Offset, "");
-                        day = m.ReadLong(r6mem + VoidEdge.day_Offset, "");
+                        house = m.ReadLong(r6mem + VoidEdge_Shey.house_Offset, "");
+                        hostage = m.ReadLong(r6mem + VoidEdge_Shey.hostage_Offset, "");
+                        easy = m.ReadLong(r6mem + VoidEdge_Shey.easyDifficulty_Offset, "");
+                        day = m.ReadLong(r6mem + VoidEdge_Shey.day_Offset, "");
+                        FulllbuildID = version;
+                        logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
+                    }
+                }
+                version = m.ReadString(r6mem + VoidEdge_MU.BuildID_Check, "", 43, true);
+                if (version == VoidEdge_MU.FuillBuildID)
+                {
+                    int state = m.ReadInt(r6mem + VoidEdge_MU.gamestate, "");
+                    logs.WriteLog("Game State: " + state.ToString());
+                    if (state >= 2)
+                    {
+                        treeViewEvents.Nodes.Clear();
+                        for (int index = 0; index < VoidEdge_MU.EventView.Length; index++)
+                        {
+                            var item = VoidEdge_MU.EventView[index];
+                            var item2 = VoidEdge_MU.EventView_Tag[index];
+                            treeViewEvents.Nodes.Add(item);
+                            treeViewEvents.Nodes[index].Tag = item2;
+                        }
+                        house = m.ReadLong(r6mem + VoidEdge_MU.house_Offset, "");
+                        hostage = m.ReadLong(r6mem + VoidEdge_MU.hostage_Offset, "");
+                        easy = m.ReadLong(r6mem + VoidEdge_MU.easyDifficulty_Offset, "");
+                        day = m.ReadLong(r6mem + VoidEdge_MU.day_Offset, "");
                         FulllbuildID = version;
                         logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
                     }
@@ -230,53 +253,103 @@ namespace LiberatorY5
         {
             if (procOpen)
             {
-                if (FulllbuildID == VoidEdge.FuillBuildID)
+                if (FulllbuildID == VoidEdge_Shey.FuillBuildID)
                 {
                     if (mapname != null)
                     {
                         if (mapname == "oldhereford")
                         {
-                            long oldhereford = m.ReadLong(r6mem + VoidEdge.oldHereford_Offset, "");
-                            m.WriteMemory(r6mem + VoidEdge.r6_map, "long", oldhereford.ToString(), "", null);
+                            long oldhereford = m.ReadLong(r6mem + VoidEdge_Shey.oldHereford_Offset, "");
+                            m.WriteMemory(r6mem + VoidEdge_Shey.r6_map, "long", oldhereford.ToString(), "", null);
                         }
                         else
                         {
-                            VoidEdge.MapConverter(mapname, house, out long output_map);
+                            VoidEdge_Shey.MapConverter(mapname, house, out long output_map);
                             if (output_map != 0L)
                             {
-                                m.WriteMemory(r6mem + VoidEdge.r6_map, "long", output_map.ToString(), "", null);
+                                m.WriteMemory(r6mem + VoidEdge_Shey.r6_map, "long", output_map.ToString(), "", null);
                             }
                         }
                     }
                     if (events != null)
                     {
-                        VoidEdge.EventConverter(events, house, hostage, out long output_map, out long output_gamemode);
+                        VoidEdge_Shey.EventConverter(events, house, hostage, out long output_map, out long output_gamemode);
                         if (output_map != 0L | output_gamemode != 0L)
                         {
-                            m.WriteMemory(r6mem + VoidEdge.r6_map, "long", output_map.ToString(), "", null);
-                            m.WriteMemory(r6mem + VoidEdge.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                            m.WriteMemory(r6mem + VoidEdge_Shey.r6_map, "long", output_map.ToString(), "", null);
+                            m.WriteMemory(r6mem + VoidEdge_Shey.r6_gamemode, "long", output_gamemode.ToString(), "", null);
                         }
                     }
                     if (gamemode != null)
                     {
-                        VoidEdge.GameModeConverter(gamemode, gamemode_parent, house ,hostage,easy, out long output_gamemode, out long difficulty,out long outmap);
+                        VoidEdge_Shey.GameModeConverter(gamemode, gamemode_parent, house ,hostage,easy, out long output_gamemode, out long difficulty,out long outmap);
                         if (output_gamemode != 0L)
                         {
-                            m.WriteMemory(r6mem + VoidEdge.r6_gamemode, "long", output_gamemode.ToString(), "", null);
-                            m.WriteMemory(r6mem + VoidEdge.r6_difficulty, "long", difficulty.ToString(), "", null);
+                            m.WriteMemory(r6mem + VoidEdge_Shey.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                            m.WriteMemory(r6mem + VoidEdge_Shey.r6_difficulty, "long", difficulty.ToString(), "", null);
                             if (outmap == 0L)
                             {
-                                VoidEdge.MapConverter(mapname, house, out long output_map);
+                                VoidEdge_Shey.MapConverter(mapname, house, out long output_map);
                                 if (output_map != 0L)
                                 {
-                                    m.WriteMemory(r6mem + VoidEdge.r6_map, "long", output_map.ToString(), "", null);
+                                    m.WriteMemory(r6mem + VoidEdge_Shey.r6_map, "long", output_map.ToString(), "", null);
                                 }
                             }
                             else
                             {
-                                m.WriteMemory(r6mem + VoidEdge.r6_map, "long", outmap.ToString(), "", null);
+                                m.WriteMemory(r6mem + VoidEdge_Shey.r6_map, "long", outmap.ToString(), "", null);
                             }
                             
+                        }
+                    }
+                }
+                if (FulllbuildID == VoidEdge_MU.FuillBuildID)
+                {
+                    if (mapname != null)
+                    {
+                        if (mapname == "oldhereford")
+                        {
+                            long oldhereford = m.ReadLong(r6mem + VoidEdge_MU.oldHereford_Offset, "");
+                            m.WriteMemory(r6mem + VoidEdge_MU.r6_map, "long", oldhereford.ToString(), "", null);
+                        }
+                        else
+                        {
+                            VoidEdge_MU.MapConverter(mapname, house, out long output_map);
+                            if (output_map != 0L)
+                            {
+                                m.WriteMemory(r6mem + VoidEdge_MU.r6_map, "long", output_map.ToString(), "", null);
+                            }
+                        }
+                    }
+                    if (events != null)
+                    {
+                        VoidEdge_MU.EventConverter(events, house, hostage, out long output_map, out long output_gamemode);
+                        if (output_map != 0L | output_gamemode != 0L)
+                        {
+                            m.WriteMemory(r6mem + VoidEdge_MU.r6_map, "long", output_map.ToString(), "", null);
+                            m.WriteMemory(r6mem + VoidEdge_MU.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                        }
+                    }
+                    if (gamemode != null)
+                    {
+                        VoidEdge_MU.GameModeConverter(gamemode, gamemode_parent, house, hostage, easy, out long output_gamemode, out long difficulty, out long outmap);
+                        if (output_gamemode != 0L)
+                        {
+                            m.WriteMemory(r6mem + VoidEdge_MU.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                            m.WriteMemory(r6mem + VoidEdge_MU.r6_difficulty, "long", difficulty.ToString(), "", null);
+                            if (outmap == 0L)
+                            {
+                                VoidEdge_MU.MapConverter(mapname, house, out long output_map);
+                                if (output_map != 0L)
+                                {
+                                    m.WriteMemory(r6mem + VoidEdge_MU.r6_map, "long", output_map.ToString(), "", null);
+                                }
+                            }
+                            else
+                            {
+                                m.WriteMemory(r6mem + VoidEdge_MU.r6_map, "long", outmap.ToString(), "", null);
+                            }
+
                         }
                     }
                 }
@@ -346,20 +419,36 @@ namespace LiberatorY5
         {
             if (!string.IsNullOrWhiteSpace(FulllbuildID))
             {
-                if (FulllbuildID == VoidEdge.FuillBuildID)
+                if (FulllbuildID == VoidEdge_Shey.FuillBuildID)
                 {
                     treeViewEvents.Nodes.Clear();
-                    for (int index = 0; index < VoidEdge.EventView.Length; index++)
+                    for (int index = 0; index < VoidEdge_Shey.EventView.Length; index++)
                     {
-                        var item = VoidEdge.EventView[index];
-                        var item2 = VoidEdge.EventView_Tag[index];
+                        var item = VoidEdge_Shey.EventView[index];
+                        var item2 = VoidEdge_Shey.EventView_Tag[index];
                         treeViewEvents.Nodes.Add(item);
                         treeViewEvents.Nodes[index].Tag = item2;
                     }
-                    house = m.ReadLong(r6mem + VoidEdge.house_Offset, "");
-                    hostage = m.ReadLong(r6mem + VoidEdge.hostage_Offset, "");
-                    easy = m.ReadLong(r6mem + VoidEdge.easyDifficulty_Offset, "");
-                    day = m.ReadLong(r6mem + VoidEdge.day_Offset, "");
+                    house = m.ReadLong(r6mem + VoidEdge_Shey.house_Offset, "");
+                    hostage = m.ReadLong(r6mem + VoidEdge_Shey.hostage_Offset, "");
+                    easy = m.ReadLong(r6mem + VoidEdge_Shey.easyDifficulty_Offset, "");
+                    day = m.ReadLong(r6mem + VoidEdge_Shey.day_Offset, "");
+                    logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
+                }
+                if (FulllbuildID == VoidEdge_MU.FuillBuildID)
+                {
+                    treeViewEvents.Nodes.Clear();
+                    for (int index = 0; index < VoidEdge_MU.EventView.Length; index++)
+                    {
+                        var item = VoidEdge_MU.EventView[index];
+                        var item2 = VoidEdge_MU.EventView_Tag[index];
+                        treeViewEvents.Nodes.Add(item);
+                        treeViewEvents.Nodes[index].Tag = item2;
+                    }
+                    house = m.ReadLong(r6mem + VoidEdge_MU.house_Offset, "");
+                    hostage = m.ReadLong(r6mem + VoidEdge_MU.hostage_Offset, "");
+                    easy = m.ReadLong(r6mem + VoidEdge_MU.easyDifficulty_Offset, "");
+                    day = m.ReadLong(r6mem + VoidEdge_MU.day_Offset, "");
                     logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
                 }
                 if (FulllbuildID == SteelWave.FuillBuildID)
@@ -403,28 +492,28 @@ namespace LiberatorY5
 
         private void randomButton_Click(object sender, EventArgs e)
         {
-            if (FulllbuildID == VoidEdge.FuillBuildID)
+            if (FulllbuildID == VoidEdge_Shey.FuillBuildID)
             {
-                VoidEdge.GameModeConverter("Random", "Random", house, hostage, easy, out long output_gamemode, out long difficulty, out long outmap);
+                VoidEdge_Shey.GameModeConverter("Random", "Random", house, hostage, easy, out long output_gamemode, out long difficulty, out long outmap);
                 if (output_gamemode != 0L)
                 {
-                    m.WriteMemory(r6mem + VoidEdge.r6_gamemode, "long", output_gamemode.ToString(), "", null);
-                    m.WriteMemory(r6mem + VoidEdge.r6_difficulty, "long", difficulty.ToString(), "", null);
+                    m.WriteMemory(r6mem + VoidEdge_Shey.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                    m.WriteMemory(r6mem + VoidEdge_Shey.r6_difficulty, "long", difficulty.ToString(), "", null);
                     if (outmap == 0L)
                     {
-                        VoidEdge.MapConverter(mapname, house, out long output_map);
+                        VoidEdge_Shey.MapConverter(mapname, house, out long output_map);
                         if (output_map != 0L)
                         {
-                            m.WriteMemory(r6mem + VoidEdge.r6_map, "long", output_map.ToString(), "", null);
+                            m.WriteMemory(r6mem + VoidEdge_Shey.r6_map, "long", output_map.ToString(), "", null);
                         }
                     }
                     else
                     {
-                        m.WriteMemory(r6mem + VoidEdge.r6_map, "long", outmap.ToString(), "", null);
+                        m.WriteMemory(r6mem + VoidEdge_Shey.r6_map, "long", outmap.ToString(), "", null);
                     }
                     var random = new Random();
                     GlobalStuff.DayChange((random.Next(2) == 1), day, out long daynight);
-                    m.WriteMemory(r6mem + VoidEdge.r6_daynight, "long", daynight.ToString(), "", null);
+                    m.WriteMemory(r6mem + VoidEdge_Shey.r6_daynight, "long", daynight.ToString(), "", null);
                 }
             }
             if (FulllbuildID == SteelWave.FuillBuildID)
@@ -456,10 +545,10 @@ namespace LiberatorY5
         private void daynightCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             long daynight;
-            if (FulllbuildID == VoidEdge.FuillBuildID)
+            if (FulllbuildID == VoidEdge_Shey.FuillBuildID)
             {
                 GlobalStuff.DayChange(daynightCheckbox.Checked, day, out daynight);
-                m.WriteMemory(r6mem + VoidEdge.r6_daynight, "long", daynight.ToString(), "", null);
+                m.WriteMemory(r6mem + VoidEdge_Shey.r6_daynight, "long", daynight.ToString(), "", null);
             }
             if (FulllbuildID == SteelWave.FuillBuildID)
             {
@@ -470,9 +559,13 @@ namespace LiberatorY5
 
         private void endRoundButton_Click(object sender, EventArgs e)
         {
-            if (FulllbuildID == VoidEdge.FuillBuildID)
+            if (FulllbuildID == VoidEdge_Shey.FuillBuildID)
             {
-                m.WriteMemory(r6mem + VoidEdge.gamestate, "int", "2", "", null);
+                m.WriteMemory(r6mem + VoidEdge_Shey.gamestate, "int", "2", "", null);
+            }
+            if (FulllbuildID == VoidEdge_MU.FuillBuildID)
+            {
+                m.WriteMemory(r6mem + VoidEdge_MU.gamestate, "int", "2", "", null);
             }
             if (FulllbuildID == SteelWave.FuillBuildID)
             {
@@ -482,9 +575,13 @@ namespace LiberatorY5
 
         private void endMatchButton_Click(object sender, EventArgs e)
         {
-            if (FulllbuildID == VoidEdge.FuillBuildID)
+            if (FulllbuildID == VoidEdge_Shey.FuillBuildID)
             {
-                m.WriteMemory(r6mem + VoidEdge.gamestate, "int", "3", "", null);
+                m.WriteMemory(r6mem + VoidEdge_Shey.gamestate, "int", "3", "", null);
+            }
+            if (FulllbuildID == VoidEdge_MU.FuillBuildID)
+            {
+                m.WriteMemory(r6mem + VoidEdge_MU.gamestate, "int", "3", "", null);
             }
             if (FulllbuildID == SteelWave.FuillBuildID)
             {

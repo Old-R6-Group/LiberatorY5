@@ -715,10 +715,10 @@ namespace LiberatorY5
                     outmode = gamemode;
                     return;
                 case "secure":
-                    outmode = gamemode + 32L;
+                    outmode = gamemode + 32;
                     return;
                 case "bomb":
-                    outmode = gamemode - 32L;
+                    outmode = gamemode - 32;
                     return;
                 case "warmup":
                     outmode = gamemode + 344896;
@@ -793,25 +793,268 @@ namespace LiberatorY5
     }
     #endregion
     #region Shadow Legacy
-    internal class ShadowLegacy
+    internal class ShadowLegacy_Global
     {
-        public static string FuillBuildID = "Y5S3";
-        public static string BuildID_Check = "";
-        public static string versionCheck = "";
-        public static string versionName = "";
-        public static string playlistManager = "06E90BC0"; //or 06E3D4A0
-        public static string firstOffset = "130"; //or 100
-        public static string day_Offset = "";
-        public static string oldHereford_Offset = "";
-        public static string easyDifficulty_Offset = "";
-        public static string house_Offset = "";
-        public static string elim_Offset = "";
-        public static string hostage_Offset = "";
+        public static string FuillBuildID = "Y5S3.3.1_C5789341_D1135607_S40332_15018155";
+        public static string BuildID_Check = "56B4130";
+        public static string playlistManager = "06E3FF30";
+        public static string firstOffset = "68";
+        public static string day_Offset = "06E3FF30,1E8,C8,18,C8,608";
+        public static string easyDifficulty_Offset = "06E3FF30,2E0,270,20,A50,C50";
+        public static string house_Offset = "06E3FF30,2E0,F98,BA8,3C0,BC0,5A0";
+        public static string hostage_Offset = "06E3FF30,2E0,958,D0,D8,6E8";
         private static string playlist = playlistManager + "," + firstOffset;
         public static string r6_daynight = playlist + ",38,0";
         public static string r6_map = playlist + ",10";
         public static string r6_gamemode = playlist + ",8";
         public static string r6_difficulty = playlist + ",30";
+        public static string gamestate = "06E3FF30,50";
+
+        public static string[] EventView_Tag = { "goldengun", "legacy", "sugarfright" };
+        public static string[] EventView = { "Golden Gun", "Legacy Event", "Sugar Fright" };
+        public static void MapConverter(string MapName, long house, out long output)
+        {
+            output = 0L;
+            if (MapName != "house")
+            {
+                switch (MapName)
+                {
+                    case "hereford":
+                        output = house + 64;
+                        return;
+                    case "plane":
+                        output = house + 128;
+                        return;
+                    case "university":
+                        output = house + 320;
+                        return;
+                    case "favela":
+                        output = house + 416;
+                        return;
+                    case "tower":
+                        output = house + 544;
+                        return;
+                    case "club":
+                        output = house + 96;
+                        return;
+                    case "oregon":
+                        output = house + 32;
+                        return;
+                    case "yacht":
+                        output = house + 160;
+                        return;
+                    case "consulate":
+                        output = house + 192;
+                        return;
+                    case "bank":
+                        output = house + 224;
+                        return;
+                    case "kanal":
+                        output = house + 256;
+                        return;
+                    case "chalet":
+                        output = house + 288;
+                        return;
+                    case "cafe":
+                        output = house + 352;
+                        return;
+                    case "border":
+                        output = house + 384;
+                        return;
+                    case "skyscraper":
+                        output = house + 448;
+                        return;
+                    case "coastline":
+                        output = house + 480;
+                        return;
+                    case "theme":
+                        output = house + 512;
+                        return;
+                    case "villa":
+                        output = house + 576;
+                        return;
+                    case "fortress":
+                        output = house + 608;
+                        return;
+                    case "outback":
+                        output = house + 640;
+                        return;
+                    case "sugarfright":
+                        output = house + 672;
+                        return;
+                    case "oldhereford":
+                        output = house + 704;
+                        return;
+                    default:
+                        return;
+                }
+            }
+            else
+            {
+                output = house;
+            }
+        }
+        public static void EventConverter(string EventName, long house, long gamemode, out long output_map, out long output_mode)
+        {
+            output_map = 0L;
+            output_mode = 0L;
+            switch (EventName)
+            {
+                case "legacy":
+                    output_map = house + 704;
+                    output_mode = gamemode + 361632;
+                    return;
+                case "sugarfright":
+                    output_map = house - 672;
+                    output_mode = gamemode + 361536;
+                    return;
+                case "goldengun":
+                    output_map = house - 1536; //goldengun only oregon? Need make random for most goldengun maps
+                    output_mode = gamemode + 361440;
+                    return;
+                default:
+                    return;
+            }
+        }
+        public static void GameModeConverter(string ModeName, string ParentMode, long house, long gamemode, long diffmode, out long output_mode, out long difficulty, out long outmap)
+        {
+            output_mode = gamemode;
+            difficulty = diffmode;
+            outmap = 0L;
+            var difss = new[] { "normal", "hard", "realistic" };
+            var modes = new[] { "hostage", "secure", "bomb", "warmup", "goldengun", "bombnoprep" };
+            if (ParentMode == ModeName)
+            {
+                logs.WriteLog(ParentMode + "=" + ModeName);
+                switch (ParentMode)
+                {
+                    case "Multiplayer":
+                        ModeConverter(Randomizer.RandomMode(), gamemode, out output_mode, out bool isTHM);
+                        return;
+                    case "TerroristHunt":
+                        ModeConverter(Randomizer.RandomDifficulty(), gamemode, out difficulty, out bool isTH);
+                        return;
+                    case "Situations":
+                        //NOT DOING RANDOM SITUATION!
+                        return;
+                    case "Matchmaking":
+                        MatchMaking(Randomizer.RandomMM(), Randomizer.RandomModeMM(), house, gamemode, out output_mode, out outmap, out bool isTHMM);
+                        return;
+                    case "Random":
+                        MatchMaking(Randomizer.RandomMM(), Randomizer.RandomMode(), house, gamemode, out long new_output_mode, out outmap, out bool isTHR);
+                        if (isTHR) { difficulty = new_output_mode; } else { output_mode = new_output_mode; }
+                        return;
+                    default:
+                        return;
+                }
+            }
+            else if (difss.Any(ModeName.Contains))
+            {
+                ModeConverter(ParentMode, gamemode, out output_mode, out bool isTH);
+                DiffConverter(ModeName, diffmode, out difficulty);
+                logs.WriteLog(ModeName);
+
+            }
+            if (ModeName == "bombnoprep")
+            {
+                ModeConverter("bombnoprep", gamemode, out output_mode, out bool isTH);
+                DiffConverter("normal", diffmode, out difficulty);
+                logs.WriteLog(ModeName);
+                return;
+
+            }
+            else if (modes.Any(ModeName.Contains))
+            {
+                ModeConverter(ModeName, gamemode, out output_mode, out bool isTH);
+                logs.WriteLog(ModeName);
+
+            }
+        }
+        private static void ModeConverter(string mode, long gamemode, out long outmode, out bool isTH)
+        {
+            outmode = 0L;
+            isTH = false;
+            switch (mode)
+            {
+                case "hostage":
+                    outmode = gamemode;
+                    return;
+                case "secure":
+                    outmode = gamemode + 32;
+                    return;
+                case "bomb":
+                    outmode = gamemode - 32;
+                    return;
+                case "warmup":
+                    outmode = gamemode + 361248;
+                    return;
+                case "goldengun":
+                    outmode = gamemode + 361440;
+                    return;
+                case "bombnoprep":
+                    outmode = gamemode + 345056;
+                    return;
+                case "legacy":
+                    outmode = gamemode + 361632;
+                    return;
+                case "sugarfright":
+                    outmode = gamemode + 361536;
+                    return;
+                case "protect":
+                    outmode = gamemode + 128;
+                    isTH = true;
+                    return;
+                case "extract":
+                    outmode = gamemode + 96;
+                    isTH = true;
+                    return;
+                case "elimination":
+                    outmode = gamemode + 192;
+                    isTH = true;
+                    return;
+                case "disarm":
+                    outmode = gamemode + 160;
+                    isTH = true;
+                    return;
+                default:
+                    return;
+
+            }
+        }
+        private static void DiffConverter(string diffname, long diff, out long difficulty)
+        {
+            difficulty = diff;
+            switch (diffname)
+            {
+                case "normal":
+                    difficulty = diff;
+                    return;
+                case "hard":
+                    difficulty = diff + 32;
+                    return;
+                case "realistic":
+                    difficulty = diff - 576;
+                    return;
+                default:
+                    return;
+            }
+        }
+        private static void MatchMaking(string CasOrRanked, string mode, long house, long gamemode, out long outmode, out long outmap, out bool isTH)
+        {
+            outmode = 0L;
+            outmap = 0L;
+            isTH = false;
+            if (CasOrRanked == "Casual")
+            {
+                ModeConverter(mode, gamemode, out outmode, out isTH);
+                MapConverter(Randomizer.RandomMap(0, 2), house, out outmap);
+            }
+            if (CasOrRanked == "Ranked")
+            {
+                ModeConverter(mode, gamemode, out outmode, out isTH);
+                MapConverter(Randomizer.RandomMap(1, 2), house, out outmap);
+            }
+        }
     }
     #endregion
     #region Random and Global stuff
@@ -857,6 +1100,42 @@ namespace LiberatorY5
                 if (casorranked == 3) //goldengun
                 {
                     maps = "house,oregon,border,coastline"; //?
+                    maxmap = 11;
+                }
+            }
+            if (version == 2)
+            {
+                if (casorranked == 0)
+                {
+                    maps = "house,hereford,plane,university,favela,tower,club,oregon,yacht,consulate,bank,kanal,chalet,cafe,border,skyscraper,coastline,theme,villa,fortress,outback";
+                    maxmap = 20;
+                }
+                if (casorranked == 1)
+                {
+                    maps = "chalet,theme,border,oregon,club,consulate,bank,kanal,kafe,coastline,villa,outback";
+                    maxmap = 11;
+                }
+                if (casorranked == 3) //goldengun
+                {
+                    maps = "house,oregon,border,coastline";
+                    maxmap = 11;
+                }
+            }
+            if (version == 3)
+            {
+                if (casorranked == 0)
+                {
+                    maps = "house,hereford,plane,university,favela,tower,club,oregon,yacht,consulate,bank,kanal,chalet,cafe,border,skyscraper,coastline,theme,villa,fortress,outback";
+                    maxmap = 20;
+                }
+                if (casorranked == 1)
+                {
+                    maps = "bank,border,chalet,club,coastline,consulate,kafe,kanal,oregon,outback,skyscraper,theme,villa";
+                    maxmap = 11;
+                }
+                if (casorranked == 3) //goldengun
+                {
+                    maps = "house,oregon,border,coastline";
                     maxmap = 11;
                 }
             }

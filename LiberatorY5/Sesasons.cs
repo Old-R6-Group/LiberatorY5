@@ -188,10 +188,10 @@ namespace LiberatorY5
                     outmode = gamemode;
                     return;
                 case "secure":
-                    outmode = gamemode + 32L;
+                    outmode = gamemode + 32;
                     return;
                 case "bomb":
-                    outmode = gamemode - 32L;
+                    outmode = gamemode - 32;
                     return;
                 case "warmup":
                     outmode = gamemode + 328416;
@@ -271,11 +271,11 @@ namespace LiberatorY5
         public static string BuildID_Check = "03E8B810";
         public static string playlistManager = "053AC048";
         public static string firstOffset = "90";
-        public static string day_Offset = "";
-        public static string oldHereford_Offset = "";
-        public static string easyDifficulty_Offset = "";
+        public static string day_Offset = "053AC048,200,2F8,798"; //FUCKING AWESOME POINTER! after 7 restart still doing the best!!
+        //public static string oldHereford_Offset = "";
+        public static string easyDifficulty_Offset = "053AC048,200,2F8,A38,20,18,C68";
         public static string house_Offset = "053AC048,110,380,258,BC8,FA8";
-        public static string hostage_Offset = "";
+        public static string hostage_Offset = "053AC048,4D8,160,C00,9C8,528,F90";
         private static string playlist = playlistManager + "," + firstOffset;
         public static string r6_daynight = playlist + ",38,0";
         public static string r6_map = playlist + ",10";
@@ -353,9 +353,10 @@ namespace LiberatorY5
                         output = house - 1088;
                         return;
                     case "grandlarceny":
-                        output = house - 345011712;
+                        output = house - 339371328;
                         return;
                     case "oldhereford":
+                        output = house - 339368128;
                         return;
                     default:
                         return;
@@ -373,7 +374,7 @@ namespace LiberatorY5
             switch (EventName)
             {
                 case "grandlarceny":
-                    output_map = house - 345011712;
+                    output_map = house - 339371328;
                     output_mode = gamemode + 328640;
                     return;
                 case "goldengun":
@@ -448,10 +449,10 @@ namespace LiberatorY5
                     outmode = gamemode;
                     return;
                 case "secure":
-                    outmode = gamemode + 32L;
+                    outmode = gamemode + 32;
                     return;
                 case "bomb":
-                    outmode = gamemode - 32L;
+                    outmode = gamemode - 32;
                     return;
                 case "warmup":
                     outmode = gamemode + 328416;

@@ -311,18 +311,10 @@ namespace LiberatorY5
                 {
                     if (mapname != null)
                     {
-                        if (mapname == "oldhereford")
+                        VoidEdge_MU.MapConverter(mapname, house, out long output_map);
+                        if (output_map != 0L)
                         {
-                            long oldhereford = m.ReadLong(r6mem + VoidEdge_MU.oldHereford_Offset, "");
-                            m.WriteMemory(r6mem + VoidEdge_MU.r6_map, "long", oldhereford.ToString(), "", null);
-                        }
-                        else
-                        {
-                            VoidEdge_MU.MapConverter(mapname, house, out long output_map);
-                            if (output_map != 0L)
-                            {
-                                m.WriteMemory(r6mem + VoidEdge_MU.r6_map, "long", output_map.ToString(), "", null);
-                            }
+                            m.WriteMemory(r6mem + VoidEdge_MU.r6_map, "long", output_map.ToString(), "", null);
                         }
                     }
                     if (events != null)

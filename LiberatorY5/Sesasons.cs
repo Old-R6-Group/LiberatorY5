@@ -14,7 +14,7 @@ namespace LiberatorY5
         public static string day_Offset = "053A6868,C18,1E0,950,40,7C8,4E8";
         public static string oldHereford_Offset = "053A6868,158,308,D8,420,F0,148,0,6C0,0,0,38,D8";
         public static string easyDifficulty_Offset = "060894D8,28,0,58,90,40,10,A0,60,40,170,290,160";
-        public static string house_Offset = "053A6868,C18,210,10,3C0,A48,0,C18,D78,F30,530";
+        public static string house_Offset = "053A6868,C18,210,10,3C0,A48,0,C18,D78,F30,530"; //this cannot read when loading up!
         public static string hostage_Offset = "060894D8,20,228,28,40,50,0,160,40,28,590";
         private static string playlist = playlistManager + "," + firstOffset;
         public static string r6_daynight = playlist + ",38,0";

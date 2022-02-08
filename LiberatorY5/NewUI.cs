@@ -71,6 +71,11 @@ namespace LiberatorY5
                     LabelUpdate.Text = "This Build is NOT supported! or Currently Reading from your Game";
                 }
             }
+            else
+            {
+                LabelUpdate.Text = "Can't find siege. Make sure Battleye is disabled and the game is at the main menu!";
+                FulllbuildID = null;
+            }
         }
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {

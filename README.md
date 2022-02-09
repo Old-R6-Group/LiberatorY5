@@ -1,12 +1,7 @@
 # LiberatorY5
 Making the liberator for Year 5 and Newer versions.
 
-Old UI is available!\
-New UI is a default!
-
 For now:\
-`-newui` => Launching NewUI\
-`-oldui` => Launching OldUI\
 `-debug` => Enable Debug, writing debug things to **debug-logs.txt** (Not implemented)
 
 Supported Versions:\

@@ -16,8 +16,14 @@ namespace LiberatorY5
         {
             string newui = "-newui";
             string oldui = "-oldui";
+            string isdebug = "-debug";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            if (args.Contains(isdebug))
+            {
+                logs.isDebugEnabled = true;
+            }
+            logs.WriteLog("Liberator Reloaded is Started!");
             if (args.Contains(newui))
             {
                 Application.Run(new NewUI());
@@ -30,6 +36,7 @@ namespace LiberatorY5
             {
                 Application.Run(new NewUI());
             }
+            logs.WriteLog("Liberator Reloaded is Exited!");
         }
     }
 }

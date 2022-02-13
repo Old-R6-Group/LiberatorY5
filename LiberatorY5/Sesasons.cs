@@ -1056,6 +1056,27 @@ namespace LiberatorY5
             }
         }
     }
+    internal class ShadowLegacy_Event
+    {
+        // added but need to redownload cus fuck ubisoft
+        public static string FuillBuildID = "";
+        public static string BuildID_Check = "";
+        public static string playlistManager = "";
+        public static string firstOffset = "";
+        public static string day_Offset = "";
+        public static string easyDifficulty_Offset = "";
+        public static string house_Offset = "";
+        public static string hostage_Offset = "";
+        private static string playlist = playlistManager + "," + firstOffset;
+        public static string r6_daynight = playlist + ",38,0";
+        public static string r6_map = playlist + ",10";
+        public static string r6_gamemode = playlist + ",8";
+        public static string r6_difficulty = playlist + ",30";
+        public static string gamestate = "";
+
+        public static string[] EventView_Tag = { "goldengun", "legacy", "sugarfright" };
+        public static string[] EventView = { "Golden Gun", "Legacy Event", "Sugar Fright" };
+    }
     #endregion
     #region Random and Global stuff
     class Randomizer

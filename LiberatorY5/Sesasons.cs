@@ -1078,6 +1078,30 @@ namespace LiberatorY5
         public static string[] EventView = { "Golden Gun", "Legacy Event", "Sugar Fright" };
     }
     #endregion
+    #region Neon Dawn
+    internal class NeonDawn_Event
+    {
+        public static string FuillBuildID = "Y5S4.2.0_C5914517_D1181197_S40892_15241382";
+        public static string BuildID_Check = "5F44DE0";
+        public static string playlistManager = "05DAED98"; //can be 06BC0568 , 05E12F30, 05E12F38 ,05E13850
+        public static string firstOffset = "D8"; //can be 3F8 ,4C8
+        public static string day_Offset = "";
+        public static string easyDifficulty_Offset = "";
+        public static string house_Offset = "";
+        public static string hostage_Offset = "";
+        private static string playlist = playlistManager + "," + firstOffset;
+        public static string r6_daynight = playlist + ",38,0";
+        public static string r6_map = playlist + ",10";
+        public static string r6_gamemode = playlist + ",8";
+        public static string r6_difficulty = playlist + ",30";
+        public static string gamestate = ""; //Not found
+
+        public static string[] EventView_Tag = { "goldengun", "reverse", "stadium2" };
+        public static string[] EventView = { "Golden Gun", "Reverse Hostage", "Stadium 2" };
+        //house - 672 stadium map
+        //hostage + 376672 stadium mode
+    }
+    #endregion
     #region Random and Global stuff
     class Randomizer
     {

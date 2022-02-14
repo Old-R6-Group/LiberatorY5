@@ -154,7 +154,7 @@ namespace LiberatorY5
                         logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
                     }
                 }
-                version = m.ReadString(r6mem + ShadowLegacy_Global.BuildID_Check, "", 46, true);
+                version = m.ReadString(r6mem + ShadowLegacy_Global.BuildID_Check, "", 43, true);
                 if (version == ShadowLegacy_Global.FuillBuildID)
                 {
                     int state = m.ReadInt(r6mem + ShadowLegacy_Global.gamestate, "");

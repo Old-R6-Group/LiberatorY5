@@ -176,6 +176,27 @@ namespace LiberatorY5
                         logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
                     }
                 }
+                version = m.ReadString(r6mem + NeonDawn_Event.BuildID_Check, "", 43, true);
+                if (version == NeonDawn_Event.FuillBuildID)
+                {
+                    treeViewEvents.Nodes.Clear();
+                    for (int index = 0; index < NeonDawn_Event.EventView.Length; index++)
+                    {
+                        var item = NeonDawn_Event.EventView[index];
+                        var item2 = NeonDawn_Event.EventView_Tag[index];
+                        treeViewEvents.Nodes.Add(item);
+                        treeViewEvents.Nodes[index].Tag = item2;
+                    }
+                    house = m.ReadLong(r6mem + NeonDawn_Event.house_Offset, "");
+                    hostage = m.ReadLong(r6mem + NeonDawn_Event.hostage_Offset, "");
+                    easy = m.ReadLong(r6mem + NeonDawn_Event.easyDifficulty_Offset, "");
+                    day = m.ReadLong(r6mem + NeonDawn_Event.day_Offset, "");
+                    FulllbuildID = version;
+                    if (treeViewMap.Nodes.ContainsKey("NodeOldHouse")) { treeViewMap.Nodes.Find("NodeOldHouse", true)[0].Remove(); }
+                    treeViewMap.Nodes.Add("NodeOldHouse", "Old House").Tag = "oldhouse";
+                    treeViewMap.EndUpdate();
+                    logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
+                }
                 if (!string.IsNullOrWhiteSpace(FulllbuildID)) logs.WriteLog("Game Build ID: " + FulllbuildID);
             }
         }
@@ -326,6 +347,25 @@ namespace LiberatorY5
                     hostage = m.ReadLong(r6mem + ShadowLegacy_Global.hostage_Offset, "");
                     easy = m.ReadLong(r6mem + ShadowLegacy_Global.easyDifficulty_Offset, "");
                     day = m.ReadLong(r6mem + ShadowLegacy_Global.day_Offset, "");
+                    logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
+                }
+                if (FulllbuildID == NeonDawn_Event.FuillBuildID)
+                {
+                    treeViewEvents.Nodes.Clear();
+                    for (int index = 0; index < NeonDawn_Event.EventView.Length; index++)
+                    {
+                        var item = NeonDawn_Event.EventView[index];
+                        var item2 = NeonDawn_Event.EventView_Tag[index];
+                        treeViewEvents.Nodes.Add(item);
+                        treeViewEvents.Nodes[index].Tag = item2;
+                    }
+                    house = m.ReadLong(r6mem + NeonDawn_Event.house_Offset, "");
+                    hostage = m.ReadLong(r6mem + NeonDawn_Event.hostage_Offset, "");
+                    easy = m.ReadLong(r6mem + NeonDawn_Event.easyDifficulty_Offset, "");
+                    day = m.ReadLong(r6mem + NeonDawn_Event.day_Offset, "");
+                    if (treeViewMap.Nodes.ContainsKey("NodeOldHouse")) { treeViewMap.Nodes.Find("NodeOldHouse", true)[0].Remove(); }
+                    treeViewMap.Nodes.Add("NodeOldHouse", "Old House").Tag = "oldhouse";
+                    treeViewMap.EndUpdate();
                     logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
                 }
                 //treeViewGameMode.Nodes.Find("NodeHostage", true)[0].Remove();
@@ -531,6 +571,50 @@ namespace LiberatorY5
                     }
                 }
                 #endregion
+                #region Neon Dawn Event
+                if (FulllbuildID == NeonDawn_Event.FuillBuildID)
+                {
+                    if (mapname != null)
+                    {
+                        NeonDawn_Event.MapConverter(mapname, house, out long output_map);
+                        if (output_map != 0L)
+                        {
+                            m.WriteMemory(r6mem + NeonDawn_Event.r6_map, "long", output_map.ToString(), "", null);
+                        }
+                    }
+                    if (events != null)
+                    {
+                        NeonDawn_Event.EventConverter(events, house, hostage, out long output_map, out long output_gamemode);
+                        if (output_map != 0L | output_gamemode != 0L)
+                        {
+                            m.WriteMemory(r6mem + NeonDawn_Event.r6_map, "long", output_map.ToString(), "", null);
+                            m.WriteMemory(r6mem + NeonDawn_Event.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                        }
+                    }
+                    if (gamemode != null)
+                    {
+                        NeonDawn_Event.GameModeConverter(gamemode, gamemode_parent, house, hostage, easy, out long output_gamemode, out long difficulty, out long outmap);
+                        if (output_gamemode != 0L)
+                        {
+                            m.WriteMemory(r6mem + NeonDawn_Event.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                            m.WriteMemory(r6mem + NeonDawn_Event.r6_difficulty, "long", difficulty.ToString(), "", null);
+                            if (outmap == 0L)
+                            {
+                                NeonDawn_Event.MapConverter(mapname, house, out long output_map);
+                                if (output_map != 0L)
+                                {
+                                    m.WriteMemory(r6mem + NeonDawn_Event.r6_map, "long", output_map.ToString(), "", null);
+                                }
+                            }
+                            else
+                            {
+                                m.WriteMemory(r6mem + NeonDawn_Event.r6_map, "long", outmap.ToString(), "", null);
+                            }
+
+                        }
+                    }
+                }
+                #endregion
                 else
                 {
                     LabelUpdate.Text = "Build Currently NOT supported";
@@ -668,6 +752,31 @@ namespace LiberatorY5
                 }
             }
             #endregion
+            #region Neon Dawn Event
+            if (FulllbuildID == NeonDawn_Event.FuillBuildID)
+            {
+                NeonDawn_Event.GameModeConverter("Random", "Random", house, hostage, easy, out long output_gamemode, out long difficulty, out long outmap);
+                if (output_gamemode != 0L)
+                {
+                    m.WriteMemory(r6mem + NeonDawn_Event.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                    m.WriteMemory(r6mem + NeonDawn_Event.r6_difficulty, "long", difficulty.ToString(), "", null);
+                    if (outmap == 0L)
+                    {
+                        NeonDawn_Event.MapConverter(mapname, house, out long output_map);
+                        if (output_map != 0L)
+                        {
+                            m.WriteMemory(r6mem + NeonDawn_Event.r6_map, "long", output_map.ToString(), "", null);
+                        }
+                    }
+                    else
+                    {
+                        m.WriteMemory(r6mem + NeonDawn_Event.r6_map, "long", outmap.ToString(), "", null);
+                    }
+                    GlobalStuff.DayChange((random.Next(2) == 1), day, out long daynight);
+                    m.WriteMemory(r6mem + NeonDawn_Event.r6_daynight, "long", daynight.ToString(), "", null);
+                }
+            }
+            #endregion
         }
         private void endMatchButton_Click(object sender, EventArgs e)
         {
@@ -687,6 +796,10 @@ namespace LiberatorY5
             {
                 m.WriteMemory(r6mem + ShadowLegacy_Global.gamestate, "int", "3", "", null);
             }
+            if (FulllbuildID == NeonDawn_Event.FuillBuildID)
+            {
+                LabelUpdate.Text = "This version is not support this function!";
+            }
         }
         private void endRoundButton_Click(object sender, EventArgs e)
         {
@@ -705,6 +818,10 @@ namespace LiberatorY5
             if (FulllbuildID == ShadowLegacy_Global.FuillBuildID)
             {
                 m.WriteMemory(r6mem + ShadowLegacy_Global.gamestate, "int", "2", "", null);
+            }
+            if (FulllbuildID == NeonDawn_Event.FuillBuildID)
+            {
+                LabelUpdate.Text = "This version is not support this function!";
             }
         }
         #endregion

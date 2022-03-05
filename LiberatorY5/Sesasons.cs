@@ -1085,7 +1085,7 @@ namespace LiberatorY5
         public static string BuildID_Check = "5F44DE0";
         public static string playlistManager = "05DAED98"; //can be 06BC0568 , 05E12F30, 05E12F38 ,05E13850
         public static string firstOffset = "D8"; //can be 3F8 ,4C8
-        public static string day_Offset = "05DAED98,200,30,DD0,288,48,0,2E8";
+        public static string day_Offset = "05DAED98,1A0,348,2A8,60,30,B70,D8";
         public static string easyDifficulty_Offset = "05DAED98,330,350,CA0,7D0,0,118,3E0";
         public static string house_Offset = "05DAED98,330,360,940,E40,E0,100,5A0";
         public static string hostage_Offset = "05DAED98,330,360,960,48,38,0,F28";

@@ -22,8 +22,14 @@ namespace LiberatorY5
                 logs.isDebugEnabled = true;
             }
             logs.WriteLog("Liberator Reloaded is Started!");
+            bool versionCheck =  Stuff.VersionCheck();
+            if (!versionCheck)
+            {
+                MessageBox.Show("Please use the Updated version!\n(Inside Update, File is same, just move back here,where you started)", "Version Missmatch");
+            }
             Application.Run(new NewUI());
             logs.WriteLog("Liberator Reloaded is Exited!");
+
         }
     }
 }

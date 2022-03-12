@@ -37,7 +37,7 @@ namespace LiberatorY5
         }
         private void NewUI_Load(object sender, EventArgs e)
         {
-            //Currently Nothing inside it :)
+            versionLabel.Text = "Version: " + Stuff.Version;
         }
         private void NewUI_Shown(object sender, EventArgs e)
         {

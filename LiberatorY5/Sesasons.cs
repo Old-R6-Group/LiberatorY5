@@ -1488,9 +1488,9 @@ namespace LiberatorY5
             logs.WriteLog("D/N has been changed!");
         }
 
-        public static string StateChange(int day)
+        public static string StateChange(int state)
         {
-            switch (day)
+            switch (state)
             {
                 case 1:
                     return "Is Launching";
@@ -1507,7 +1507,7 @@ namespace LiberatorY5
                 case 7:
                     return "Is Playing";
                 default:
-                    return day.ToString();
+                    return state.ToString();
             }
         }
     }

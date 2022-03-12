@@ -5,6 +5,7 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using Memory;
 using System.Threading;
+using System.Linq;
 
 namespace LiberatorY5
 {
@@ -13,6 +14,7 @@ namespace LiberatorY5
         #region Variables
         public Mem m = new Mem();
         public Random random = new Random();
+        public Discordrpc rpc = new Discordrpc();
         bool procOpen = false;
         readonly string r6processname = "RainbowSix.exe";
         readonly string r6mem = "RainbowSix.exe+";
@@ -38,6 +40,7 @@ namespace LiberatorY5
         private void NewUI_Load(object sender, EventArgs e)
         {
             versionLabel.Text = "Version: " + Stuff.Version;
+            rpc.Initialize();
         }
         private void NewUI_Shown(object sender, EventArgs e)
         {
@@ -197,7 +200,11 @@ namespace LiberatorY5
                     treeViewMap.EndUpdate();
                     logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
                 }
-                if (!string.IsNullOrWhiteSpace(FulllbuildID)) logs.WriteLog("Game Build ID: " + FulllbuildID);
+                if (!string.IsNullOrWhiteSpace(FulllbuildID))
+                {
+                    logs.WriteLog("Game Build ID: " + FulllbuildID);
+                    rpc.ChangeAssetByVersion(FulllbuildID);
+                } 
             }
         }
         #endregion
@@ -379,6 +386,18 @@ namespace LiberatorY5
         {
             if (procOpen)
             {
+                if (mapname != null && gamemode != null)
+                {
+                    string map = treeViewMap.Nodes.OfType<TreeNode>().FirstOrDefault(node => node.Tag.Equals(mapname)).Text;
+                    rpc.client.UpdateState(map + " - " + gamemode);
+                }
+
+                if (events != null) 
+                {
+                    string eventname = treeViewEvents.Nodes.OfType<TreeNode>().FirstOrDefault(node => node.Tag.Equals(events)).Text;
+                    rpc.client.UpdateState("Gamemode: " + eventname);
+                } 
+
                 #region Void Edge Shey
                 if (FulllbuildID == VoidEdge_Shey.FuillBuildID)
                 {

@@ -23,3 +23,27 @@
 3/11/2022 8:04:15 PM | Loading/Starting | Version Missmatch! [Tool Version:s20220311.0 , Web Version: 20220311.0 ]
 3/11/2022 8:05:44 PM | Loading/Starting | Version Missmatch! [Tool Version:s20220311.0 , Web Version: 20220311.0 ]
 3/11/2022 8:06:15 PM | Loading/Starting | DEV version! No support, only for testing
+3/12/2022 2:55:09 PM | INFO | Liberator Reloaded is Started!
+3/12/2022 2:55:11 PM | INFO | Received Ready from user SlejmUr
+3/12/2022 2:55:12 PM | INFO | Received Update! DiscordRPC.RichPresence
+3/12/2022 2:55:42 PM | INFO | Liberator Reloaded is Exited!
+3/12/2022 2:55:44 PM | INFO | Liberator Reloaded is Started!
+3/12/2022 2:55:51 PM | INFO | Liberator Reloaded is Exited!
+3/12/2022 3:08:21 PM | INFO | Liberator Reloaded is Started!
+3/12/2022 3:08:23 PM | INFO | Received Ready from user SlejmUr
+3/12/2022 3:08:24 PM | INFO | Received Update! DiscordRPC.RichPresence
+3/12/2022 3:10:01 PM | INFO | Liberator Reloaded is Started!
+3/12/2022 3:10:03 PM | INFO | House: 2386118514272 Hostage: 2384784037952 Easy:2384784012896 Day:2384784012288
+3/12/2022 3:10:03 PM | INFO | Game Build ID: Y5S4.2.0_C5914517_D1181197_S40892_15241382
+3/12/2022 3:10:03 PM | INFO | Received Ready from user SlejmUr
+3/12/2022 3:10:04 PM | INFO | Received Update! DiscordRPC.RichPresence
+3/12/2022 3:10:05 PM | INFO | Received Update! DiscordRPC.RichPresence
+3/12/2022 3:11:32 PM | INFO | Liberator Reloaded is Exited!
+3/12/2022 3:17:17 PM | INFO | Liberator Reloaded is Started!
+3/12/2022 3:17:19 PM | INFO | Received Ready from user SlejmUr
+3/12/2022 3:17:20 PM | INFO | Received Update! DiscordRPC.RichPresence
+3/12/2022 3:17:32 PM | INFO | House: 0 Hostage: 0 Easy:0 Day:0
+3/12/2022 3:17:32 PM | INFO | Game Build ID: Y5S4.2.0_C5914517_D1181197_S40892_15241382
+3/12/2022 3:17:34 PM | INFO | Received Update! DiscordRPC.RichPresence
+3/12/2022 3:17:35 PM | INFO | Received Update! DiscordRPC.RichPresence
+3/12/2022 3:20:21 PM | INFO | Liberator Reloaded is Exited!

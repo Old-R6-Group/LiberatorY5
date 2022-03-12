@@ -137,12 +137,14 @@ namespace LiberatorY5
             this.treeViewEvents = new System.Windows.Forms.TreeView();
             this.treeViewMap = new System.Windows.Forms.TreeView();
             this.treeViewGameMode = new System.Windows.Forms.TreeView();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.endRoundButton = new System.Windows.Forms.Button();
             this.endMatchButton = new System.Windows.Forms.Button();
             this.daynightCheckbox = new System.Windows.Forms.CheckBox();
             this.randomButton = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.versionLabel = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
@@ -150,7 +152,6 @@ namespace LiberatorY5
             this.label2 = new System.Windows.Forms.Label();
             this.LabelUpdate = new System.Windows.Forms.Label();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.versionLabel = new System.Windows.Forms.Label();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -171,6 +172,7 @@ namespace LiberatorY5
             // materialTabControl1
             // 
             this.materialTabControl1.Controls.Add(this.tabPage1);
+            this.materialTabControl1.Controls.Add(this.tabPage4);
             this.materialTabControl1.Controls.Add(this.tabPage2);
             this.materialTabControl1.Controls.Add(this.tabPage3);
             this.materialTabControl1.Depth = 0;
@@ -512,6 +514,15 @@ namespace LiberatorY5
             this.treeViewGameMode.TabIndex = 3;
             this.treeViewGameMode.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewGameMode_AfterSelect);
             // 
+            // tabPage4
+            // 
+            this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Size = new System.Drawing.Size(547, 421);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "Lan";
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
@@ -523,7 +534,7 @@ namespace LiberatorY5
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(547, 421);
-            this.tabPage2.TabIndex = 1;
+            this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Extra";
             // 
             // endRoundButton
@@ -591,8 +602,17 @@ namespace LiberatorY5
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(547, 421);
-            this.tabPage3.TabIndex = 2;
+            this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "About";
+            // 
+            // versionLabel
+            // 
+            this.versionLabel.AutoSize = true;
+            this.versionLabel.Location = new System.Drawing.Point(215, 392);
+            this.versionLabel.Name = "versionLabel";
+            this.versionLabel.Size = new System.Drawing.Size(52, 15);
+            this.versionLabel.TabIndex = 13;
+            this.versionLabel.Text = "Version: ";
             // 
             // label4
             // 
@@ -669,15 +689,6 @@ namespace LiberatorY5
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
-            // versionLabel
-            // 
-            this.versionLabel.AutoSize = true;
-            this.versionLabel.Location = new System.Drawing.Point(215, 392);
-            this.versionLabel.Name = "versionLabel";
-            this.versionLabel.Size = new System.Drawing.Size(52, 15);
-            this.versionLabel.TabIndex = 13;
-            this.versionLabel.Text = "Version: ";
-            // 
             // NewUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -735,5 +746,6 @@ namespace LiberatorY5
         private Button re_readButton;
         private System.ComponentModel.BackgroundWorker backgroundWorker;
         private Label versionLabel;
+        private TabPage tabPage4;
     }
 }

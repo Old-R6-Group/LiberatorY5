@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace LiberatorY5
 {
-    public class Discordrpc
+    public class rpc
     {
         public DiscordRpcClient client;
 		public void Initialize()
@@ -27,12 +27,13 @@ namespace LiberatorY5
 
 			client.SetPresence(new RichPresence()
 			{
-				Details = "On Testing",
-				State = "Waiting in menu",
+				Details = "Liberator Reloaded!",
+				State = "Waiting for a game",
+				Timestamps = Timestamps.Now,
 				Assets = new Assets()
 				{
 					LargeImageKey = "base",
-					LargeImageText = "Testing"
+					LargeImageText = "Secret"
 				}
 			});
 		}
@@ -40,11 +41,12 @@ namespace LiberatorY5
 		{
 			if (string.IsNullOrWhiteSpace(verison))
 			{
-				client.UpdateDetails("Curently Testing");
-				client.UpdateLargeAsset("base", "testing");
+				client.UpdateDetails("Game Launching...");
+				client.UpdateLargeAsset("base", "Launching");
 				return;
 
 			}
+			client.UpdateState("Game Launching...");
 			switch (verison)
 			{
 				case "Y5S1.2.0.1_C5183038_D967006_S37789_14303219": //VE Shey
@@ -72,6 +74,8 @@ namespace LiberatorY5
 					client.UpdateLargeAsset("snowball", "Neon Dawn Event");
 					return;
 				default:
+					client.UpdateDetails("Version is not supported?");
+					client.UpdateLargeAsset("base", "No Idea");
 					return;
 			}
 		}

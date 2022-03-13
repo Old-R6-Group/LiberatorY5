@@ -33,97 +33,97 @@ namespace LiberatorY5
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Golden Gun");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Grand Larceny");
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("M.U.T.E Protocol");
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Attrition");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Reverse Hostage");
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Sugar Fright");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("House");
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Oregon");
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Hereford Rework");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Old Hereford");
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Club House");
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Presedential Plane");
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Yacht");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("Consulate");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Bank");
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Kanal");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Chalet");
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Bartlett University");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Russian Kafe");
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Border");
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("Favela");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Skyscraper");
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Coastline");
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Theme Park");
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Tower");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("Villa");
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("Fortress");
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Outback");
-            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Hostage");
-            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Secure Area");
-            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Bomb");
-            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Warmup");
-            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("Golden Gun");
-            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Bomb - No Prep Phase");
-            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Multiplayer", new System.Windows.Forms.TreeNode[] {
-            treeNode29,
-            treeNode30,
-            treeNode31,
-            treeNode32,
-            treeNode33,
-            treeNode34});
-            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Normal");
-            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("Hard");
-            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("Realistic");
-            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("Protect Hostage", new System.Windows.Forms.TreeNode[] {
-            treeNode36,
-            treeNode37,
-            treeNode38});
-            System.Windows.Forms.TreeNode treeNode40 = new System.Windows.Forms.TreeNode("Normal");
-            System.Windows.Forms.TreeNode treeNode41 = new System.Windows.Forms.TreeNode("Hard");
-            System.Windows.Forms.TreeNode treeNode42 = new System.Windows.Forms.TreeNode("Realistic");
-            System.Windows.Forms.TreeNode treeNode43 = new System.Windows.Forms.TreeNode("Extract Hostage", new System.Windows.Forms.TreeNode[] {
-            treeNode40,
-            treeNode41,
-            treeNode42});
-            System.Windows.Forms.TreeNode treeNode44 = new System.Windows.Forms.TreeNode("Normal");
-            System.Windows.Forms.TreeNode treeNode45 = new System.Windows.Forms.TreeNode("Hard");
-            System.Windows.Forms.TreeNode treeNode46 = new System.Windows.Forms.TreeNode("Realistic");
-            System.Windows.Forms.TreeNode treeNode47 = new System.Windows.Forms.TreeNode("Disarm Bomb", new System.Windows.Forms.TreeNode[] {
-            treeNode44,
-            treeNode45,
-            treeNode46});
-            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("Normal");
-            System.Windows.Forms.TreeNode treeNode49 = new System.Windows.Forms.TreeNode("Hard");
-            System.Windows.Forms.TreeNode treeNode50 = new System.Windows.Forms.TreeNode("Realistic");
-            System.Windows.Forms.TreeNode treeNode51 = new System.Windows.Forms.TreeNode("Elimination", new System.Windows.Forms.TreeNode[] {
-            treeNode48,
-            treeNode49,
-            treeNode50});
-            System.Windows.Forms.TreeNode treeNode52 = new System.Windows.Forms.TreeNode("Terrorist Hunt", new System.Windows.Forms.TreeNode[] {
-            treeNode39,
-            treeNode43,
-            treeNode47,
-            treeNode51});
-            System.Windows.Forms.TreeNode treeNode53 = new System.Windows.Forms.TreeNode("Hostage");
-            System.Windows.Forms.TreeNode treeNode54 = new System.Windows.Forms.TreeNode("Secure Area");
-            System.Windows.Forms.TreeNode treeNode55 = new System.Windows.Forms.TreeNode("Bomb");
-            System.Windows.Forms.TreeNode treeNode56 = new System.Windows.Forms.TreeNode("Casual", new System.Windows.Forms.TreeNode[] {
-            treeNode53,
-            treeNode54,
-            treeNode55});
-            System.Windows.Forms.TreeNode treeNode57 = new System.Windows.Forms.TreeNode("Hostage");
-            System.Windows.Forms.TreeNode treeNode58 = new System.Windows.Forms.TreeNode("Secure Area");
-            System.Windows.Forms.TreeNode treeNode59 = new System.Windows.Forms.TreeNode("Bomb");
-            System.Windows.Forms.TreeNode treeNode60 = new System.Windows.Forms.TreeNode("Ranked", new System.Windows.Forms.TreeNode[] {
-            treeNode57,
-            treeNode58,
-            treeNode59});
-            System.Windows.Forms.TreeNode treeNode61 = new System.Windows.Forms.TreeNode("Match Making", new System.Windows.Forms.TreeNode[] {
-            treeNode56,
-            treeNode60});
+            System.Windows.Forms.TreeNode treeNode62 = new System.Windows.Forms.TreeNode("Golden Gun");
+            System.Windows.Forms.TreeNode treeNode63 = new System.Windows.Forms.TreeNode("Grand Larceny");
+            System.Windows.Forms.TreeNode treeNode64 = new System.Windows.Forms.TreeNode("M.U.T.E Protocol");
+            System.Windows.Forms.TreeNode treeNode65 = new System.Windows.Forms.TreeNode("Attrition");
+            System.Windows.Forms.TreeNode treeNode66 = new System.Windows.Forms.TreeNode("Reverse Hostage");
+            System.Windows.Forms.TreeNode treeNode67 = new System.Windows.Forms.TreeNode("Sugar Fright");
+            System.Windows.Forms.TreeNode treeNode68 = new System.Windows.Forms.TreeNode("House");
+            System.Windows.Forms.TreeNode treeNode69 = new System.Windows.Forms.TreeNode("Oregon");
+            System.Windows.Forms.TreeNode treeNode70 = new System.Windows.Forms.TreeNode("Hereford Rework");
+            System.Windows.Forms.TreeNode treeNode71 = new System.Windows.Forms.TreeNode("Old Hereford");
+            System.Windows.Forms.TreeNode treeNode72 = new System.Windows.Forms.TreeNode("Club House");
+            System.Windows.Forms.TreeNode treeNode73 = new System.Windows.Forms.TreeNode("Presedential Plane");
+            System.Windows.Forms.TreeNode treeNode74 = new System.Windows.Forms.TreeNode("Yacht");
+            System.Windows.Forms.TreeNode treeNode75 = new System.Windows.Forms.TreeNode("Consulate");
+            System.Windows.Forms.TreeNode treeNode76 = new System.Windows.Forms.TreeNode("Bank");
+            System.Windows.Forms.TreeNode treeNode77 = new System.Windows.Forms.TreeNode("Kanal");
+            System.Windows.Forms.TreeNode treeNode78 = new System.Windows.Forms.TreeNode("Chalet");
+            System.Windows.Forms.TreeNode treeNode79 = new System.Windows.Forms.TreeNode("Bartlett University");
+            System.Windows.Forms.TreeNode treeNode80 = new System.Windows.Forms.TreeNode("Russian Kafe");
+            System.Windows.Forms.TreeNode treeNode81 = new System.Windows.Forms.TreeNode("Border");
+            System.Windows.Forms.TreeNode treeNode82 = new System.Windows.Forms.TreeNode("Favela");
+            System.Windows.Forms.TreeNode treeNode83 = new System.Windows.Forms.TreeNode("Skyscraper");
+            System.Windows.Forms.TreeNode treeNode84 = new System.Windows.Forms.TreeNode("Coastline");
+            System.Windows.Forms.TreeNode treeNode85 = new System.Windows.Forms.TreeNode("Theme Park");
+            System.Windows.Forms.TreeNode treeNode86 = new System.Windows.Forms.TreeNode("Tower");
+            System.Windows.Forms.TreeNode treeNode87 = new System.Windows.Forms.TreeNode("Villa");
+            System.Windows.Forms.TreeNode treeNode88 = new System.Windows.Forms.TreeNode("Fortress");
+            System.Windows.Forms.TreeNode treeNode89 = new System.Windows.Forms.TreeNode("Outback");
+            System.Windows.Forms.TreeNode treeNode90 = new System.Windows.Forms.TreeNode("Hostage");
+            System.Windows.Forms.TreeNode treeNode91 = new System.Windows.Forms.TreeNode("Secure Area");
+            System.Windows.Forms.TreeNode treeNode92 = new System.Windows.Forms.TreeNode("Bomb");
+            System.Windows.Forms.TreeNode treeNode93 = new System.Windows.Forms.TreeNode("Warmup");
+            System.Windows.Forms.TreeNode treeNode94 = new System.Windows.Forms.TreeNode("Golden Gun");
+            System.Windows.Forms.TreeNode treeNode95 = new System.Windows.Forms.TreeNode("Bomb - No Prep Phase");
+            System.Windows.Forms.TreeNode treeNode96 = new System.Windows.Forms.TreeNode("Multiplayer", new System.Windows.Forms.TreeNode[] {
+            treeNode90,
+            treeNode91,
+            treeNode92,
+            treeNode93,
+            treeNode94,
+            treeNode95});
+            System.Windows.Forms.TreeNode treeNode97 = new System.Windows.Forms.TreeNode("Normal");
+            System.Windows.Forms.TreeNode treeNode98 = new System.Windows.Forms.TreeNode("Hard");
+            System.Windows.Forms.TreeNode treeNode99 = new System.Windows.Forms.TreeNode("Realistic");
+            System.Windows.Forms.TreeNode treeNode100 = new System.Windows.Forms.TreeNode("Protect Hostage", new System.Windows.Forms.TreeNode[] {
+            treeNode97,
+            treeNode98,
+            treeNode99});
+            System.Windows.Forms.TreeNode treeNode101 = new System.Windows.Forms.TreeNode("Normal");
+            System.Windows.Forms.TreeNode treeNode102 = new System.Windows.Forms.TreeNode("Hard");
+            System.Windows.Forms.TreeNode treeNode103 = new System.Windows.Forms.TreeNode("Realistic");
+            System.Windows.Forms.TreeNode treeNode104 = new System.Windows.Forms.TreeNode("Extract Hostage", new System.Windows.Forms.TreeNode[] {
+            treeNode101,
+            treeNode102,
+            treeNode103});
+            System.Windows.Forms.TreeNode treeNode105 = new System.Windows.Forms.TreeNode("Normal");
+            System.Windows.Forms.TreeNode treeNode106 = new System.Windows.Forms.TreeNode("Hard");
+            System.Windows.Forms.TreeNode treeNode107 = new System.Windows.Forms.TreeNode("Realistic");
+            System.Windows.Forms.TreeNode treeNode108 = new System.Windows.Forms.TreeNode("Disarm Bomb", new System.Windows.Forms.TreeNode[] {
+            treeNode105,
+            treeNode106,
+            treeNode107});
+            System.Windows.Forms.TreeNode treeNode109 = new System.Windows.Forms.TreeNode("Normal");
+            System.Windows.Forms.TreeNode treeNode110 = new System.Windows.Forms.TreeNode("Hard");
+            System.Windows.Forms.TreeNode treeNode111 = new System.Windows.Forms.TreeNode("Realistic");
+            System.Windows.Forms.TreeNode treeNode112 = new System.Windows.Forms.TreeNode("Elimination", new System.Windows.Forms.TreeNode[] {
+            treeNode109,
+            treeNode110,
+            treeNode111});
+            System.Windows.Forms.TreeNode treeNode113 = new System.Windows.Forms.TreeNode("Terrorist Hunt", new System.Windows.Forms.TreeNode[] {
+            treeNode100,
+            treeNode104,
+            treeNode108,
+            treeNode112});
+            System.Windows.Forms.TreeNode treeNode114 = new System.Windows.Forms.TreeNode("Hostage");
+            System.Windows.Forms.TreeNode treeNode115 = new System.Windows.Forms.TreeNode("Secure Area");
+            System.Windows.Forms.TreeNode treeNode116 = new System.Windows.Forms.TreeNode("Bomb");
+            System.Windows.Forms.TreeNode treeNode117 = new System.Windows.Forms.TreeNode("Casual", new System.Windows.Forms.TreeNode[] {
+            treeNode114,
+            treeNode115,
+            treeNode116});
+            System.Windows.Forms.TreeNode treeNode118 = new System.Windows.Forms.TreeNode("Hostage");
+            System.Windows.Forms.TreeNode treeNode119 = new System.Windows.Forms.TreeNode("Secure Area");
+            System.Windows.Forms.TreeNode treeNode120 = new System.Windows.Forms.TreeNode("Bomb");
+            System.Windows.Forms.TreeNode treeNode121 = new System.Windows.Forms.TreeNode("Ranked", new System.Windows.Forms.TreeNode[] {
+            treeNode118,
+            treeNode119,
+            treeNode120});
+            System.Windows.Forms.TreeNode treeNode122 = new System.Windows.Forms.TreeNode("Match Making", new System.Windows.Forms.TreeNode[] {
+            treeNode117,
+            treeNode121});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewUI));
             this.materialTabSelector2 = new MaterialSkin.Controls.MaterialTabSelector();
             this.materialTabControl1 = new MaterialSkin.Controls.MaterialTabControl();
@@ -152,8 +152,10 @@ namespace LiberatorY5
             this.label2 = new System.Windows.Forms.Label();
             this.LabelUpdate = new System.Windows.Forms.Label();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.label3 = new System.Windows.Forms.Label();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.SuspendLayout();
@@ -269,31 +271,31 @@ namespace LiberatorY5
             this.treeViewEvents.ForeColor = System.Drawing.Color.White;
             this.treeViewEvents.Location = new System.Drawing.Point(375, 5);
             this.treeViewEvents.Name = "treeViewEvents";
-            treeNode1.Name = "NodeGoldenGunVE";
-            treeNode1.Tag = "goldengun";
-            treeNode1.Text = "Golden Gun";
-            treeNode2.Name = "NodeGrandLarceny";
-            treeNode2.Tag = "grandlarceny";
-            treeNode2.Text = "Grand Larceny";
-            treeNode3.Name = "NodeMute";
-            treeNode3.Tag = "mute";
-            treeNode3.Text = "M.U.T.E Protocol";
-            treeNode4.Name = "NodeAttrition";
-            treeNode4.Tag = "attrition";
-            treeNode4.Text = "Attrition";
-            treeNode5.Name = "NodeReverseHostage";
-            treeNode5.Tag = "reversehostage";
-            treeNode5.Text = "Reverse Hostage";
-            treeNode6.Name = "NodeSugarFright";
-            treeNode6.Tag = "sugarfright";
-            treeNode6.Text = "Sugar Fright";
+            treeNode62.Name = "NodeGoldenGunVE";
+            treeNode62.Tag = "goldengun";
+            treeNode62.Text = "Golden Gun";
+            treeNode63.Name = "NodeGrandLarceny";
+            treeNode63.Tag = "grandlarceny";
+            treeNode63.Text = "Grand Larceny";
+            treeNode64.Name = "NodeMute";
+            treeNode64.Tag = "mute";
+            treeNode64.Text = "M.U.T.E Protocol";
+            treeNode65.Name = "NodeAttrition";
+            treeNode65.Tag = "attrition";
+            treeNode65.Text = "Attrition";
+            treeNode66.Name = "NodeReverseHostage";
+            treeNode66.Tag = "reversehostage";
+            treeNode66.Text = "Reverse Hostage";
+            treeNode67.Name = "NodeSugarFright";
+            treeNode67.Tag = "sugarfright";
+            treeNode67.Text = "Sugar Fright";
             this.treeViewEvents.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode1,
-            treeNode2,
-            treeNode3,
-            treeNode4,
-            treeNode5,
-            treeNode6});
+            treeNode62,
+            treeNode63,
+            treeNode64,
+            treeNode65,
+            treeNode66,
+            treeNode67});
             this.treeViewEvents.ShowLines = false;
             this.treeViewEvents.Size = new System.Drawing.Size(155, 370);
             this.treeViewEvents.TabIndex = 10;
@@ -305,95 +307,95 @@ namespace LiberatorY5
             this.treeViewMap.ForeColor = System.Drawing.Color.White;
             this.treeViewMap.Location = new System.Drawing.Point(200, 5);
             this.treeViewMap.Name = "treeViewMap";
-            treeNode7.Name = "NodeHouse";
-            treeNode7.Tag = "house";
-            treeNode7.Text = "House";
-            treeNode8.Name = "NodeOregon";
-            treeNode8.Tag = "oregon";
-            treeNode8.Text = "Oregon";
-            treeNode9.Name = "NodeHerefordRework";
-            treeNode9.Tag = "hereford";
-            treeNode9.Text = "Hereford Rework";
-            treeNode10.Name = "NodeOldHereford";
-            treeNode10.Tag = "oldhereford";
-            treeNode10.Text = "Old Hereford";
-            treeNode11.Name = "NodeClubHouse";
-            treeNode11.Tag = "club";
-            treeNode11.Text = "Club House";
-            treeNode12.Name = "NodePresedentialPlane";
-            treeNode12.Tag = "plane";
-            treeNode12.Text = "Presedential Plane";
-            treeNode13.Name = "NodeYacht";
-            treeNode13.Tag = "yacht";
-            treeNode13.Text = "Yacht";
-            treeNode14.Name = "NodeConsulate";
-            treeNode14.Tag = "consulate";
-            treeNode14.Text = "Consulate";
-            treeNode15.Name = "NodeBank";
-            treeNode15.Tag = "bank";
-            treeNode15.Text = "Bank";
-            treeNode16.Name = "NodeKanal";
-            treeNode16.Tag = "kanal";
-            treeNode16.Text = "Kanal";
-            treeNode17.Name = "NodeChalet";
-            treeNode17.Tag = "chalet";
-            treeNode17.Text = "Chalet";
-            treeNode18.Name = "NodeBartlettUniversity";
-            treeNode18.Tag = "university";
-            treeNode18.Text = "Bartlett University";
-            treeNode19.Name = "NodeRussianKafe";
-            treeNode19.Tag = "cafe";
-            treeNode19.Text = "Russian Kafe";
-            treeNode20.Name = "NodeBorder";
-            treeNode20.Tag = "border";
-            treeNode20.Text = "Border";
-            treeNode21.Name = "NodeFavela";
-            treeNode21.Tag = "favela";
-            treeNode21.Text = "Favela";
-            treeNode22.Name = "NodeSkyscraper";
-            treeNode22.Tag = "skyscraper";
-            treeNode22.Text = "Skyscraper";
-            treeNode23.Name = "NodeCoastline";
-            treeNode23.Tag = "coastline";
-            treeNode23.Text = "Coastline";
-            treeNode24.Name = "NodeThemePark";
-            treeNode24.Tag = "theme";
-            treeNode24.Text = "Theme Park";
-            treeNode25.Name = "NodeTower";
-            treeNode25.Tag = "tower";
-            treeNode25.Text = "Tower";
-            treeNode26.Name = "NodeVilla";
-            treeNode26.Tag = "villa";
-            treeNode26.Text = "Villa";
-            treeNode27.Name = "NodeFortress";
-            treeNode27.Tag = "fortress";
-            treeNode27.Text = "Fortress";
-            treeNode28.Name = "NodeOutback";
-            treeNode28.Tag = "outback";
-            treeNode28.Text = "Outback";
+            treeNode68.Name = "NodeHouse";
+            treeNode68.Tag = "house";
+            treeNode68.Text = "House";
+            treeNode69.Name = "NodeOregon";
+            treeNode69.Tag = "oregon";
+            treeNode69.Text = "Oregon";
+            treeNode70.Name = "NodeHerefordRework";
+            treeNode70.Tag = "hereford";
+            treeNode70.Text = "Hereford Rework";
+            treeNode71.Name = "NodeOldHereford";
+            treeNode71.Tag = "oldhereford";
+            treeNode71.Text = "Old Hereford";
+            treeNode72.Name = "NodeClubHouse";
+            treeNode72.Tag = "club";
+            treeNode72.Text = "Club House";
+            treeNode73.Name = "NodePresedentialPlane";
+            treeNode73.Tag = "plane";
+            treeNode73.Text = "Presedential Plane";
+            treeNode74.Name = "NodeYacht";
+            treeNode74.Tag = "yacht";
+            treeNode74.Text = "Yacht";
+            treeNode75.Name = "NodeConsulate";
+            treeNode75.Tag = "consulate";
+            treeNode75.Text = "Consulate";
+            treeNode76.Name = "NodeBank";
+            treeNode76.Tag = "bank";
+            treeNode76.Text = "Bank";
+            treeNode77.Name = "NodeKanal";
+            treeNode77.Tag = "kanal";
+            treeNode77.Text = "Kanal";
+            treeNode78.Name = "NodeChalet";
+            treeNode78.Tag = "chalet";
+            treeNode78.Text = "Chalet";
+            treeNode79.Name = "NodeBartlettUniversity";
+            treeNode79.Tag = "university";
+            treeNode79.Text = "Bartlett University";
+            treeNode80.Name = "NodeRussianKafe";
+            treeNode80.Tag = "cafe";
+            treeNode80.Text = "Russian Kafe";
+            treeNode81.Name = "NodeBorder";
+            treeNode81.Tag = "border";
+            treeNode81.Text = "Border";
+            treeNode82.Name = "NodeFavela";
+            treeNode82.Tag = "favela";
+            treeNode82.Text = "Favela";
+            treeNode83.Name = "NodeSkyscraper";
+            treeNode83.Tag = "skyscraper";
+            treeNode83.Text = "Skyscraper";
+            treeNode84.Name = "NodeCoastline";
+            treeNode84.Tag = "coastline";
+            treeNode84.Text = "Coastline";
+            treeNode85.Name = "NodeThemePark";
+            treeNode85.Tag = "theme";
+            treeNode85.Text = "Theme Park";
+            treeNode86.Name = "NodeTower";
+            treeNode86.Tag = "tower";
+            treeNode86.Text = "Tower";
+            treeNode87.Name = "NodeVilla";
+            treeNode87.Tag = "villa";
+            treeNode87.Text = "Villa";
+            treeNode88.Name = "NodeFortress";
+            treeNode88.Tag = "fortress";
+            treeNode88.Text = "Fortress";
+            treeNode89.Name = "NodeOutback";
+            treeNode89.Tag = "outback";
+            treeNode89.Text = "Outback";
             this.treeViewMap.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode7,
-            treeNode8,
-            treeNode9,
-            treeNode10,
-            treeNode11,
-            treeNode12,
-            treeNode13,
-            treeNode14,
-            treeNode15,
-            treeNode16,
-            treeNode17,
-            treeNode18,
-            treeNode19,
-            treeNode20,
-            treeNode21,
-            treeNode22,
-            treeNode23,
-            treeNode24,
-            treeNode25,
-            treeNode26,
-            treeNode27,
-            treeNode28});
+            treeNode68,
+            treeNode69,
+            treeNode70,
+            treeNode71,
+            treeNode72,
+            treeNode73,
+            treeNode74,
+            treeNode75,
+            treeNode76,
+            treeNode77,
+            treeNode78,
+            treeNode79,
+            treeNode80,
+            treeNode81,
+            treeNode82,
+            treeNode83,
+            treeNode84,
+            treeNode85,
+            treeNode86,
+            treeNode87,
+            treeNode88,
+            treeNode89});
             this.treeViewMap.ShowLines = false;
             this.treeViewMap.Size = new System.Drawing.Size(155, 370);
             this.treeViewMap.TabIndex = 9;
@@ -407,109 +409,109 @@ namespace LiberatorY5
             this.treeViewGameMode.HideSelection = false;
             this.treeViewGameMode.Location = new System.Drawing.Point(10, 5);
             this.treeViewGameMode.Name = "treeViewGameMode";
-            treeNode29.Name = "NodeHostage";
-            treeNode29.Tag = "hostage";
-            treeNode29.Text = "Hostage";
-            treeNode30.Name = "NodeSecureArea";
-            treeNode30.Tag = "secure";
-            treeNode30.Text = "Secure Area";
-            treeNode31.Name = "NodeBomb";
-            treeNode31.Tag = "bomb";
-            treeNode31.Text = "Bomb";
-            treeNode32.Name = "NodeWarmup";
-            treeNode32.Tag = "warmup";
-            treeNode32.Text = "Warmup";
-            treeNode33.Name = "NodeGoldenGun";
-            treeNode33.Tag = "goldengun";
-            treeNode33.Text = "Golden Gun";
-            treeNode34.Name = "NodeBombNoPrep";
-            treeNode34.Tag = "bombnoprep";
-            treeNode34.Text = "Bomb - No Prep Phase";
-            treeNode35.Name = "NodeMultiplayer";
-            treeNode35.Tag = "Multiplayer";
-            treeNode35.Text = "Multiplayer";
-            treeNode36.Name = "NodePHNormal";
-            treeNode36.Tag = "normal";
-            treeNode36.Text = "Normal";
-            treeNode37.Name = "NodePHHard";
-            treeNode37.Tag = "hard";
-            treeNode37.Text = "Hard";
-            treeNode38.Name = "NodePHRealistic";
-            treeNode38.Tag = "realistic";
-            treeNode38.Text = "Realistic";
-            treeNode39.Name = "NodePH";
-            treeNode39.Tag = "protect";
-            treeNode39.Text = "Protect Hostage";
-            treeNode40.Name = "NodeEHNormal";
-            treeNode40.Tag = "normal";
-            treeNode40.Text = "Normal";
-            treeNode41.Name = "NodeEHHard";
-            treeNode41.Tag = "hard";
-            treeNode41.Text = "Hard";
-            treeNode42.Name = "NodeEHRealistic";
-            treeNode42.Tag = "realistic";
-            treeNode42.Text = "Realistic";
-            treeNode43.Name = "NodeEH";
-            treeNode43.Tag = "extract";
-            treeNode43.Text = "Extract Hostage";
-            treeNode44.Name = "NodeDBNormal";
-            treeNode44.Tag = "normal";
-            treeNode44.Text = "Normal";
-            treeNode45.Name = "NodeDBHard";
-            treeNode45.Tag = "hard";
-            treeNode45.Text = "Hard";
-            treeNode46.Name = "NodeDBRealistic";
-            treeNode46.Tag = "realistic";
-            treeNode46.Text = "Realistic";
-            treeNode47.Name = "NodeDB";
-            treeNode47.Tag = "disarm";
-            treeNode47.Text = "Disarm Bomb";
-            treeNode48.Name = "NodeENormal";
-            treeNode48.Tag = "normal";
-            treeNode48.Text = "Normal";
-            treeNode49.Name = "NodeEHard";
-            treeNode49.Tag = "hard";
-            treeNode49.Text = "Hard";
-            treeNode50.Name = "NodeERealistic";
-            treeNode50.Tag = "realistic";
-            treeNode50.Text = "Realistic";
-            treeNode51.Name = "NodeE";
-            treeNode51.Tag = "elimination";
-            treeNode51.Text = "Elimination";
-            treeNode52.Name = "NodeThunt";
-            treeNode52.Tag = "TerroristHunt";
-            treeNode52.Text = "Terrorist Hunt";
-            treeNode53.Name = "NodeMMCHostage";
-            treeNode53.Tag = "hostage";
-            treeNode53.Text = "Hostage";
-            treeNode54.Name = "NodeMMCSecureArea";
-            treeNode54.Tag = "secure";
-            treeNode54.Text = "Secure Area";
-            treeNode55.Name = "NodeMMCBomb";
-            treeNode55.Tag = "bomb";
-            treeNode55.Text = "Bomb";
-            treeNode56.Name = "NodeCasual";
-            treeNode56.Tag = "casual";
-            treeNode56.Text = "Casual";
-            treeNode57.Name = "NodeMMRHostage";
-            treeNode57.Tag = "hostage";
-            treeNode57.Text = "Hostage";
-            treeNode58.Name = "NodeMMRSecureArea";
-            treeNode58.Tag = "secure";
-            treeNode58.Text = "Secure Area";
-            treeNode59.Name = "NodeMMRBomb";
-            treeNode59.Tag = "bomb";
-            treeNode59.Text = "Bomb";
-            treeNode60.Name = "NodeRanked";
-            treeNode60.Tag = "ranked";
-            treeNode60.Text = "Ranked";
-            treeNode61.Name = "NodeMatchmaking";
-            treeNode61.Tag = "Matchmaking";
-            treeNode61.Text = "Match Making";
+            treeNode90.Name = "NodeHostage";
+            treeNode90.Tag = "hostage";
+            treeNode90.Text = "Hostage";
+            treeNode91.Name = "NodeSecureArea";
+            treeNode91.Tag = "secure";
+            treeNode91.Text = "Secure Area";
+            treeNode92.Name = "NodeBomb";
+            treeNode92.Tag = "bomb";
+            treeNode92.Text = "Bomb";
+            treeNode93.Name = "NodeWarmup";
+            treeNode93.Tag = "warmup";
+            treeNode93.Text = "Warmup";
+            treeNode94.Name = "NodeGoldenGun";
+            treeNode94.Tag = "goldengun";
+            treeNode94.Text = "Golden Gun";
+            treeNode95.Name = "NodeBombNoPrep";
+            treeNode95.Tag = "bombnoprep";
+            treeNode95.Text = "Bomb - No Prep Phase";
+            treeNode96.Name = "NodeMultiplayer";
+            treeNode96.Tag = "Multiplayer";
+            treeNode96.Text = "Multiplayer";
+            treeNode97.Name = "NodePHNormal";
+            treeNode97.Tag = "normal";
+            treeNode97.Text = "Normal";
+            treeNode98.Name = "NodePHHard";
+            treeNode98.Tag = "hard";
+            treeNode98.Text = "Hard";
+            treeNode99.Name = "NodePHRealistic";
+            treeNode99.Tag = "realistic";
+            treeNode99.Text = "Realistic";
+            treeNode100.Name = "NodePH";
+            treeNode100.Tag = "protect";
+            treeNode100.Text = "Protect Hostage";
+            treeNode101.Name = "NodeEHNormal";
+            treeNode101.Tag = "normal";
+            treeNode101.Text = "Normal";
+            treeNode102.Name = "NodeEHHard";
+            treeNode102.Tag = "hard";
+            treeNode102.Text = "Hard";
+            treeNode103.Name = "NodeEHRealistic";
+            treeNode103.Tag = "realistic";
+            treeNode103.Text = "Realistic";
+            treeNode104.Name = "NodeEH";
+            treeNode104.Tag = "extract";
+            treeNode104.Text = "Extract Hostage";
+            treeNode105.Name = "NodeDBNormal";
+            treeNode105.Tag = "normal";
+            treeNode105.Text = "Normal";
+            treeNode106.Name = "NodeDBHard";
+            treeNode106.Tag = "hard";
+            treeNode106.Text = "Hard";
+            treeNode107.Name = "NodeDBRealistic";
+            treeNode107.Tag = "realistic";
+            treeNode107.Text = "Realistic";
+            treeNode108.Name = "NodeDB";
+            treeNode108.Tag = "disarm";
+            treeNode108.Text = "Disarm Bomb";
+            treeNode109.Name = "NodeENormal";
+            treeNode109.Tag = "normal";
+            treeNode109.Text = "Normal";
+            treeNode110.Name = "NodeEHard";
+            treeNode110.Tag = "hard";
+            treeNode110.Text = "Hard";
+            treeNode111.Name = "NodeERealistic";
+            treeNode111.Tag = "realistic";
+            treeNode111.Text = "Realistic";
+            treeNode112.Name = "NodeE";
+            treeNode112.Tag = "elimination";
+            treeNode112.Text = "Elimination";
+            treeNode113.Name = "NodeThunt";
+            treeNode113.Tag = "TerroristHunt";
+            treeNode113.Text = "Terrorist Hunt";
+            treeNode114.Name = "NodeMMCHostage";
+            treeNode114.Tag = "hostage";
+            treeNode114.Text = "Hostage";
+            treeNode115.Name = "NodeMMCSecureArea";
+            treeNode115.Tag = "secure";
+            treeNode115.Text = "Secure Area";
+            treeNode116.Name = "NodeMMCBomb";
+            treeNode116.Tag = "bomb";
+            treeNode116.Text = "Bomb";
+            treeNode117.Name = "NodeCasual";
+            treeNode117.Tag = "casual";
+            treeNode117.Text = "Casual";
+            treeNode118.Name = "NodeMMRHostage";
+            treeNode118.Tag = "hostage";
+            treeNode118.Text = "Hostage";
+            treeNode119.Name = "NodeMMRSecureArea";
+            treeNode119.Tag = "secure";
+            treeNode119.Text = "Secure Area";
+            treeNode120.Name = "NodeMMRBomb";
+            treeNode120.Tag = "bomb";
+            treeNode120.Text = "Bomb";
+            treeNode121.Name = "NodeRanked";
+            treeNode121.Tag = "ranked";
+            treeNode121.Text = "Ranked";
+            treeNode122.Name = "NodeMatchmaking";
+            treeNode122.Tag = "Matchmaking";
+            treeNode122.Text = "Match Making";
             this.treeViewGameMode.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode35,
-            treeNode52,
-            treeNode61});
+            treeNode96,
+            treeNode113,
+            treeNode122});
             this.treeViewGameMode.Size = new System.Drawing.Size(175, 370);
             this.treeViewGameMode.TabIndex = 3;
             this.treeViewGameMode.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewGameMode_AfterSelect);
@@ -517,6 +519,7 @@ namespace LiberatorY5
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
+            this.tabPage4.Controls.Add(this.label3);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Size = new System.Drawing.Size(547, 421);
@@ -608,7 +611,7 @@ namespace LiberatorY5
             // versionLabel
             // 
             this.versionLabel.AutoSize = true;
-            this.versionLabel.Location = new System.Drawing.Point(215, 392);
+            this.versionLabel.Location = new System.Drawing.Point(201, 392);
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(52, 15);
             this.versionLabel.TabIndex = 13;
@@ -617,11 +620,12 @@ namespace LiberatorY5
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(215, 250);
+            this.label4.Location = new System.Drawing.Point(201, 227);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(103, 90);
+            this.label4.Size = new System.Drawing.Size(122, 135);
             this.label4.TabIndex = 12;
-            this.label4.Text = "This tool made by:\r\n- SlejmUr\r\n- JVAV\r\n  Helped:\r\n- Gibbo\r\n- Imarealperson\r\n";
+            this.label4.Text = "This tool made by:\r\n- SlejmUr\r\n- JVAV\r\n\r\n  Helped:\r\n- Gibbo\r\n- Imarealperson\r\n- M" +
+    "ystc (from his tool)\r\n- Skaj?";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // linkLabel2
@@ -689,6 +693,15 @@ namespace LiberatorY5
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(202, 53);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 15);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Soon...";
+            // 
             // NewUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -711,6 +724,8 @@ namespace LiberatorY5
             this.materialTabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
+            this.tabPage4.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
@@ -747,5 +762,6 @@ namespace LiberatorY5
         private System.ComponentModel.BackgroundWorker backgroundWorker;
         private Label versionLabel;
         private TabPage tabPage4;
+        private Label label3;
     }
 }

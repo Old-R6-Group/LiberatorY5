@@ -25,7 +25,7 @@ namespace LiberatorY5
             bool versionCheck =  Stuff.VersionCheck();
             if (!versionCheck)
             {
-                MessageBox.Show("Please use the Updated version!\n(Inside Update, File is same, just move back here,where you started)", "Version Missmatch");
+                Stuff.StartUpdate();
             }
             Application.Run(new NewUI());
             logs.WriteLog("Liberator Reloaded is Exited!");

@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Diagnostics;
+using System.IO;
 using System.Net;
 
 namespace LiberatorY5
@@ -73,6 +74,17 @@ namespace LiberatorY5
                     return true;
                 }
             }
+        }
+
+        public static void StartUpdate()
+        {
+            string StartArgName = "/C update.bat ";
+            //  Start downloading
+            Process process = new Process();
+            process.StartInfo.FileName = "cmd.exe";
+            process.StartInfo.Arguments = StartArgName;
+            process.Start();
+
         }
     }
 }

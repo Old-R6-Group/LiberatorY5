@@ -14,7 +14,7 @@ namespace LiberatorY5
         #region Variables
         public Mem m = new Mem();
         public Random random = new Random();
-        public Discordrpc rpc = new Discordrpc();
+        public rpc rpc = new rpc();
         bool procOpen = false;
         readonly string r6processname = "RainbowSix.exe";
         readonly string r6mem = "RainbowSix.exe+";
@@ -54,6 +54,9 @@ namespace LiberatorY5
             {
                 LabelUpdate.Text = "Can't find siege. Make sure Battleye is disabled and the game is at the main menu!";
                 FulllbuildID = null;
+                rpc.client.UpdateDetails("Liberator Reloaded!");
+                rpc.client.UpdateState("Waiting for a game!");
+                rpc.client.UpdateLargeAsset("base", "Waiting...");
                 Thread.Sleep(100);
                 return;
             }
@@ -71,6 +74,7 @@ namespace LiberatorY5
                 }
                 else
                 {
+                    rpc.client.UpdateState("Version Not supported!");
                     LabelUpdate.Text = "This Build is NOT supported! or Currently Reading from your Game";
                 }
             }
@@ -78,6 +82,9 @@ namespace LiberatorY5
             {
                 LabelUpdate.Text = "Can't find siege. Make sure Battleye is disabled and the game is at the main menu!";
                 FulllbuildID = null;
+                rpc.client.UpdateDetails("Liberator Reloaded!");
+                rpc.client.UpdateState("Waiting for a game!");
+                rpc.client.UpdateLargeAsset("base", "Waiting...");
             }
         }
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -395,7 +402,7 @@ namespace LiberatorY5
                 if (events != null) 
                 {
                     string eventname = treeViewEvents.Nodes.OfType<TreeNode>().FirstOrDefault(node => node.Tag.Equals(events)).Text;
-                    rpc.client.UpdateState("Gamemode: " + eventname);
+                    rpc.client.UpdateState("Event: " + eventname);
                 } 
 
                 #region Void Edge Shey

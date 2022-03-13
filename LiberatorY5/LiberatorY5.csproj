@@ -95,7 +95,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Discordrpc.cs" />
+    <Compile Include="rpc.cs" />
     <Compile Include="logs.cs" />
     <Compile Include="NewUI.cs">
       <SubType>Form</SubType>

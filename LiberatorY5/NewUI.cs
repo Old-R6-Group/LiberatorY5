@@ -6,6 +6,7 @@ using MaterialSkin.Controls;
 using Memory;
 using System.Threading;
 using System.Linq;
+using System.Diagnostics;
 
 namespace LiberatorY5
 {
@@ -851,5 +852,17 @@ namespace LiberatorY5
             }
         }
         #endregion
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //added JVAV website
+            Process.Start("https://r6downloads.com/");
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            //added website throwback
+            Process.Start("http://r6modding.com/");
+        }
     }
 }

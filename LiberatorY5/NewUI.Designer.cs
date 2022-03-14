@@ -138,6 +138,7 @@ namespace LiberatorY5
             this.treeViewMap = new System.Windows.Forms.TreeView();
             this.treeViewGameMode = new System.Windows.Forms.TreeView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.label3 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.endRoundButton = new System.Windows.Forms.Button();
             this.endMatchButton = new System.Windows.Forms.Button();
@@ -152,7 +153,6 @@ namespace LiberatorY5
             this.label2 = new System.Windows.Forms.Label();
             this.LabelUpdate = new System.Windows.Forms.Label();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.label3 = new System.Windows.Forms.Label();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -221,7 +221,7 @@ namespace LiberatorY5
             this.checkBoxClientMode.AutoSize = true;
             this.checkBoxClientMode.Location = new System.Drawing.Point(10, 410);
             this.checkBoxClientMode.Name = "checkBoxClientMode";
-            this.checkBoxClientMode.Size = new System.Drawing.Size(91, 19);
+            this.checkBoxClientMode.Size = new System.Drawing.Size(92, 19);
             this.checkBoxClientMode.TabIndex = 15;
             this.checkBoxClientMode.Text = "Client Mode";
             this.checkBoxClientMode.UseVisualStyleBackColor = true;
@@ -241,7 +241,7 @@ namespace LiberatorY5
             this.labelMap.AutoSize = true;
             this.labelMap.Location = new System.Drawing.Point(200, 380);
             this.labelMap.Name = "labelMap";
-            this.labelMap.Size = new System.Drawing.Size(31, 15);
+            this.labelMap.Size = new System.Drawing.Size(32, 15);
             this.labelMap.TabIndex = 13;
             this.labelMap.Text = "Map";
             // 
@@ -250,7 +250,7 @@ namespace LiberatorY5
             this.labelGameMode.AutoSize = true;
             this.labelGameMode.Location = new System.Drawing.Point(10, 380);
             this.labelGameMode.Name = "labelGameMode";
-            this.labelGameMode.Size = new System.Drawing.Size(73, 15);
+            this.labelGameMode.Size = new System.Drawing.Size(76, 15);
             this.labelGameMode.TabIndex = 12;
             this.labelGameMode.Text = "Game Mode";
             // 
@@ -526,6 +526,15 @@ namespace LiberatorY5
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Lan";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(202, 53);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(45, 15);
+            this.label3.TabIndex = 0;
+            this.label3.Text = "Soon...";
+            // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
@@ -547,7 +556,7 @@ namespace LiberatorY5
             this.endRoundButton.ForeColor = System.Drawing.Color.Transparent;
             this.endRoundButton.Location = new System.Drawing.Point(297, 65);
             this.endRoundButton.Name = "endRoundButton";
-            this.endRoundButton.Size = new System.Drawing.Size(75, 23);
+            this.endRoundButton.Size = new System.Drawing.Size(84, 23);
             this.endRoundButton.TabIndex = 18;
             this.endRoundButton.Text = "End Round";
             this.endRoundButton.UseVisualStyleBackColor = true;
@@ -560,7 +569,7 @@ namespace LiberatorY5
             this.endMatchButton.ForeColor = System.Drawing.Color.Transparent;
             this.endMatchButton.Location = new System.Drawing.Point(297, 36);
             this.endMatchButton.Name = "endMatchButton";
-            this.endMatchButton.Size = new System.Drawing.Size(75, 23);
+            this.endMatchButton.Size = new System.Drawing.Size(84, 23);
             this.endMatchButton.TabIndex = 17;
             this.endMatchButton.Text = "End Match";
             this.endMatchButton.UseVisualStyleBackColor = true;
@@ -568,7 +577,7 @@ namespace LiberatorY5
             // 
             // daynightCheckbox
             // 
-            this.daynightCheckbox.Font = new System.Drawing.Font("Ubisoft Sans", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.daynightCheckbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.daynightCheckbox.Location = new System.Drawing.Point(27, 32);
             this.daynightCheckbox.Margin = new System.Windows.Forms.Padding(0);
             this.daynightCheckbox.Name = "daynightCheckbox";
@@ -613,7 +622,7 @@ namespace LiberatorY5
             this.versionLabel.AutoSize = true;
             this.versionLabel.Location = new System.Drawing.Point(201, 392);
             this.versionLabel.Name = "versionLabel";
-            this.versionLabel.Size = new System.Drawing.Size(52, 15);
+            this.versionLabel.Size = new System.Drawing.Size(54, 15);
             this.versionLabel.TabIndex = 13;
             this.versionLabel.Text = "Version: ";
             // 
@@ -622,7 +631,7 @@ namespace LiberatorY5
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(201, 227);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(122, 135);
+            this.label4.Size = new System.Drawing.Size(123, 135);
             this.label4.TabIndex = 12;
             this.label4.Text = "This tool made by:\r\n- SlejmUr\r\n- JVAV\r\n\r\n  Helped:\r\n- Gibbo\r\n- Imarealperson\r\n- M" +
     "ystc (from his tool)\r\n- Skaj?";
@@ -634,10 +643,11 @@ namespace LiberatorY5
             this.linkLabel2.LinkColor = System.Drawing.Color.CornflowerBlue;
             this.linkLabel2.Location = new System.Drawing.Point(295, 185);
             this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(178, 15);
+            this.linkLabel2.Size = new System.Drawing.Size(181, 15);
             this.linkLabel2.TabIndex = 11;
             this.linkLabel2.TabStop = true;
             this.linkLabel2.Text = "The First OG Tool discord server";
+            this.linkLabel2.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
             // 
             // linkLabel1
             // 
@@ -645,27 +655,27 @@ namespace LiberatorY5
             this.linkLabel1.LinkColor = System.Drawing.Color.CornflowerBlue;
             this.linkLabel1.Location = new System.Drawing.Point(105, 185);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(110, 15);
+            this.linkLabel1.Size = new System.Drawing.Size(114, 15);
             this.linkLabel1.TabIndex = 10;
             this.linkLabel1.TabStop = true;
             this.linkLabel1.Text = "Join JVAV\'s website";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(15, 55);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(505, 105);
+            this.label1.Size = new System.Drawing.Size(510, 105);
             this.label1.TabIndex = 9;
             this.label1.Text = resources.GetString("label1.Text");
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 10);
+            this.label2.Location = new System.Drawing.Point(8, 10);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(533, 30);
+            this.label2.Size = new System.Drawing.Size(531, 30);
             this.label2.TabIndex = 8;
             this.label2.Text = "This tool is for expanding the possibilities of Tom Clancy\'s Rainbow Six Siege in" +
     " local custom games.\r\nyou can not use it to cheat in matchmaking and will never " +
@@ -678,10 +688,10 @@ namespace LiberatorY5
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.LabelUpdate.AutoSize = true;
-            this.LabelUpdate.Font = new System.Drawing.Font("Ubisoft Sans", 8.25F);
+            this.LabelUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.LabelUpdate.Location = new System.Drawing.Point(75, 570);
             this.LabelUpdate.Name = "LabelUpdate";
-            this.LabelUpdate.Size = new System.Drawing.Size(403, 13);
+            this.LabelUpdate.Size = new System.Drawing.Size(393, 13);
             this.LabelUpdate.TabIndex = 10;
             this.LabelUpdate.Text = "Can\'t find siege. Make sure Battleye is disabled and the game is at the main menu" +
     "!";
@@ -693,15 +703,6 @@ namespace LiberatorY5
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(202, 53);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 15);
-            this.label3.TabIndex = 0;
-            this.label3.Text = "Soon...";
-            // 
             // NewUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -712,7 +713,7 @@ namespace LiberatorY5
             this.Controls.Add(this.LabelUpdate);
             this.Controls.Add(this.materialTabControl1);
             this.Controls.Add(this.materialTabSelector2);
-            this.Font = new System.Drawing.Font("Ubisoft Sans", 8.5F);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.5F);
             this.ForeColor = System.Drawing.SystemColors.Window;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

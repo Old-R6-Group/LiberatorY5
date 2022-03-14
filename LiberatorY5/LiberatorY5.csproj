@@ -71,7 +71,7 @@
       <HintPath>..\packages\DiscordRichPresence.1.0.175\lib\net35\DiscordRPC.dll</HintPath>
     </Reference>
     <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
+      <HintPath>..\packages\MaterialSkin.Updated.0.2.2\lib\MaterialSkin.dll</HintPath>
     </Reference>
     <Reference Include="Memory, Version=1.2.23.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Memory.dll.x64.1.2.23\lib\netstandard2.0\Memory.dll</HintPath>

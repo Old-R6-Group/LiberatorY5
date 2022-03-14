@@ -852,7 +852,7 @@ namespace LiberatorY5
             }
         }
         #endregion
-
+        #region website links
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             //added JVAV website
@@ -864,5 +864,6 @@ namespace LiberatorY5
             //added website throwback
             Process.Start("http://r6modding.com/");
         }
+        #endregion
     }
 }

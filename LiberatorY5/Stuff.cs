@@ -29,6 +29,17 @@ namespace LiberatorY5
                 }
             }
         }
+        public static void Batch_Download()
+        {
+            if (!File.Exists("update.bat"))
+            {
+                //Download
+                string Download = "https://github.com/SlejmUr/Versions/raw/main/update.bat";
+                string filename = "update.bat";
+                WebClient myWebClient = new WebClient();
+                myWebClient.DownloadFile(Download, filename);
+            }
+        }
         public static string GetVersion()
         {
             string version = "https://raw.githubusercontent.com/SlejmUr/Versions/main/liby5";
@@ -48,9 +59,9 @@ namespace LiberatorY5
             return Version;
         }
 #if DEBUG
-        public static string Version = "DEV-20220311.0";
+        public static string Version = "DEV-20220315.0";
 #else
-        public static string Version = "20220311.0";
+        public static string Version = "20220315.0";
 #endif
         public static bool VersionCheck() //give back true is version is good, give back false if not
         {
@@ -67,6 +78,7 @@ namespace LiberatorY5
                 {
                     logs.SpecificLog("Version Missmatch! [Tool Version:" + tmpVersion + " , Web Version: " + webVersion + " ]", "Loading/Starting");
                     Update_Download();
+                    Batch_Download();
                     return false;
                 }
                 else

@@ -13,15 +13,6 @@ namespace LiberatorY5
 		public void Initialize()
 		{
 			client = new DiscordRpcClient("952188687737831484");
-			client.OnReady += (sender, e) =>
-			{
-				logs.WriteLog("Received Ready from user " + e.User.Username);
-			};
-
-			client.OnPresenceUpdate += (sender, e) =>
-			{
-				logs.WriteLog("Received Update! " + e.Presence);
-			};
 
 			client.Initialize();
 

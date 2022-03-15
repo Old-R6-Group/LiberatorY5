@@ -15,6 +15,7 @@ namespace LiberatorY5
         static void Main(string[] args)
         {
             string isdebug = "-debug";
+            string skipcheck = "-skip";
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             if (args.Contains(isdebug))
@@ -22,10 +23,13 @@ namespace LiberatorY5
                 logs.isDebugEnabled = true;
             }
             logs.WriteLog("Liberator Reloaded is Started!");
-            bool versionCheck =  Stuff.VersionCheck();
-            if (!versionCheck)
+            if (!args.Contains(skipcheck))
             {
-                Stuff.StartUpdate();
+                bool versionCheck = Stuff.VersionCheck();
+                if (!versionCheck)
+                {
+                    Stuff.StartUpdate();
+                }
             }
             Application.Run(new NewUI());
             logs.WriteLog("Liberator Reloaded is Exited!");

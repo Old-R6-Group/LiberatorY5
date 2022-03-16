@@ -809,6 +809,9 @@ namespace LiberatorY5
         public static string r6_gamemode = playlist + ",8";
         public static string r6_difficulty = playlist + ",30";
         public static string gamestate = "06E3FF30,50";
+        public static string ConnectedIP = "7F4A160,13E"; //long to ip
+        public static string InMatch = "068E91A0,588,0,0,18C"; //4 Byte but actually just one byte
+        public static string InHost = "0581EE10,FB8,0,40,80,18C"; //Byte
 
         public static string[] EventView_Tag = { "goldengun", "legacy", "sugarfright" };
         public static string[] EventView = { "Golden Gun", "Legacy Event", "Sugar Fright" };
@@ -1509,6 +1512,17 @@ namespace LiberatorY5
                 default:
                     return state.ToString();
             }
+        }
+        //Long to IP string. RadminVPN!
+        public static string LongToIP(long longvalue)
+        {
+            byte[] bytes = BitConverter.GetBytes(longvalue);
+            int ip1 = (int)Convert.ToDecimal(bytes[0]);
+            int ip2 = (int)Convert.ToDecimal(bytes[1]);
+            int ip3 = (int)Convert.ToDecimal(bytes[2]);
+            int ip4 = (int)Convert.ToDecimal(bytes[3]);
+            //we drop the other 2-4, mostly is null, and ip is only 4 part.
+            return $"{ip1}.{ip2}.{ip3}.{ip4}";
         }
     }
     #endregion

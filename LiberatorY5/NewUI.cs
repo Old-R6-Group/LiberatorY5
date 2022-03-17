@@ -13,9 +13,10 @@ namespace LiberatorY5
     public partial class NewUI : MaterialForm
     {
         #region Variables
-        public Mem m = new Mem();
-        public Random random = new Random();
-        public rpc rpc = new rpc();
+        private Mem m = new();
+        private Random random = new();
+        private rpc rpc = new();
+        private Season_Addon SA = new();
         bool procOpen = false;
         readonly string r6processname = "RainbowSix.exe";
         readonly string r6mem = "RainbowSix.exe+";
@@ -222,6 +223,8 @@ namespace LiberatorY5
                 if (!string.IsNullOrWhiteSpace(FulllbuildID))
                 {
                     logs.WriteLog("Game Build ID: " + FulllbuildID);
+                    SA.Seasons_Changer(FulllbuildID);
+                    logs.WriteLog(SA.SeasonVersion.ToString());
                     rpc.ChangeAssetByVersion(FulllbuildID);
                 } 
             }

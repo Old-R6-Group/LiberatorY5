@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 using System.Windows.Forms;
@@ -11,7 +12,7 @@ namespace LiberatorY5
 {
     public class NetworkManagement
     {
-		private static string RadminHostIp = NewUI.HostIp;
+		public static string RadminHostIp;
 
 		private static SimpleTcpServer server;
 
@@ -25,7 +26,7 @@ namespace LiberatorY5
 
 		public static void SendPlaylistLoop(string Map, string Gamemode, string Events)
 		{
-			if (NewUI.eventHostBool == 1)
+			if (NewUI.InMatch == 1)
 			{
 				string[] ip_keys = IPS.Keys.ToArray();
 				NetworkMessage playlist_data = new NetworkMessage(new PlaylistNetworkData(Map, Gamemode, Events));
@@ -44,13 +45,12 @@ namespace LiberatorY5
 
 		public static void StartServer(ListBox playerlist)
 		{
-			RadminHostIp = NewUI.HostIp;
 			if (server == null || !server.IsListening)
 			{
 				connectedplayerList = playerlist;
 				server = new SimpleTcpServer(RadminHostIp + ":9000");
-				server.Events.ClientDisconnected += (sender, args) => SClientDisconnected(sender, args);
-				server.Events.DataReceived += (sender, args) => SDataReceived(sender, args);
+				server.Events.ClientDisconnected += (sender, args) => Server_ClientDisconnected(sender, args);
+				server.Events.DataReceived += (sender, args) => Server_DataReceived(sender, args);
 				server.Start();
 				HostStatusChange(HostStatus.Statuses.Hosting);
 			}
@@ -77,8 +77,8 @@ namespace LiberatorY5
 		public static void ConnectServer(string ConnectToIP, string username)
 		{
 			client = new SimpleTcpClient(ConnectToIP + ":9000");
-			client.Events.Disconnected += (sender, args) => CDisconnected(sender, args);
-			client.Events.DataReceived += (sender, args) => CDataReceived(sender, args);
+			client.Events.Disconnected += (sender, args) => Client_Disconnected(sender, args);
+			client.Events.DataReceived += (sender, args) => Client_DataReceived(sender, args);
 			try
 			{
 				client.Connect();
@@ -93,7 +93,6 @@ namespace LiberatorY5
 			}
 		}
 
-
 		public static void DisconnectClient(string name)
 		{
 			var ip = IPS.Where(x => x.Value == name).FirstOrDefault().Key;
@@ -101,36 +100,53 @@ namespace LiberatorY5
 			server.DisconnectClient(ip);
 		}
 
-
-		private static void CDisconnected(object sender, EventArgs e)
+		public static void GetIP()
 		{
-			if (NewUI.IsHost == false)
+			IPAddress[] hostAddresses = Dns.GetHostAddresses(Dns.GetHostName());
+			foreach (IPAddress iPAddress in hostAddresses)
+			{
+				if (iPAddress.ToString().Substring(0, 2) == "26")
+				{
+					RadminHostIp = iPAddress.ToString();
+				}
+			}
+		}
+
+		//	Client/Serer stuff
+		private static void Client_Disconnected(object sender, EventArgs e)
+		{
+			if (!NewUI.IsHost)
 			{
 				HostStatusChange(HostStatus.Statuses.Disconnected);
 			}
 		}
 
-		private static void CDataReceived(object sender, DataReceivedEventArgs e)
+		private static void Client_DataReceived(object sender, DataReceivedEventArgs e)
 		{
 			NetworkMessage networkMessage = (NetworkMessage)ByteArrayToObject(e.Data);
 			object messageData = networkMessage.MessageData;
-			if (messageData is PlaylistNetworkData)
+			switch (messageData)
 			{
-				//NewUI.HandlePlaylistData((PlaylistNetworkData)networkMessage.MessageData);
-			}
-			if (messageData is ExitMessage)
-			{
-				//NewUI.HandleExitData((ExitMessage)networkMessage.MessageData);
+				default:
+					//NewUI.HandelUnknownData((NetworkMessage)networkMessage.MessageData)
+					return;
+                case PlaylistNetworkData:
+					//NewUI.HandlePlaylistData((PlaylistNetworkData)networkMessage.MessageData);
+					return;
+				case ExitMessage:
+					//NewUI.HandleExitData((ExitMessage)networkMessage.MessageData);
+					return;
+
 			}
 		}
 
-		private static void SClientDisconnected(object sender, ClientDisconnectedEventArgs e)
+		private static void Server_ClientDisconnected(object sender, ClientDisconnectedEventArgs e)
 		{
 			connectedplayerList.Items.Remove(IPS[e.IpPort]);
 			IPS.Remove(e.IpPort);
 		}
 
-		private static void SDataReceived(object sender, DataReceivedEventArgs e)
+		private static void Server_DataReceived(object sender, DataReceivedEventArgs e)
 		{
 			IPS.Add(e.IpPort, Encoding.UTF8.GetString(e.Data));
 			connectedplayerList.Items.Add(IPS[e.IpPort]);

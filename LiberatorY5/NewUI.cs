@@ -28,11 +28,9 @@ namespace LiberatorY5
         long hostage = long.MaxValue;
         long easy = long.MaxValue;
         long day = long.MaxValue;
-        public static string HostIp;
-        public static string ConnectToIp;
         public static bool ClientConnected = false;
         public static bool IsHost = false;
-        public static byte eventHostBool;
+        public static byte InMatch;
         #endregion
         #region Load + Hooking
         public NewUI()
@@ -47,7 +45,12 @@ namespace LiberatorY5
         {
             versionLabel.Text = "Version: " + Stuff.Version;
             rpc.Initialize();
-            HostStatus.HostStatusString(HostStatus.Statuses.Default);
+            HostStatus.ChangeStatus(HostStatus.Statuses.Default);
+            NetworkManagement.GetIP();
+            if (NetworkManagement.RadminHostIp == "")
+            {
+                MessageBox.Show("Please Install Radmin VPN to use server capability");
+            }
         }
         private void NewUI_Shown(object sender, EventArgs e)
         {
@@ -72,7 +75,7 @@ namespace LiberatorY5
         }
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            StatusLabel.Text = HostStatus.StatusBack;
+            StatusLabel.Text = HostStatus.Status;
             if (procOpen)
             {
                 Once_BuildID();

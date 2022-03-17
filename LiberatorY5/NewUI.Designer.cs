@@ -153,6 +153,7 @@ namespace LiberatorY5
             this.label2 = new System.Windows.Forms.Label();
             this.LabelUpdate = new System.Windows.Forms.Label();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.StatusLabel = new System.Windows.Forms.Label();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -519,6 +520,7 @@ namespace LiberatorY5
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
+            this.tabPage4.Controls.Add(this.StatusLabel);
             this.tabPage4.Controls.Add(this.label3);
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
@@ -703,6 +705,15 @@ namespace LiberatorY5
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
+            // StatusLabel
+            // 
+            this.StatusLabel.AutoSize = true;
+            this.StatusLabel.Location = new System.Drawing.Point(166, 244);
+            this.StatusLabel.Name = "StatusLabel";
+            this.StatusLabel.Size = new System.Drawing.Size(72, 15);
+            this.StatusLabel.TabIndex = 1;
+            this.StatusLabel.Text = "StatusLabel";
+            // 
             // NewUI
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -764,5 +775,6 @@ namespace LiberatorY5
         private Label versionLabel;
         private TabPage tabPage4;
         private Label label3;
+        private Label StatusLabel;
     }
 }

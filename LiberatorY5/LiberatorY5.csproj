@@ -95,6 +95,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Network\HostStatus.cs" />
+    <Compile Include="Network\NetworkManagement.cs" />
+    <Compile Include="Network\NetworkMessage.cs" />
     <Compile Include="rpc.cs" />
     <Compile Include="logs.cs" />
     <Compile Include="NewUI.cs">

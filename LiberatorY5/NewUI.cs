@@ -28,6 +28,11 @@ namespace LiberatorY5
         long hostage = long.MaxValue;
         long easy = long.MaxValue;
         long day = long.MaxValue;
+        public static string HostIp;
+        public static string ConnectToIp;
+        public static bool ClientConnected = false;
+        public static bool IsHost = false;
+        public static byte eventHostBool;
         #endregion
         #region Load + Hooking
         public NewUI()
@@ -42,6 +47,7 @@ namespace LiberatorY5
         {
             versionLabel.Text = "Version: " + Stuff.Version;
             rpc.Initialize();
+            HostStatus.HostStatusString(HostStatus.Statuses.Default);
         }
         private void NewUI_Shown(object sender, EventArgs e)
         {
@@ -66,11 +72,13 @@ namespace LiberatorY5
         }
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            StatusLabel.Text = HostStatus.StatusBack;
             if (procOpen)
             {
                 Once_BuildID();
                 if (!string.IsNullOrWhiteSpace(FulllbuildID))
                 {
+                    
                     LabelUpdate.Text = "Game found: " + FulllbuildID;
                 }
                 else

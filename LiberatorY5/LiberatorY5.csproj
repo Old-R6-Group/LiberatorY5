@@ -113,8 +113,9 @@
     <Compile Include="Network\HostStatus.cs" />
     <Compile Include="Network\NetworkManagement.cs" />
     <Compile Include="Network\NetworkMessage.cs" />
-    <Compile Include="rpc.cs" />
-    <Compile Include="logs.cs" />
+    <Compile Include="Season_Addon.cs" />
+    <Compile Include="Utilites\rpc.cs" />
+    <Compile Include="Utilites\logs.cs" />
     <Compile Include="NewUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,7 +125,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sesasons.cs" />
-    <Compile Include="Stuff.cs" />
+    <Compile Include="Utilites\Updater.cs" />
     <EmbeddedResource Include="NewUI.resx">
       <DependentUpon>NewUI.cs</DependentUpon>
     </EmbeddedResource>

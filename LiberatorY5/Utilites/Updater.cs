@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.IO;
 using System.Net;
+using System.Reflection;
 
 namespace LiberatorY5
 {
@@ -58,10 +59,11 @@ namespace LiberatorY5
             }
             return Version;
         }
+        private static string FileTime = File.GetLastWriteTime(Assembly.GetExecutingAssembly().Location).ToString("yyyyMMdd");
 #if DEBUG
-        public static string Version = "DEV-20220315.0";
+        public static string Version = "DEV-" + FileTime;
 #else
-        public static string Version = "20220315.0";
+        public static string Version = FileTime + ".0";
 #endif
         public static bool VersionCheck() //give back true is version is good, give back false if not
         {

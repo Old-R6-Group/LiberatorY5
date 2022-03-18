@@ -7,7 +7,8 @@
 			Default,
 			Hosting,
 			Connected,
-			Disconnected
+			Disconnected,
+			DataRecived
 		}
 		public static string Status { get; internal set; }
 		public static void ChangeStatus(Statuses status)
@@ -28,6 +29,9 @@
 					break;
 				case Statuses.Disconnected:
 					Status = "Server Status: Disconnected from Server";
+					break;
+				case Statuses.DataRecived:
+					Status = "Server Status: Data recieved from Server";
 					break;
 			}
 		}

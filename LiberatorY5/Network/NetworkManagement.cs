@@ -22,14 +22,12 @@ namespace LiberatorY5
 
 		private static ListBox connectedplayerList;
 
-		public static Action<HostStatus.Statuses> HostStatusChange;
-
-		public static void SendPlaylistLoop(string Map, string Gamemode, string Events)
+		public static void SendPlaylistLoop(string Map, string Gamemode, string Events,string eventparent,int sa_version)
 		{
 			if (NewUI.InMatch == 1)
 			{
 				string[] ip_keys = IPS.Keys.ToArray();
-				NetworkMessage playlist_data = new NetworkMessage(new PlaylistNetworkData(Map, Gamemode, Events));
+				NetworkMessage playlist_data = new NetworkMessage(new PlaylistNetworkData(Map, Gamemode, Events, eventparent ,sa_version));
 				foreach (string ip in ip_keys)
 				{
 					server.Send(ip, ObjectToByteArray(playlist_data));
@@ -52,7 +50,7 @@ namespace LiberatorY5
 				server.Events.ClientDisconnected += (sender, args) => Server_ClientDisconnected(sender, args);
 				server.Events.DataReceived += (sender, args) => Server_DataReceived(sender, args);
 				server.Start();
-				HostStatusChange(HostStatus.Statuses.Hosting);
+				HostStatus.ChangeStatus(HostStatus.Statuses.Hosting);
 			}
 		}
 
@@ -61,7 +59,7 @@ namespace LiberatorY5
 			if (server != null && server.IsListening)
 			{
 				server.Stop();
-				HostStatusChange(HostStatus.Statuses.Disconnected);
+				HostStatus.ChangeStatus(HostStatus.Statuses.Disconnected);
 			}
 		}
 
@@ -83,12 +81,12 @@ namespace LiberatorY5
 			{
 				client.Connect();
 				client.Send(username);
-				HostStatusChange(HostStatus.Statuses.Connected);
+				HostStatus.ChangeStatus(HostStatus.Statuses.Connected);
 				NewUI.ClientConnected = true;
 			}
 			catch
 			{
-				HostStatusChange(HostStatus.Statuses.Disconnected);
+				HostStatus.ChangeStatus(HostStatus.Statuses.Disconnected);
 				NewUI.ClientConnected = false;
 			}
 		}
@@ -115,9 +113,9 @@ namespace LiberatorY5
 		//	Client/Serer stuff
 		private static void Client_Disconnected(object sender, EventArgs e)
 		{
-			if (!NewUI.IsHost)
+			if (NewUI.IsHost==0)
 			{
-				HostStatusChange(HostStatus.Statuses.Disconnected);
+				HostStatus.ChangeStatus(HostStatus.Statuses.Disconnected);
 			}
 		}
 
@@ -128,13 +126,13 @@ namespace LiberatorY5
 			switch (messageData)
 			{
 				default:
-					//NewUI.HandelUnknownData((NetworkMessage)networkMessage.MessageData)
+					NewUI.HandleUnknownData((NetworkMessage)networkMessage.MessageData);
 					return;
                 case PlaylistNetworkData:
-					//NewUI.HandlePlaylistData((PlaylistNetworkData)networkMessage.MessageData);
+					NewUI.HandlePlaylistData((PlaylistNetworkData)networkMessage.MessageData);
 					return;
 				case ExitMessage:
-					//NewUI.HandleExitData((ExitMessage)networkMessage.MessageData);
+					NewUI.HandleExitData((ExitMessage)networkMessage.MessageData);
 					return;
 
 			}

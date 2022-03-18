@@ -25,13 +25,15 @@ namespace LiberatorY5
         string gamemode_parent;
         string mapname;
         string FulllbuildID;
-        long house = long.MaxValue;
-        long hostage = long.MaxValue;
-        long easy = long.MaxValue;
-        long day = long.MaxValue;
+        public static long house = long.MaxValue;
+        public static long hostage = long.MaxValue;
+        public static long easy = long.MaxValue;
+        public static long day = long.MaxValue;
         public static bool ClientConnected = false;
-        public static bool IsHost = false;
-        public static byte InMatch;
+        public static int IsHost = 0;
+        public static int InMatch;
+        public static byte eventHostBool = 0;
+        string ConnectToIP;
         #endregion
         #region Load + Hooking
         public NewUI()
@@ -52,6 +54,8 @@ namespace LiberatorY5
             {
                 MessageBox.Show("Please Install Radmin VPN to use server capability");
             }
+            IP_Label.Text = "Your IP: " + NetworkManagement.RadminHostIp;
+            StatusLabel.Text = HostStatus.Status;
         }
         private void NewUI_Shown(object sender, EventArgs e)
         {
@@ -59,6 +63,7 @@ namespace LiberatorY5
         }
         private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            StatusLabel.Text = HostStatus.Status;
             procOpen = m.OpenProcess(r6processname, out string fail);
             //logs.WriteLog(fail);
             if (!procOpen)
@@ -84,6 +89,10 @@ namespace LiberatorY5
                 {
                     
                     LabelUpdate.Text = "Game found: " + FulllbuildID;
+                    ConnectToIP = GlobalStuff.LongToIP(m.ReadLong(r6mem + SA.ConnectedIP));
+                    IsHost = m.ReadByte(r6mem+ SA.InHost);
+                    InMatch = m.ReadByte(r6mem + SA.InMatch);
+                    timer.Start();
                 }
                 else
                 {
@@ -98,6 +107,7 @@ namespace LiberatorY5
                 rpc.client.UpdateDetails("Liberator Reloaded!");
                 rpc.client.UpdateState("Waiting for a game!");
                 rpc.client.UpdateLargeAsset("base", "Waiting...");
+                timer.Stop();
             }
         }
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -263,7 +273,6 @@ namespace LiberatorY5
                     string map = treeViewMap.Nodes.OfType<TreeNode>().FirstOrDefault(node => node.Tag.Equals(mapname)).Text;
                     rpc.client.UpdateState(map + " - " + gamemode);
                 }
-
                 if (events != null)
                 {
                     string eventname = treeViewEvents.Nodes.OfType<TreeNode>().FirstOrDefault(node => node.Tag.Equals(events)).Text;
@@ -271,6 +280,8 @@ namespace LiberatorY5
                 }
                 if (SA.SeasonVersion != int.MinValue)
                 {
+                    NetworkManagement.SendPlaylistLoop(mapname,gamemode,events, gamemode_parent, SA.SeasonVersion);
+                    logs.WriteLog("playlist sent");
                     if (mapname != null)
                     {
                         SA.MapConverter(mapname, house, out long output_map);
@@ -390,5 +401,156 @@ namespace LiberatorY5
             Process.Start("http://r6modding.com/");
         }
         #endregion
+        #region Network
+        public static string HandleMap;
+        public static string HandleMode;
+        public static string HandleSpecial;
+        public static int HandleSA_ver;
+        public static string HandleGameModeParent;
+        public static void HandlePlaylistData(PlaylistNetworkData Data)
+        {
+            HandleMap = Data.Map;
+            HandleMode = Data.Gamemode;
+            HandleSpecial = Data.EventMode;
+            HandleSA_ver = Data.SAVersion;
+            HandleGameModeParent = Data.GameModeParent;
+            logs.WriteLog("[PLAYLISTDATA] " + HandleMap + " " + HandleMode + " " + HandleSpecial + " " + HandleSA_ver + " " + HandleGameModeParent);
+            HostStatus.ChangeStatus(HostStatus.Statuses.DataRecived);
+        }
+        public static void HandleExitData(ExitMessage Data)
+        {
+            ClientConnected = false;
+            HostStatus.ChangeStatus(Data.status);
+        }
+        public static void HandleUnknownData(NetworkMessage Data)
+        {
+            logs.WriteLog("UNKNOWNDATA\n " + Data.ToString()  + "\n" + Data.MessageData.ToString());
+        }
+        private void IP_Label_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(NetworkManagement.RadminHostIp);
+        }
+        private void CreateButton_Click(object sender, EventArgs e)
+        {
+            if (eventHostBool == 1)
+            {
+                eventHostBool = 0;
+                connectedPlayers.Items.Clear();
+                NetworkManagement.StopServer();
+
+            }
+            else
+            {
+                eventHostBool = 1;
+                NetworkManagement.StartServer(connectedPlayers);
+                
+
+            }
+        }
+
+        private void JoinButton_Click(object sender, EventArgs e)
+        {
+            if (IsHost==1) { return; }
+            if (ClientConnected == false)
+            {
+                if (ConnectToIP == "0.0.0.0") { ConnectToIP = ipBox.Text; }
+
+                string usernameInGame = textBox1.Text;
+                NetworkManagement.ConnectServer(ConnectToIP, usernameInGame);
+            }
+            else
+            {
+                label3.Text = "Client already connected";
+            }
+        }
+
+        private void disconnectButton_Click(object sender, EventArgs e)
+        {
+            ClientConnected = false;
+            NetworkManagement.CloseClientConnection();
+            if (eventHostBool == 1)
+            {
+                eventHostBool = 0;
+                connectedPlayers.Items.Clear();
+                NetworkManagement.StopServer();
+
+            }
+        }
+
+        private void discUserButton_Click(object sender, EventArgs e)
+        {
+            if (connectedPlayers.SelectedIndex != -1)
+            {
+                NetworkManagement.DisconnectClient(connectedPlayers.SelectedItem.ToString());
+            }
+        }
+        #endregion
+
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrWhiteSpace(FulllbuildID))
+            {
+                ConnectToIP = GlobalStuff.LongToIP(m.ReadLong(r6mem + SA.ConnectedIP));
+                IsHost = m.ReadByte(r6mem + SA.InHost);
+                InMatch = m.ReadByte(r6mem + SA.InMatch);
+                logs.WriteLog(ConnectToIP + " " + IsHost + " " + InMatch);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (HandleMap != null && HandleMode != null)
+            {
+                string map = treeViewMap.Nodes.OfType<TreeNode>().FirstOrDefault(node => node.Tag.Equals(HandleMap)).Text;
+                rpc.client.UpdateState(map + " - " + HandleMode + " (On lan)");
+            }
+            if (HandleSpecial != null)
+            {
+                string eventname = treeViewEvents.Nodes.OfType<TreeNode>().FirstOrDefault(node => node.Tag.Equals(HandleSpecial)).Text;
+                rpc.client.UpdateState("Event: " + eventname + " (On lan)");
+            }
+            if (SA.SeasonVersion == HandleSA_ver)
+            {
+                if (HandleMap != null)
+                {
+                    SA.MapConverter(HandleMap, house, out long output_map);
+                    if (output_map != 0L)
+                    {
+                        m.WriteMemory(r6mem + SA.r6_map, "long", output_map.ToString(), "", null);
+                    }
+                }
+                if (HandleSpecial != null)
+                {
+                    SA.EventConverter(HandleSpecial, house, hostage, out long output_map, out long output_gamemode);
+                    if (output_map != 0L | output_gamemode != 0L)
+                    {
+                        m.WriteMemory(r6mem + SA.r6_map, "long", output_map.ToString(), "", null);
+                        m.WriteMemory(r6mem + SA.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                    }
+                }
+                if (HandleMode != null)
+                {
+                    SA.GameModeConverter(HandleMode, HandleGameModeParent, house, hostage, easy, out long output_gamemode, out long difficulty, out long outmap);
+                    if (output_gamemode != 0L)
+                    {
+                        m.WriteMemory(r6mem + SA.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                        m.WriteMemory(r6mem + SA.r6_difficulty, "long", difficulty.ToString(), "", null);
+                        if (outmap == 0L)
+                        {
+                            SA.MapConverter(HandleMap, house, out long output_map);
+                            if (output_map != 0L)
+                            {
+                                m.WriteMemory(r6mem + SA.r6_map, "long", output_map.ToString(), "", null);
+                            }
+                        }
+                        else
+                        {
+                            m.WriteMemory(r6mem + SA.r6_map, "long", outmap.ToString(), "", null);
+                        }
+
+                    }
+                }
+            }
+        }
     }
 }

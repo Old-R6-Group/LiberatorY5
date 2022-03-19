@@ -11,7 +11,7 @@ namespace LiberatorY5
         public string easyDifficulty_Offset = "";
         public string house_Offset = "";
         public string hostage_Offset = "";
-        public string r6_daynight =  "";
+        public string r6_daynight = "";
         public string r6_map = "";
         public string r6_gamemode = "";
         public string r6_difficulty = "";
@@ -21,7 +21,7 @@ namespace LiberatorY5
         public string InHost = ""; //Byte
         public string[] EventView_Tag;
         public string[] EventView;
-        public int SeasonVersion = int.MinValue;
+        public int SeasonVersion = -1;
         private int RandomizerVer = int.MinValue;  // Starting with 0, VE ( 0 = Void Edge, 1 = Steel Wave, 2 = Shadow Legacy , etc)
         public void Seasons_Changer(string BuildID)
         {
@@ -29,7 +29,7 @@ namespace LiberatorY5
             {
                 case "Y5S1.2.0.1_C5183038_D967006_S37789_14303219": //VE Shey
                     RandomizerVer = 0;
-                    SeasonVersion = 0;   
+                    SeasonVersion = 0;
                     return;
                 case "Y5S1.2.0.2_C5218952_D973190_S37789_14335319": //VE MU
                     RandomizerVer = 0;
@@ -172,7 +172,7 @@ namespace LiberatorY5
                     EventView = NeonDawn_Event.EventView;
                     return;
             }
-        
+
         }
         public Object GetSeason()
         {
@@ -195,7 +195,7 @@ namespace LiberatorY5
                 case 5:
                     return new NeonDawn_Event();
             }
-        
+
         }
 
         //Sesason swapping stuff
@@ -207,7 +207,7 @@ namespace LiberatorY5
                 default:
                     break;
                 case 0:
-                    VoidEdge_Shey.DiffConverter(diffname,diff,out difficulty);
+                    VoidEdge_Shey.DiffConverter(diffname, diff, out difficulty);
                     return;
                 case 1:
                     VoidEdge_MU.DiffConverter(diffname, diff, out difficulty);
@@ -256,7 +256,7 @@ namespace LiberatorY5
                 default:
                     break;
                 case 0:
-                    VoidEdge_Shey.EventConverter(EventName, house, gamemode,out output_map, out output_mode);
+                    VoidEdge_Shey.EventConverter(EventName, house, gamemode, out output_map, out output_mode);
                     return;
                 case 1:
                     VoidEdge_MU.EventConverter(EventName, house, gamemode, out output_map, out output_mode);
@@ -265,10 +265,10 @@ namespace LiberatorY5
                     SteelWave.EventConverter(EventName, house, gamemode, out output_map, out output_mode);
                     return;
                 case 3:
-                    ShadowLegacy_Global.EventConverter(EventName, house, gamemode,out output_map, out output_mode);
+                    ShadowLegacy_Global.EventConverter(EventName, house, gamemode, out output_map, out output_mode);
                     return;
                 case 5:
-                    NeonDawn_Event.EventConverter(EventName, house, gamemode,out output_map, out output_mode);
+                    NeonDawn_Event.EventConverter(EventName, house, gamemode, out output_map, out output_mode);
                     return;
             }
         }
@@ -297,55 +297,28 @@ namespace LiberatorY5
                     return;
             }
         }
-        public void GameModeConverter(string ModeName, string ParentMode, long house, long gamemode, long diffmode, out long output_mode, out long difficulty, out long outmap)
+        public void GameModeConverter(string ModeName, string ParentMode, long gamemode, long diffmode, out long output_mode, out long difficulty)
         {
             output_mode = gamemode;
             difficulty = diffmode;
-            outmap = 0L;
             var difss = new[] { "normal", "hard", "realistic" };
             var modes = new[] { "hostage", "secure", "bomb", "warmup", "goldengun", "bombnoprep" };
-            if (ParentMode == ModeName)
-            {
-                logs.WriteLog(ParentMode + "=" + ModeName);
-                switch (ParentMode)
-                {
-                    case "Multiplayer":
-                        ModeConverter(Randomizer.RandomMode(), gamemode, out output_mode, out bool isTHM);
-                        return;
-                    case "TerroristHunt":
-                        ModeConverter(Randomizer.RandomDifficulty(), gamemode, out difficulty, out bool isTH);
-                        return;
-                    case "Matchmaking":
-                        MatchMaking(Randomizer.RandomMM(), Randomizer.RandomModeMM(), house, gamemode, out output_mode, out outmap, out bool isTHMM);
-                        return;
-                    case "Random":
-                        MatchMaking(Randomizer.RandomMM(), Randomizer.RandomMode(), house, gamemode, out long new_output_mode, out outmap, out bool isTHR);
-                        if (isTHR) { difficulty = new_output_mode; } else { output_mode = new_output_mode; }
-                        return;
-                    default:
-                        return;
-                }
-            }
-            else if (difss.Any(ModeName.Contains))
+            if (difss.Any(ModeName.Contains))
             {
                 ModeConverter(ParentMode, gamemode, out output_mode, out bool isTH);
                 DiffConverter(ModeName, diffmode, out difficulty);
-                logs.WriteLog(ModeName);
 
             }
             if (ModeName == "bombnoprep")
             {
                 ModeConverter("bombnoprep", gamemode, out output_mode, out bool isTH);
                 DiffConverter("normal", diffmode, out difficulty);
-                logs.WriteLog(ModeName);
                 return;
 
             }
             else if (modes.Any(ModeName.Contains))
             {
                 ModeConverter(ModeName, gamemode, out output_mode, out bool isTH);
-                logs.WriteLog(ModeName);
-
             }
         }
         public void MatchMaking(string CasOrRanked, string mode, long house, long gamemode, out long outmode, out long outmap, out bool isTH)
@@ -363,6 +336,46 @@ namespace LiberatorY5
                 ModeConverter(mode, gamemode, out outmode, out isTH);
                 MapConverter(Randomizer.RandomMap(1, RandomizerVer), house, out outmap);
             }
+        }
+
+        public void randomthing(string ModeName, string ParentMode, string MapName, out string mode, out string diff, out string map)
+        {
+            mode = ModeName;
+            map = MapName;
+            diff = "normal";
+            string CasOrRanked = null;
+            if (ParentMode == ModeName)
+            {
+                switch (ParentMode)
+                {
+                    case "Multiplayer":
+                        mode = Randomizer.RandomMode();
+                        break;
+                    case "TerroristHunt":
+                        diff = Randomizer.RandomDifficulty();
+                        break;
+                    case "Matchmaking":
+                        CasOrRanked = Randomizer.RandomMM();
+                        mode = Randomizer.RandomModeMM();
+                        break;
+                    case "Random":
+                        CasOrRanked = Randomizer.RandomMM();
+                        mode = Randomizer.RandomMode();
+                        break;
+                    default:
+                        break;
+                }
+                if (CasOrRanked == "Casual")
+                {
+                    map = Randomizer.RandomMap(0, RandomizerVer);
+                }
+                if (CasOrRanked == "Ranked")
+                {
+                    map = Randomizer.RandomMap(1, RandomizerVer);
+                }
+                logs.WriteLog(map + " " + diff + " " + mode);
+            }
+
         }
     }
     #region Random and Global stuff

@@ -8,7 +8,10 @@
 			Hosting,
 			Connected,
 			Disconnected,
-			DataRecived
+			Disconnected_Kicked,
+			Disconnected_Version,
+			Disconnected_Unknown,
+			DataRecieved
 		}
 		public static string Status { get; internal set; }
 		public static void ChangeStatus(Statuses status)
@@ -30,8 +33,17 @@
 				case Statuses.Disconnected:
 					Status = "Server Status: Disconnected from Server";
 					break;
-				case Statuses.DataRecived:
+				case Statuses.DataRecieved:
 					Status = "Server Status: Data recieved from Server";
+					break;
+				case Statuses.Disconnected_Version:
+					Status = "Server Status: Disconnected from Server (Version Mismatch)";
+					break;
+				case Statuses.Disconnected_Kicked:
+					Status = "Server Status: Disconnected from Server (Kicked by Server)";
+					break;
+				case Statuses.Disconnected_Unknown:
+					Status = "Server Status: Disconnected from Server (Unknown Reason)";
 					break;
 			}
 		}

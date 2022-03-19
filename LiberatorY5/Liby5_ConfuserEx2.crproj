@@ -10,4 +10,5 @@
   <module path="..\..\..\DLL\MaterialSkin.dll" />
   <module path="..\..\..\DLL\Memory.dll" />
   <module path="..\..\..\DLL\DiscordRPC.dll" />
+  <module path="..\..\..\DLL\SimpleTcp.dll" />
 </project>

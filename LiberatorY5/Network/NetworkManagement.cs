@@ -14,20 +14,21 @@ namespace LiberatorY5
     {
 		public static string RadminHostIp;
 
-		private static SimpleTcpServer server;
+		public static SimpleTcpServer server;
 
-		private static SimpleTcpClient client;
+		public static SimpleTcpClient client;
 
 		public static Dictionary<string, string> IPS = new Dictionary<string, string>();
 
 		private static ListBox connectedplayerList;
+		public static HostStatus.Statuses StatusPublic;
 
-		public static void SendPlaylistLoop(string Map, string Gamemode, string Events,string eventparent,int sa_version)
+		public static void SendPlaylistLoop(string Map, string Gamemode, string Events,string difficulty,int sa_version)
 		{
 			if (NewUI.InMatch == 1)
 			{
 				string[] ip_keys = IPS.Keys.ToArray();
-				NetworkMessage playlist_data = new NetworkMessage(new PlaylistNetworkData(Map, Gamemode, Events, eventparent ,sa_version));
+				NetworkMessage playlist_data = new NetworkMessage(new PlaylistNetworkData(Map, Gamemode, Events, difficulty, sa_version));
 				foreach (string ip in ip_keys)
 				{
 					server.Send(ip, ObjectToByteArray(playlist_data));
@@ -37,7 +38,7 @@ namespace LiberatorY5
 
 		public static void SendDisconnect(string ip)
 		{
-			NetworkMessage playlist_data = new NetworkMessage(new ExitMessage(HostStatus.Statuses.Disconnected, false));
+			NetworkMessage playlist_data = new NetworkMessage(new ExitMessage(HostStatus.Statuses.Disconnected_Kicked, false));
 			server.Send(ip, ObjectToByteArray(playlist_data));
 		}
 
@@ -46,7 +47,7 @@ namespace LiberatorY5
 			if (server == null || !server.IsListening)
 			{
 				connectedplayerList = playerlist;
-				server = new SimpleTcpServer(RadminHostIp + ":9000");
+				server = new SimpleTcpServer(RadminHostIp + ":5000");
 				server.Events.ClientDisconnected += (sender, args) => Server_ClientDisconnected(sender, args);
 				server.Events.DataReceived += (sender, args) => Server_DataReceived(sender, args);
 				server.Start();
@@ -74,7 +75,7 @@ namespace LiberatorY5
 
 		public static void ConnectServer(string ConnectToIP, string username)
 		{
-			client = new SimpleTcpClient(ConnectToIP + ":9000");
+			client = new SimpleTcpClient(ConnectToIP + ":5000");
 			client.Events.Disconnected += (sender, args) => Client_Disconnected(sender, args);
 			client.Events.DataReceived += (sender, args) => Client_DataReceived(sender, args);
 			try
@@ -115,7 +116,7 @@ namespace LiberatorY5
 		{
 			if (NewUI.IsHost==0)
 			{
-				HostStatus.ChangeStatus(HostStatus.Statuses.Disconnected);
+				HostStatus.ChangeStatus(StatusPublic);
 			}
 		}
 

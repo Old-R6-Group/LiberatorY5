@@ -13,18 +13,17 @@ namespace LiberatorY5
     public partial class NewUI : MaterialForm
     {
         #region Variables
-        private Mem m = new();
-        private Random random = new();
-        private rpc rpc = new();
-        private Season_Addon SA = new();
-        bool procOpen = false;
-        readonly string r6processname = "RainbowSix.exe";
-        readonly string r6mem = "RainbowSix.exe+";
+        static private Mem m = new();
+        static private rpc rpc = new();
+        static private Season_Addon SA = new();
+        static bool procOpen = false;
+        static readonly string r6processname = "RainbowSix.exe";
+        static readonly string r6mem = "RainbowSix.exe+";
         string events;
         string gamemode;
         string gamemode_parent;
         string mapname;
-        string FulllbuildID;
+        static string FulllbuildID;
         public static long house = long.MaxValue;
         public static long hostage = long.MaxValue;
         public static long easy = long.MaxValue;
@@ -34,6 +33,13 @@ namespace LiberatorY5
         public static int InMatch;
         public static byte eventHostBool = 0;
         string ConnectToIP;
+        public static string HandleMap;
+        public static string HandleMode;
+        public static string HandleSpecial;
+        public static int HandleSA_ver = -1;
+        public static string HandleDiff;
+        public static bool ClientRecieved_Playlist = false;
+        public static bool IsUsingNetwork = false;
         #endregion
         #region Load + Hooking
         public NewUI()
@@ -116,7 +122,28 @@ namespace LiberatorY5
         }
         private void Once_BuildID()
         {
-            string version;
+            BuildIDCheck();
+            if (!string.IsNullOrWhiteSpace(FulllbuildID))
+            {
+                treeViewEvents.Nodes.Clear();
+                for (int index = 0; index < SA.EventView.Length; index++)
+                {
+                    var item = SA.EventView[index];
+                    var item2 = SA.EventView_Tag[index];
+                    treeViewEvents.Nodes.Add(item);
+                    treeViewEvents.Nodes[index].Tag = item2;
+                }
+                if (SA.FuillBuildID == "Y5S4.2.0_C5914517_D1181197_S40892_15241382")
+                {
+                    if (treeViewMap.Nodes.ContainsKey("NodeOldHouse")) { treeViewMap.Nodes.Find("NodeOldHouse", true)[0].Remove(); }
+                    treeViewMap.Nodes.Insert(12, "NodeOldHouse", "House (Old)").Tag = "oldhouse";
+                    treeViewMap.EndUpdate();
+                }
+            }
+        }
+        private static string BuildIDCheck()
+        {
+            string version = null;
             if (FulllbuildID == null)
             {
                 version = m.ReadString(r6mem + VoidEdge_Shey.BuildID_Check, "", 43, true);
@@ -136,27 +163,14 @@ namespace LiberatorY5
                     rpc.ChangeAssetByVersion(FulllbuildID);
                     SA.Seasons_Changer(FulllbuildID);
                     SA.SetInternal();
-                    treeViewEvents.Nodes.Clear();
-                    for (int index = 0; index < SA.EventView.Length; index++)
-                    {
-                        var item = SA.EventView[index];
-                        var item2 = SA.EventView_Tag[index];
-                        treeViewEvents.Nodes.Add(item);
-                        treeViewEvents.Nodes[index].Tag = item2;
-                    }
                     house = m.ReadLong(r6mem + SA.house_Offset, "");
                     hostage = m.ReadLong(r6mem + SA.hostage_Offset, "");
                     easy = m.ReadLong(r6mem + SA.easyDifficulty_Offset, "");
                     day = m.ReadLong(r6mem + SA.day_Offset, "");
-                    if (SA.FuillBuildID == "Y5S4.2.0_C5914517_D1181197_S40892_15241382")
-                    {
-                        if (treeViewMap.Nodes.ContainsKey("NodeOldHouse")) { treeViewMap.Nodes.Find("NodeOldHouse", true)[0].Remove(); }
-                        treeViewMap.Nodes.Add("NodeOldHouse", "Old House").Tag = "oldhouse";
-                        treeViewMap.EndUpdate();
-                    }
                     logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
-                } 
+                }
             }
+            return version;
         }
         #endregion
         #region UI Changing stuff (Clientmode,treeView)
@@ -239,6 +253,7 @@ namespace LiberatorY5
         #region Memory editing!
         private void re_readButton_Click(object sender, EventArgs e)
         {
+            Once_BuildID();
             if (!string.IsNullOrWhiteSpace(FulllbuildID))
             {
                 SA.SetInternal();
@@ -257,10 +272,10 @@ namespace LiberatorY5
                 if (SA.FuillBuildID == "Y5S4.2.0_C5914517_D1181197_S40892_15241382")
                 {
                     if (treeViewMap.Nodes.ContainsKey("NodeOldHouse")) { treeViewMap.Nodes.Find("NodeOldHouse", true)[0].Remove(); }
-                    treeViewMap.Nodes.Add("NodeOldHouse", "Old House").Tag = "oldhouse";
+                    treeViewMap.Nodes.Insert(12,"NodeOldHouse", "House (Old)").Tag = "oldhouse";
                     treeViewMap.EndUpdate();
                 }
-                logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
+                logs.WriteLog("[RE] House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
                 LabelUpdate.Text = "Reading addresses again!";
             }
         }
@@ -268,59 +283,24 @@ namespace LiberatorY5
         {
             if (procOpen)
             {
-                if (mapname != null && gamemode != null)
+                if (SA.SeasonVersion != -1)
                 {
-                    string map = treeViewMap.Nodes.OfType<TreeNode>().FirstOrDefault(node => node.Tag.Equals(mapname)).Text;
-                    rpc.client.UpdateState(map + " - " + gamemode);
-                }
-                if (events != null)
-                {
-                    string eventname = treeViewEvents.Nodes.OfType<TreeNode>().FirstOrDefault(node => node.Tag.Equals(events)).Text;
-                    rpc.client.UpdateState("Event: " + eventname);
-                }
-                if (SA.SeasonVersion != int.MinValue)
-                {
-                    NetworkManagement.SendPlaylistLoop(mapname,gamemode,events, gamemode_parent, SA.SeasonVersion);
-                    logs.WriteLog("playlist sent");
-                    if (mapname != null)
-                    {
-                        SA.MapConverter(mapname, house, out long output_map);
-                        if (output_map != 0L)
-                        {
-                            m.WriteMemory(r6mem + SA.r6_map, "long", output_map.ToString(), "", null);
-                        }
-                    }
-                    if (events != null)
-                    {
-                        SA.EventConverter(events, house, hostage, out long output_map, out long output_gamemode);
-                        if (output_map != 0L | output_gamemode != 0L)
-                        {
-                            m.WriteMemory(r6mem + SA.r6_map, "long", output_map.ToString(), "", null);
-                            m.WriteMemory(r6mem + SA.r6_gamemode, "long", output_gamemode.ToString(), "", null);
-                        }
-                    }
-                    if (gamemode != null)
-                    {
-                        SA.GameModeConverter(gamemode, gamemode_parent, house, hostage, easy, out long output_gamemode, out long difficulty, out long outmap);
-                        if (output_gamemode != 0L)
-                        {
-                            m.WriteMemory(r6mem + SA.r6_gamemode, "long", output_gamemode.ToString(), "", null);
-                            m.WriteMemory(r6mem + SA.r6_difficulty, "long", difficulty.ToString(), "", null);
-                            if (outmap == 0L)
-                            {
-                                SA.MapConverter(mapname, house, out long output_map);
-                                if (output_map != 0L)
-                                {
-                                    m.WriteMemory(r6mem + SA.r6_map, "long", output_map.ToString(), "", null);
-                                }
-                            }
-                            else
-                            {
-                                m.WriteMemory(r6mem + SA.r6_map, "long", outmap.ToString(), "", null);
-                            }
+                    ClientRecieved_Playlist = false;
+                    
+                    HandleMap = mapname;
+                    HandleMode = gamemode;
+                    HandleSpecial = events;
+                    HandleSA_ver = SA.SeasonVersion;
 
-                        }
-                    }
+                    SA.randomthing(HandleMode, gamemode_parent, mapname,out string mode, out string diff, out string map);
+                    HandleMap = mode;
+                    HandleMode = map;
+                    HandleDiff = diff;
+
+                    NetworkManagement.SendPlaylistLoop(HandleMap, HandleMode, events, HandleDiff, SA.SeasonVersion);
+                    logs.WriteLog("[PLAYLISTDATA] Sent: " + HandleMap + " " + HandleMode + " " + events + " " + HandleDiff + " " + SA.SeasonVersion);
+                    WritePlayList(m, SA);
+
                 }
                 else
                 {
@@ -343,26 +323,12 @@ namespace LiberatorY5
         {
             if (SA.SeasonVersion != -1)
             {
-                SA.GameModeConverter("Random", "Random", house, hostage, easy, out long output_gamemode, out long difficulty, out long outmap);
-                if (output_gamemode != 0L)
-                {
-                    m.WriteMemory(r6mem + SA.r6_gamemode, "long", output_gamemode.ToString(), "", null);
-                    m.WriteMemory(r6mem + SA.r6_difficulty, "long", difficulty.ToString(), "", null);
-                    if (outmap == 0L)
-                    {
-                        SA.MapConverter(mapname, house, out long output_map);
-                        if (output_map != 0L)
-                        {
-                            m.WriteMemory(r6mem + SA.r6_map, "long", output_map.ToString(), "", null);
-                        }
-                    }
-                    else
-                    {
-                        m.WriteMemory(r6mem + SA.r6_map, "long", outmap.ToString(), "", null);
-                    }
-                    GlobalStuff.DayChange((random.Next(2) == 1), day, out long daynight);
-                    m.WriteMemory(r6mem + SA.r6_daynight, "long", daynight.ToString(), "", null);
-                }
+                SA.randomthing("Random", "Random", mapname, out string mode, out string diff, out string map);
+                HandleMap = mode;
+                HandleMode = map;
+                HandleDiff = diff;
+                NetworkManagement.SendPlaylistLoop(mode, mode, null, diff, SA.SeasonVersion);
+                WritePlayList(m, SA);
             }
         }
         private void endMatchButton_Click(object sender, EventArgs e)
@@ -402,30 +368,31 @@ namespace LiberatorY5
         }
         #endregion
         #region Network
-        public static string HandleMap;
-        public static string HandleMode;
-        public static string HandleSpecial;
-        public static int HandleSA_ver;
-        public static string HandleGameModeParent;
+        #region Handles
         public static void HandlePlaylistData(PlaylistNetworkData Data)
         {
             HandleMap = Data.Map;
             HandleMode = Data.Gamemode;
             HandleSpecial = Data.EventMode;
             HandleSA_ver = Data.SAVersion;
-            HandleGameModeParent = Data.GameModeParent;
-            logs.WriteLog("[PLAYLISTDATA] " + HandleMap + " " + HandleMode + " " + HandleSpecial + " " + HandleSA_ver + " " + HandleGameModeParent);
-            HostStatus.ChangeStatus(HostStatus.Statuses.DataRecived);
+            HandleDiff = Data.Difficulty;
+            ClientRecieved_Playlist = true;
+            logs.WriteLog("[PLAYLISTDATA] Recieved: " + HandleMap + " " + HandleMode + " " + HandleSpecial + " " + HandleDiff + " " + HandleSA_ver);
+            HostStatus.ChangeStatus(HostStatus.Statuses.DataRecieved);
+            WritePlayList(m,SA);
         }
         public static void HandleExitData(ExitMessage Data)
         {
+            IsUsingNetwork = false;
             ClientConnected = false;
+            NetworkManagement.StatusPublic = Data.status;
             HostStatus.ChangeStatus(Data.status);
         }
         public static void HandleUnknownData(NetworkMessage Data)
         {
             logs.WriteLog("UNKNOWNDATA\n " + Data.ToString()  + "\n" + Data.MessageData.ToString());
         }
+        #endregion
         private void IP_Label_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(NetworkManagement.RadminHostIp);
@@ -434,28 +401,28 @@ namespace LiberatorY5
         {
             if (eventHostBool == 1)
             {
+                IsUsingNetwork = false;
                 eventHostBool = 0;
                 connectedPlayers.Items.Clear();
                 NetworkManagement.StopServer();
-
             }
             else
             {
+                IsUsingNetwork = true;
                 eventHostBool = 1;
                 NetworkManagement.StartServer(connectedPlayers);
-                
-
             }
         }
-
         private void JoinButton_Click(object sender, EventArgs e)
         {
             if (IsHost==1) { return; }
             if (ClientConnected == false)
             {
                 if (ConnectToIP == "0.0.0.0") { ConnectToIP = ipBox.Text; }
-
+                IsUsingNetwork = true;
+                if (string.IsNullOrWhiteSpace(textBox1.Text)) { textBox1.Text = Environment.UserName; }
                 string usernameInGame = textBox1.Text;
+                NetworkManagement.CloseClientConnection();
                 NetworkManagement.ConnectServer(ConnectToIP, usernameInGame);
             }
             else
@@ -463,7 +430,6 @@ namespace LiberatorY5
                 label3.Text = "Client already connected";
             }
         }
-
         private void disconnectButton_Click(object sender, EventArgs e)
         {
             ClientConnected = false;
@@ -476,7 +442,6 @@ namespace LiberatorY5
 
             }
         }
-
         private void discUserButton_Click(object sender, EventArgs e)
         {
             if (connectedPlayers.SelectedIndex != -1)
@@ -484,8 +449,6 @@ namespace LiberatorY5
                 NetworkManagement.DisconnectClient(connectedPlayers.SelectedItem.ToString());
             }
         }
-        #endregion
-
         private void timer_Tick(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(FulllbuildID))
@@ -493,64 +456,136 @@ namespace LiberatorY5
                 ConnectToIP = GlobalStuff.LongToIP(m.ReadLong(r6mem + SA.ConnectedIP));
                 IsHost = m.ReadByte(r6mem + SA.InHost);
                 InMatch = m.ReadByte(r6mem + SA.InMatch);
-                logs.WriteLog(ConnectToIP + " " + IsHost + " " + InMatch);
+
+                //Soon match check
+                /*
+                if (InMatch == 1)
+                {
+                    if (ConnectToIP != "0.0.0.0")
+                    {
+                        if (!NetworkManagement.client.IsConnected)
+                        { 
+                        NetworkManagement.ConnectServer(ConnectToIP, Environment.UserName); 
+                        }                 
+                    }
+                }
+                else
+                {
+                    NetworkManagement.CloseClientConnection();
+                }
+                */
+
+
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        public static void WritePlayList(Mem mem, Season_Addon season_addon)
         {
-            if (HandleMap != null && HandleMode != null)
+            //Returning if something goes wrong
+            bool OpenedInVoid = false;
+            if (mem == null) return;
+            if (season_addon == null) return;
+            if (procOpen == false) { procOpen = mem.OpenProcess(r6processname); OpenedInVoid = true;  }
+
+            if (OpenedInVoid)
             {
-                string map = treeViewMap.Nodes.OfType<TreeNode>().FirstOrDefault(node => node.Tag.Equals(HandleMap)).Text;
-                rpc.client.UpdateState(map + " - " + HandleMode + " (On lan)");
+                logs.WriteLog("Opened!");
+                BuildIDCheck();
+                //Setting internal parameters
+                season_addon.Seasons_Changer(FulllbuildID);
+                season_addon.SetInternal();
             }
-            if (HandleSpecial != null)
+
+            if (string.IsNullOrWhiteSpace(FulllbuildID)) return;
+
+            if (ClientRecieved_Playlist)
             {
-                string eventname = treeViewEvents.Nodes.OfType<TreeNode>().FirstOrDefault(node => node.Tag.Equals(HandleSpecial)).Text;
-                rpc.client.UpdateState("Event: " + eventname + " (On lan)");
-            }
-            if (SA.SeasonVersion == HandleSA_ver)
-            {
-                if (HandleMap != null)
+                logs.WriteLog("Your Version: " +season_addon.SeasonVersion + " Server Sent version: " + HandleSA_ver);
+                if (season_addon.SeasonVersion != HandleSA_ver)
                 {
-                    SA.MapConverter(HandleMap, house, out long output_map);
-                    if (output_map != 0L)
+                    NetworkManagement.StatusPublic = HostStatus.Statuses.Disconnected_Version;
+                    if (ClientConnected)
                     {
-                        m.WriteMemory(r6mem + SA.r6_map, "long", output_map.ToString(), "", null);
+                        ClientConnected = false;
+                        NetworkManagement.CloseClientConnection();
+                    } 
+                    return;
+                }
+            }
+
+            //Discord RPC
+            if (!IsUsingNetwork)
+            {
+                if (HandleMap != null && HandleMode != null)
+                {
+                    rpc.client.UpdateState(HandleMap + " - " + HandleMode);
+                }
+                if (HandleSpecial != null)
+                {
+                    rpc.client.UpdateState("Event: " + HandleSpecial);
+                }
+            }
+            else
+            {
+                if (HandleMap != null && HandleMode != null)
+                {
+                    if (IsHost == 1)
+                    {
+                        rpc.client.UpdateState(HandleMap + " - " + HandleMode + " (Host)");
+                    }
+                    else
+                    {
+                        rpc.client.UpdateState(HandleMap + " - " + HandleMode + " (Client)");
                     }
                 }
                 if (HandleSpecial != null)
                 {
-                    SA.EventConverter(HandleSpecial, house, hostage, out long output_map, out long output_gamemode);
+                    if (IsHost == 1)
+                    {
+                        rpc.client.UpdateState("Event: " + HandleSpecial + " (Host)");
+                    }
+                    else
+                    {
+                        rpc.client.UpdateState("Event: " + HandleSpecial + " (Client)");
+                    }
+                }
+            }
+
+            //Writing
+            if (season_addon.SeasonVersion == HandleSA_ver)
+            {
+                if (HandleMap != null)
+                {
+                    season_addon.MapConverter(HandleMap, house, out long output_map);
+                    if (output_map != 0L)
+                    {
+                        mem.WriteMemory(r6mem + season_addon.r6_map, "long", output_map.ToString(), "", null);
+                    }
+                }
+                if (HandleSpecial != null)
+                {
+                    season_addon.EventConverter(HandleSpecial, house, hostage, out long output_map, out long output_gamemode);
                     if (output_map != 0L | output_gamemode != 0L)
                     {
-                        m.WriteMemory(r6mem + SA.r6_map, "long", output_map.ToString(), "", null);
-                        m.WriteMemory(r6mem + SA.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                        mem.WriteMemory(r6mem + season_addon.r6_map, "long", output_map.ToString(), "", null);
+                        mem.WriteMemory(r6mem + season_addon.r6_gamemode, "long", output_gamemode.ToString(), "", null);
                     }
                 }
                 if (HandleMode != null)
                 {
-                    SA.GameModeConverter(HandleMode, HandleGameModeParent, house, hostage, easy, out long output_gamemode, out long difficulty, out long outmap);
+                    season_addon.GameModeConverter(HandleMode, HandleDiff, hostage, easy, out long output_gamemode, out long difficulty);
                     if (output_gamemode != 0L)
                     {
-                        m.WriteMemory(r6mem + SA.r6_gamemode, "long", output_gamemode.ToString(), "", null);
-                        m.WriteMemory(r6mem + SA.r6_difficulty, "long", difficulty.ToString(), "", null);
-                        if (outmap == 0L)
-                        {
-                            SA.MapConverter(HandleMap, house, out long output_map);
-                            if (output_map != 0L)
-                            {
-                                m.WriteMemory(r6mem + SA.r6_map, "long", output_map.ToString(), "", null);
-                            }
-                        }
-                        else
-                        {
-                            m.WriteMemory(r6mem + SA.r6_map, "long", outmap.ToString(), "", null);
-                        }
-
+                        mem.WriteMemory(r6mem + season_addon.r6_gamemode, "long", output_gamemode.ToString(), "", null);
+                        mem.WriteMemory(r6mem + season_addon.r6_difficulty, "long", difficulty.ToString(), "", null);
                     }
                 }
             }
+
+            if (OpenedInVoid)
+            {
+                mem.CloseProcess();
+            }
         }
+        #endregion
     }
 }

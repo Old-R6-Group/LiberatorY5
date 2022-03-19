@@ -21,18 +21,17 @@ namespace LiberatorY5
 		public string Gamemode;
 
 		public string EventMode;
+		public string Difficulty;
 
-		public int SAVersion;
+		public int SAVersion { get; set; } = -1;
 
-		public string GameModeParent;
-
-		public PlaylistNetworkData(string Map, string Gamemode, string eventmode, string eventparent, int sa_version)
+		public PlaylistNetworkData(string Map, string Gamemode, string eventmode, string difficulty, int sa_version)
 		{
 			this.Map = Map;
 			this.Gamemode = Gamemode;
 			this.EventMode = eventmode;
 			this.SAVersion = sa_version;
-			this.GameModeParent = eventparent;
+			this.Difficulty = difficulty;
 		}
 	}
 

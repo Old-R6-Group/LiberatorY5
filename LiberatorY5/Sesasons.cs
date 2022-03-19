@@ -704,7 +704,7 @@
                     output_mode = gamemode + 361632;
                     return;
                 case "sugarfright":
-                    output_map = house - 672;
+                    output_map = house + 672;
                     output_mode = gamemode + 361536;
                     return;
                 case "goldengun":
@@ -737,7 +737,7 @@
                     outmode = gamemode + 361440;
                     return;
                 case "bombnoprep":
-                    outmode = gamemode + 345056;
+                    outmode = gamemode + 361408;
                     return;
                 case "legacy":
                     outmode = gamemode + 361632;
@@ -828,9 +828,10 @@
         public static string r6_gamemode = playlist + ",8";
         public static string r6_difficulty = playlist + ",30";
         public static string gamestate = ""; //Not found
-        public static string ConnectedIP = "";
-        public static string InMatch = "";
-        public static string InHost = "";
+        public static string ConnectedIP = "07F98268,13C";
+        public static string InMatch = "7F3F3E0";
+        public static string InHost = "5E137AD";
+        public static string PlayerCount = "6DFC4C8"; //Only for host
 
         public static string[] EventView_Tag = { "goldengun", "reverse", "stadium2" , "snowfight" };
         public static string[] EventView = { "Golden Gun", "Reverse Hostage", "Stadium 2" , "Snowfight" };

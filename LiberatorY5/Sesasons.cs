@@ -1014,5 +1014,116 @@
         }
     }
     #endregion
+    #region LIVE (Y7S1)
+    internal class Live_Release
+    {
+        public static string FuillBuildID = "Y7S1.0.0_C6789300_D1434731_S46608_38678526";
+        public static string BuildID_Check = "752D690";
+        public static string playlistManager = "08B46520"; //079DFA80
+        public static string firstOffset = "70";
+        public static string day_Offset = "";
+        public static string easyDifficulty_Offset = "";
+        public static string house_Offset = "08B46520,188,2A0,6F0,BA8,2A0,8B0,C00";
+        public static string hostage_Offset = "";
+        private static string playlist = playlistManager + "," + firstOffset;
+        public static string r6_daynight = playlist + ",38,0";
+        public static string r6_map = playlist + ",10";
+        public static string r6_gamemode = playlist + ",8";
+        public static string r6_difficulty = playlist + ",30";
+        public static string gamestate = ""; //nop
+        public static string ConnectedIP = "08C57568,13E";
+        public static string InMatch = "7B89530";
+        public static string InHost = "8B6D1CD";
+        public static string PlayerCount = "7A8AB48"; //Only for host
 
+        public static string[] EventView_Tag = { };
+        public static string[] EventView = {  };
+
+        public static void MapConverter(string MapName, long house, out long output)
+        {
+            output = 0L;
+            if (MapName != "house")
+            {
+                switch (MapName)
+                {
+                    case "hereford":
+                        output = house + 1504;
+                        return;
+                    case "plane":
+                        output = house + 96;
+                        return;
+                    case "university":
+                        output = house + 1568;
+                        return;
+                    case "favela":
+                        output = house + 1600;
+                        return;
+                    case "tower":
+                        output = house + 1664;
+                        return;
+                    case "club":
+                        output = house + 64;
+                        return;
+                    case "oregon":
+                        output = house + 32;
+                        return;
+                    case "yacht":
+                        output = house + 1536;
+                        return;
+                    case "consulate":
+                        output = house + 128;
+                        return;
+                    case "bank":
+                        output = house + 160;
+                        return;
+                    case "kanal":
+                        output = house + 192;
+                        return;
+                    case "chalet":
+                        output = house + 224;
+                        return;
+                    case "cafe":
+                        output = house + 256;
+                        return;
+                    case "border":
+                        output = house + 288;
+                        return;
+                    case "skyscraper":
+                        output = house + 1632;
+                        return;
+                    case "coastline":
+                        output = house + 320;
+                        return;
+                    case "theme":
+                        output = house + 352;
+                        return;
+                    case "villa":
+                        output = house + 384;
+                        return;
+                    case "fortress":
+                        output = house + 1696;
+                        return;
+                    case "outback":
+                        output = house + 416;
+                        return;
+                    case "oldhereford":
+                        output = house + 65983232;
+                        return;
+                    default:
+                        return;
+                }
+            }
+            else
+            {
+                output = house;
+            }
+        }
+        public static void EventConverter(string EventName, long house, long gamemode, out long output_map, out long output_mode)
+        {
+            output_map = house;
+            output_mode = gamemode;
+            //no event
+        }
+    }
+    #endregion
 }

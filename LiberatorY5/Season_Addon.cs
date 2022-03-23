@@ -55,6 +55,10 @@ namespace LiberatorY5
                     RandomizerVer = int.MinValue;
                     SeasonVersion = int.MinValue;
                     return;
+                case "Y7S1.0.0_C6789300_D1434731_S46608_38678526": //live
+                    RandomizerVer = 3;
+                    SeasonVersion = 1773;
+                    return;
             }
         }
         public void SetInternal()
@@ -170,6 +174,24 @@ namespace LiberatorY5
                     InHost = NeonDawn_Event.InHost;
                     EventView_Tag = NeonDawn_Event.EventView_Tag;
                     EventView = NeonDawn_Event.EventView;
+                    return;
+                case 1773:
+                    FuillBuildID = Live_Release.FuillBuildID;
+                    BuildID_Check = Live_Release.BuildID_Check;
+                    day_Offset = Live_Release.day_Offset;
+                    easyDifficulty_Offset = Live_Release.easyDifficulty_Offset;
+                    house_Offset = Live_Release.house_Offset;
+                    hostage_Offset = Live_Release.hostage_Offset;
+                    r6_daynight = Live_Release.r6_daynight;
+                    r6_map = Live_Release.r6_map;
+                    r6_gamemode = Live_Release.r6_gamemode;
+                    r6_difficulty = Live_Release.r6_difficulty;
+                    gamestate = Live_Release.gamestate;
+                    ConnectedIP = Live_Release.ConnectedIP;
+                    InMatch = Live_Release.InMatch;
+                    InHost = Live_Release.InHost;
+                    EventView_Tag = Live_Release.EventView_Tag;
+                    EventView = Live_Release.EventView;
                     return;
             }
 

@@ -139,6 +139,11 @@ namespace LiberatorY5
                     treeViewMap.Nodes.Insert(12, "NodeOldHouse", "House (Old)").Tag = "oldhouse";
                     treeViewMap.EndUpdate();
                 }
+                if (SA.FuillBuildID == "Y5S3.3.1_C5789341_D1135607_S40332_15018155")
+                {
+                    byte[] buffer3 = new byte[4] { 65, 180, 0, 144 }; //65 128 244 1 69 8 231 116 14 131
+                    m.WriteBytes(r6mem + "3843080", buffer3);
+                }
             }
         }
         private static string BuildIDCheck()
@@ -453,9 +458,36 @@ namespace LiberatorY5
         {
             if (!string.IsNullOrWhiteSpace(FulllbuildID))
             {
-                ConnectToIP = GlobalStuff.LongToIP(m.ReadLong(r6mem + SA.ConnectedIP));
-                IsHost = m.ReadByte(r6mem + SA.InHost);
-                InMatch = m.ReadByte(r6mem + SA.InMatch);
+                if (SA.ConnectedIP != "") //Using this magic to not auto connect, and read incorrect things
+                {
+                    ConnectToIP = GlobalStuff.LongToIP(m.ReadLong(r6mem + SA.ConnectedIP));
+                    IsHost = m.ReadByte(r6mem + SA.InHost);
+                    InMatch = m.ReadByte(r6mem + SA.InMatch);
+                }
+
+
+                if (SA.FuillBuildID == "Y5S3.3.1_C5789341_D1135607_S40332_15018155")
+                {
+                    int checklumaply = m.ReadByte(r6mem + "5B2CFB8"); //killing lumaplay, prevent shadow copy
+                    if (checklumaply == 1)
+                    {
+                        m.CloseProcess();
+                        Process[] ps = Process.GetProcessesByName(r6processname);
+
+                        foreach (Process p in ps)
+                            p.Kill();
+                    }
+                }
+                //Check for if anything null, reread it
+                if (house == 0)
+                    house = m.ReadLong(r6mem + SA.house_Offset, "");
+                if (hostage == 0)
+                    hostage = m.ReadLong(r6mem + SA.hostage_Offset, "");
+                if (easy == 0)
+                    easy = m.ReadLong(r6mem + SA.easyDifficulty_Offset, "");
+                if (day == 0)
+                    day = m.ReadLong(r6mem + SA.day_Offset, "");
+
 
                 //Soon match check
                 /*

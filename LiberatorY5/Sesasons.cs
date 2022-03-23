@@ -19,7 +19,7 @@
         public static string r6_gamemode = playlist + ",8";
         public static string r6_difficulty = playlist + ",30";
         public static string gamestate = "05393908,F0";
-        public static string ConnectedIP = "";
+        public static string ConnectedIP = ""; // Not found, skipped you bitch
         public static string InMatch = "";
         public static string InHost = "";
 

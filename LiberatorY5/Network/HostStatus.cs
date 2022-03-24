@@ -11,7 +11,8 @@
 			Disconnected_Kicked,
 			Disconnected_Version,
 			Disconnected_Unknown,
-			DataRecieved
+			DataRecieved,
+			Shutdown
 		}
 		public static string Status { get; internal set; }
 		public static void ChangeStatus(Statuses status)
@@ -44,6 +45,9 @@
 					break;
 				case Statuses.Disconnected_Unknown:
 					Status = "Server Status: Disconnected from Server (Unknown Reason)";
+					break;
+				case Statuses.Shutdown:
+					Status = "Server Status: Server is shutted down";
 					break;
 			}
 		}

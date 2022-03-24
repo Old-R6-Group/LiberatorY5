@@ -20,8 +20,8 @@
         public static string r6_difficulty = playlist + ",30";
         public static string gamestate = "05393908,F0";
         public static string ConnectedIP = ""; // Not found, skipped you bitch
-        public static string InMatch = "";
-        public static string InHost = "";
+        public static string InMatch = "A1";
+        public static string InHost = "05393908,78";
 
         public static string[] EventView_Tag = { "goldengun", "grandlarceny" };
         public static string[] EventView = { "Golden Gun", "Grand Larceny" };
@@ -93,7 +93,7 @@
                         output = house - 1088;
                         return;
                     case "grandlarceny":
-                        output = house - 345011712;
+                        output = house - 355037440;
                         return;
                     case "oldhereford":
                         output = house - 319051520;
@@ -114,7 +114,7 @@
             switch (EventName)
             {
                 case "grandlarceny":
-                    output_map = house - 345011712;
+                    output_map = house - 355037440;
                     output_mode = gamemode + 328640;
                     return;
                 case "goldengun":
@@ -213,14 +213,14 @@
         public static string r6_difficulty = playlist + ",30";
         public static string gamestate = "053AC048,F0";
         public static string ConnectedIP = "";
-        public static string InMatch = "";
-        public static string InHost = "";
+        public static string InMatch = "053AC048,A1";
+        public static string InHost = "053AC048,78";
 
         public static string[] EventView_Tag = { "goldengun", "grandlarceny" };
         public static string[] EventView = { "Golden Gun", "Grand Larceny" };
         public static void MapConverter(string MapName, long house, out long output)
         {
-            output = 0L;
+            output = house;
             if (MapName != "house")
             {
                 switch (MapName)
@@ -302,8 +302,8 @@
         }
         public static void EventConverter(string EventName, long house, long gamemode, out long output_map, out long output_mode)
         {
-            output_map = 0L;
-            output_mode = 0L;
+            output_map = house;
+            output_mode = gamemode;
             switch (EventName)
             {
                 case "grandlarceny":
@@ -320,7 +320,7 @@
         }
         public static void ModeConverter(string mode, long gamemode, out long outmode, out bool isTH)
         {
-            outmode = 0L;
+            outmode = gamemode;
             isTH = false;
             switch (mode)
             {
@@ -595,7 +595,7 @@
         public static string BuildID_Check = "56B4130";
         public static string playlistManager = "06E3FF30";
         public static string firstOffset = "68";
-        public static string day_Offset = "06E3FF30,1E8,C8,18,C8,608";
+        public static string day_Offset = "06E3FF30,1E8,138,608";
         public static string easyDifficulty_Offset = "06E3FF30,2E0,270,20,A50,C50";
         public static string house_Offset = "06E3FF30,2E0,F98,BA8,3C0,BC0,5A0";
         public static string hostage_Offset = "06E3FF30,2E0,958,D0,D8,6E8";

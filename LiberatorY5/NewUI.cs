@@ -32,7 +32,7 @@ namespace LiberatorY5
         public static int IsHost = 0;
         public static int InMatch;
         public static byte eventHostBool = 0;
-        string ConnectToIP;
+        string ConnectToIP = null;
         public static string HandleMap;
         public static string HandleMode;
         public static string HandleSpecial;
@@ -95,7 +95,10 @@ namespace LiberatorY5
                 {
                     
                     LabelUpdate.Text = "Game found: " + FulllbuildID;
-                    ConnectToIP = GlobalStuff.LongToIP(m.ReadLong(r6mem + SA.ConnectedIP));
+                    if (SA.ConnectedIP != "") //Using this magic to not auto connect, and read incorrect things
+                    {
+                        ConnectToIP = GlobalStuff.LongToIP(m.ReadLong(r6mem + SA.ConnectedIP));
+                    }
                     IsHost = m.ReadByte(r6mem+ SA.InHost);
                     InMatch = m.ReadByte(r6mem + SA.InMatch);
                     timer.Start();
@@ -292,15 +295,12 @@ namespace LiberatorY5
                 {
                     ClientRecieved_Playlist = false;
                     
-                    HandleMap = mapname;
-                    HandleMode = gamemode;
+                    SA.randomthing(gamemode, gamemode_parent, mapname, out string mode, out string diff, out string map);
+                    HandleMap = map;
+                    HandleMode = mode;
+                    HandleDiff = diff;
                     HandleSpecial = events;
                     HandleSA_ver = SA.SeasonVersion;
-
-                    SA.randomthing(HandleMode, gamemode_parent, mapname,out string mode, out string diff, out string map);
-                    HandleMap = mode;
-                    HandleMode = map;
-                    HandleDiff = diff;
 
                     NetworkManagement.SendPlaylistLoop(HandleMap, HandleMode, events, HandleDiff, SA.SeasonVersion);
                     logs.WriteLog("[PLAYLISTDATA] Sent: " + HandleMap + " " + HandleMode + " " + events + " " + HandleDiff + " " + SA.SeasonVersion);
@@ -329,8 +329,8 @@ namespace LiberatorY5
             if (SA.SeasonVersion != -1)
             {
                 SA.randomthing("Random", "Random", mapname, out string mode, out string diff, out string map);
-                HandleMap = mode;
-                HandleMode = map;
+                HandleMap = map;
+                HandleMode = mode;
                 HandleDiff = diff;
                 NetworkManagement.SendPlaylistLoop(mode, mode, null, diff, SA.SeasonVersion);
                 WritePlayList(m, SA);
@@ -423,16 +423,16 @@ namespace LiberatorY5
             if (IsHost==1) { return; }
             if (ClientConnected == false)
             {
-                if (ConnectToIP == "0.0.0.0") { ConnectToIP = ipBox.Text; }
+                if (ConnectToIP == null) { ConnectToIP = ipBox.Text; }
                 IsUsingNetwork = true;
-                if (string.IsNullOrWhiteSpace(textBox1.Text)) { textBox1.Text = Environment.UserName; }
-                string usernameInGame = textBox1.Text;
+                if (string.IsNullOrWhiteSpace(nameBox.Text)) { nameBox.Text = Environment.UserName; }
+                string usernameInGame = nameBox.Text;
                 NetworkManagement.CloseClientConnection();
                 NetworkManagement.ConnectServer(ConnectToIP, usernameInGame);
             }
             else
             {
-                label3.Text = "Client already connected";
+                SoonLabel.Text = "Client already connected";
             }
         }
         private void disconnectButton_Click(object sender, EventArgs e)
@@ -454,6 +454,7 @@ namespace LiberatorY5
                 NetworkManagement.DisconnectClient(connectedPlayers.SelectedItem.ToString());
             }
         }
+        bool isVasAHost = false;
         private void timer_Tick(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(FulllbuildID))
@@ -461,10 +462,9 @@ namespace LiberatorY5
                 if (SA.ConnectedIP != "") //Using this magic to not auto connect, and read incorrect things
                 {
                     ConnectToIP = GlobalStuff.LongToIP(m.ReadLong(r6mem + SA.ConnectedIP));
-                    IsHost = m.ReadByte(r6mem + SA.InHost);
-                    InMatch = m.ReadByte(r6mem + SA.InMatch);
                 }
-
+                IsHost = m.ReadByte(r6mem + SA.InHost);
+                InMatch = m.ReadByte(r6mem + SA.InMatch);
 
                 if (SA.FuillBuildID == "Y5S3.3.1_C5789341_D1135607_S40332_15018155")
                 {
@@ -490,24 +490,50 @@ namespace LiberatorY5
 
 
                 //Soon match check
-                /*
-                if (InMatch == 1)
+                
+                if (InMatch >= 1)
                 {
-                    if (ConnectToIP != "0.0.0.0")
+                    if (IsHost >= 1)
                     {
-                        if (!NetworkManagement.client.IsConnected)
-                        { 
-                        NetworkManagement.ConnectServer(ConnectToIP, Environment.UserName); 
-                        }                 
+                        if (NetworkManagement.server == null)
+                        {
+                            NetworkManagement.StartServer(connectedPlayers);
+                            isVasAHost = true;
+                        }
+                    }
+                    else
+                    {
+                        if (ConnectToIP != null)
+                        {
+                            if (ClientConnected == false)
+                            {
+                                NetworkManagement.ConnectServer(ConnectToIP, Environment.UserName);
+                                isVasAHost = false;
+                            }
+                        }
+                        else
+                        {
+                            SoonLabel.Text = "The IP is null or not found! Not be able auto connect!";
+                        }
                     }
                 }
                 else
                 {
-                    NetworkManagement.CloseClientConnection();
+                    if (isVasAHost)
+                    {
+                        if (NetworkManagement.server != null)
+                        {
+                            NetworkManagement.StopServer();
+                        }
+                    }
+                    else
+                    {
+                        if (NetworkManagement.client != null)
+                        {
+                            NetworkManagement.CloseClientConnection();
+                        }
+                    }
                 }
-                */
-
-
             }
         }
         public static void WritePlayList(Mem mem, Season_Addon season_addon)

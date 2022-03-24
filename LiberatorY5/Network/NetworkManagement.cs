@@ -14,9 +14,9 @@ namespace LiberatorY5
     {
 		public static string RadminHostIp;
 
-		public static SimpleTcpServer server;
+		public static SimpleTcpServer server = null;
 
-		public static SimpleTcpClient client;
+		public static SimpleTcpClient client = null;
 
 		public static Dictionary<string, string> IPS = new Dictionary<string, string>();
 
@@ -60,7 +60,7 @@ namespace LiberatorY5
 			if (server != null && server.IsListening)
 			{
 				server.Stop();
-				HostStatus.ChangeStatus(HostStatus.Statuses.Disconnected);
+				HostStatus.ChangeStatus(HostStatus.Statuses.Shutdown);
 			}
 		}
 

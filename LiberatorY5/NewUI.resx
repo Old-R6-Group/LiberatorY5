@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="label1.Text" xml:space="preserve">
+  <data name="supportLabel.Text" xml:space="preserve">
     <value>This tool is the liberator for year 5 of Siege. It does not support live version and it will never be.
 Supported versions:
 Y5S1.2.0.1_C5183038_D967006_S37789_14303219

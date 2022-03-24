@@ -20,7 +20,7 @@
         public static string r6_difficulty = playlist + ",30";
         public static string gamestate = "05393908,F0";
         public static string ConnectedIP = ""; // Not found, skipped you bitch
-        public static string InMatch = "A1";
+        public static string InMatch = "05393908,A1";
         public static string InHost = "05393908,78";
 
         public static string[] EventView_Tag = { "goldengun", "grandlarceny" };

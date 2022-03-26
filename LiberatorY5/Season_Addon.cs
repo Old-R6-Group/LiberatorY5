@@ -243,6 +243,9 @@ namespace LiberatorY5
                 case 5:
                     NeonDawn_Event.DiffConverter(diffname, diff, out difficulty);
                     return;
+                case 1773:
+                    //Live_Release.DiffConverter(diffname, diff, out difficulty);
+                    return;
             }
         }
         public void MapConverter(string MapName, long house, out long output)
@@ -266,6 +269,9 @@ namespace LiberatorY5
                     return;
                 case 5:
                     NeonDawn_Event.MapConverter(MapName, house, out output);
+                    return;
+                case 1773:
+                    Live_Release.MapConverter(MapName, house, out output);
                     return;
             }
         }
@@ -292,6 +298,9 @@ namespace LiberatorY5
                 case 5:
                     NeonDawn_Event.EventConverter(EventName, house, gamemode, out output_map, out output_mode);
                     return;
+                case 1773:
+                    Live_Release.EventConverter(EventName, house, gamemode, out output_map, out output_mode);
+                    return;
             }
         }
         public void ModeConverter(string mode, long gamemode, out long outmode, out bool isTH)
@@ -316,6 +325,9 @@ namespace LiberatorY5
                     return;
                 case 5:
                     NeonDawn_Event.ModeConverter(mode, gamemode, out outmode, out isTH);
+                    return;
+                case 1773:
+                    //Live_Release.ModeConverter(mode, gamemode, out outmode, out isTH);
                     return;
             }
         }
@@ -359,8 +371,7 @@ namespace LiberatorY5
                 MapConverter(Randomizer.RandomMap(1, RandomizerVer), house, out outmap);
             }
         }
-
-        public void randomthing(string ModeName, string ParentMode, string MapName, out string mode, out string diff, out string map)
+        public void ParentParser(string ModeName, string ParentMode, string MapName, out string mode, out string diff, out string map)
         {
             mode = ModeName;
             map = MapName;

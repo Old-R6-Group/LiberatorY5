@@ -1,32 +1,148 @@
-3/19/2022 7:26:18 PM | INFO | Liberator Reloaded is Started!
-3/19/2022 7:26:20 PM | INFO | Game Build ID: Y5S3.3.1_C5789341_D1135607_S40332_15018155
-3/19/2022 7:26:20 PM | INFO | House: 1604118985120 Hostage: 1602367381760 Easy:1602367358048 Day:1602367357440
-3/19/2022 7:26:20 PM | [ONCE_BUID_ID] | Not null, TreeViews Updated
-3/19/2022 7:26:36 PM | [ONCE_BUID_ID] | Not null, TreeViews Updated
-3/19/2022 7:26:37 PM | [ONCE_BUID_ID] | Not null, TreeViews Updated
-3/19/2022 7:26:38 PM | [ONCE_BUID_ID] | Not null, TreeViews Updated
-3/19/2022 7:26:39 PM | [ONCE_BUID_ID] | Not null, TreeViews Updated
-3/19/2022 7:26:40 PM | [ONCE_BUID_ID] | Not null, TreeViews Updated
-3/19/2022 7:26:41 PM | [ONCE_BUID_ID] | Not null, TreeViews Updated
-3/19/2022 7:26:42 PM | [ONCE_BUID_ID] | Not null, TreeViews Updated
-3/19/2022 7:26:43 PM | [ONCE_BUID_ID] | Not null, TreeViews Updated
-3/19/2022 7:26:45 PM | [ONCE_BUID_ID] | Not null, TreeViews Updated
-3/19/2022 7:26:46 PM | INFO | Game Build ID: Y5S4.2.0_C5914517_D1181197_S40892_15241382
-3/19/2022 7:26:46 PM | INFO | House: 0 Hostage: 0 Easy:0 Day:0
-3/19/2022 7:26:46 PM | [ONCE_BUID_ID] | Not null, TreeViews Updated
-3/19/2022 7:27:51 PM | INFO | Liberator Reloaded is Exited!
-3/19/2022 7:28:07 PM | INFO | Liberator Reloaded is Started!
-3/19/2022 7:28:09 PM | INFO | Game Build ID: Y5S4.2.0_C5914517_D1181197_S40892_15241382
-3/19/2022 7:28:09 PM | INFO | House: 2270150003168 Hostage: 2268635764800 Easy:2268635739744 Day:2268635739136
-3/19/2022 7:28:09 PM | [ONCE_BUID_ID] | Not null, TreeViews Updated
-3/19/2022 7:28:21 PM | INFO | Liberator Reloaded is Exited!
-3/19/2022 7:28:28 PM | INFO | Liberator Reloaded is Started!
-3/19/2022 7:28:30 PM | INFO | Game Build ID: Y5S4.2.0_C5914517_D1181197_S40892_15241382
-3/19/2022 7:28:30 PM | INFO | House: 2270150003168 Hostage: 2268635764800 Easy:2268635739744 Day:2268635739136
-3/19/2022 7:28:30 PM | [ONCE_BUID_ID] | Not null, TreeViews Updated
-3/19/2022 7:28:31 PM | INFO | [RE] House: 2270150003168 Hostage: 2268635764800 Easy:2268635739744 Day:2268635739136
-3/19/2022 7:28:42 PM | INFO | Liberator Reloaded is Exited!
-3/19/2022 7:33:19 PM | INFO | Liberator Reloaded is Started!
-3/19/2022 7:33:20 PM | INFO | Game Build ID: Y5S4.2.0_C5914517_D1181197_S40892_15241382
-3/19/2022 7:33:20 PM | INFO | House: 2270150003168 Hostage: 2268635764800 Easy:2268635739744 Day:2268635739136
-3/19/2022 7:33:29 PM | INFO | Liberator Reloaded is Exited!
+3/26/2022 4:30:42 PM | INFO | Liberator Reloaded is Started!
+3/26/2022 4:30:44 PM | INFO | Game Build ID: Y7S1.0.0_C6789300_D1434731_S46608_38678526
+3/26/2022 4:30:44 PM | INFO | House: 2014882961216 Hostage: 2014688815664 Easy:2014688815664 Day:2014688815664
+3/26/2022 4:30:50 PM | INFO | bank normal 
+3/26/2022 4:30:50 PM | INFO | [PLAYLISTDATA] Sent: bank   normal 1773
+3/26/2022 4:30:55 PM | INFO | university normal 
+3/26/2022 4:30:55 PM | INFO | [PLAYLISTDATA] Sent: university   normal 1773
+3/26/2022 4:30:58 PM | INFO | border normal 
+3/26/2022 4:30:58 PM | INFO | [PLAYLISTDATA] Sent: border   normal 1773
+3/26/2022 4:31:02 PM | INFO | chalet normal 
+3/26/2022 4:31:02 PM | INFO | [PLAYLISTDATA] Sent: chalet   normal 1773
+3/26/2022 4:31:06 PM | INFO | club normal 
+3/26/2022 4:31:06 PM | INFO | [PLAYLISTDATA] Sent: club   normal 1773
+3/26/2022 4:31:10 PM | INFO | coastline normal 
+3/26/2022 4:31:10 PM | INFO | [PLAYLISTDATA] Sent: coastline   normal 1773
+3/26/2022 4:31:13 PM | INFO | consulate normal 
+3/26/2022 4:31:13 PM | INFO | [PLAYLISTDATA] Sent: consulate   normal 1773
+3/26/2022 4:31:18 PM | INFO | favela normal 
+3/26/2022 4:31:18 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 4:31:22 PM | INFO | fortress normal 
+3/26/2022 4:31:22 PM | INFO | [PLAYLISTDATA] Sent: fortress   normal 1773
+3/26/2022 4:31:26 PM | INFO | oldhereford normal 
+3/26/2022 4:31:26 PM | INFO | [PLAYLISTDATA] Sent: oldhereford   normal 1773
+3/26/2022 4:31:29 PM | INFO | hereford normal 
+3/26/2022 4:31:29 PM | INFO | [PLAYLISTDATA] Sent: hereford   normal 1773
+3/26/2022 4:31:34 PM | INFO | house normal 
+3/26/2022 4:31:34 PM | INFO | [PLAYLISTDATA] Sent: house   normal 1773
+3/26/2022 4:31:38 PM | INFO | kanal normal 
+3/26/2022 4:31:38 PM | INFO | [PLAYLISTDATA] Sent: kanal   normal 1773
+3/26/2022 4:31:43 PM | INFO | oregon normal 
+3/26/2022 4:31:43 PM | INFO | [PLAYLISTDATA] Sent: oregon   normal 1773
+3/26/2022 4:31:48 PM | INFO | outback normal 
+3/26/2022 4:31:48 PM | INFO | [PLAYLISTDATA] Sent: outback   normal 1773
+3/26/2022 4:31:52 PM | INFO | plane normal 
+3/26/2022 4:31:52 PM | INFO | [PLAYLISTDATA] Sent: plane   normal 1773
+3/26/2022 4:31:56 PM | INFO | cafe normal 
+3/26/2022 4:31:56 PM | INFO | [PLAYLISTDATA] Sent: cafe   normal 1773
+3/26/2022 4:32:00 PM | INFO | skyscraper normal 
+3/26/2022 4:32:00 PM | INFO | [PLAYLISTDATA] Sent: skyscraper   normal 1773
+3/26/2022 4:32:04 PM | INFO | theme normal 
+3/26/2022 4:32:04 PM | INFO | [PLAYLISTDATA] Sent: theme   normal 1773
+3/26/2022 4:32:07 PM | INFO | tower normal 
+3/26/2022 4:32:07 PM | INFO | [PLAYLISTDATA] Sent: tower   normal 1773
+3/26/2022 4:32:11 PM | INFO | villa normal 
+3/26/2022 4:32:11 PM | INFO | [PLAYLISTDATA] Sent: villa   normal 1773
+3/26/2022 4:32:14 PM | INFO | yacht normal 
+3/26/2022 4:32:14 PM | INFO | [PLAYLISTDATA] Sent: yacht   normal 1773
+3/26/2022 4:52:25 PM | INFO | bank normal 
+3/26/2022 4:52:25 PM | INFO | [PLAYLISTDATA] Sent: bank   normal 1773
+3/26/2022 4:53:59 PM | INFO | favela normal 
+3/26/2022 4:53:59 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 4:54:02 PM | INFO | fortress normal 
+3/26/2022 4:54:02 PM | INFO | [PLAYLISTDATA] Sent: fortress   normal 1773
+3/26/2022 5:03:23 PM | INFO | favela normal 
+3/26/2022 5:03:23 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:03:26 PM | INFO | favela normal 
+3/26/2022 5:03:26 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:03:30 PM | INFO | Liberator Reloaded is Exited!
+3/26/2022 5:13:42 PM | INFO | Liberator Reloaded is Started!
+3/26/2022 5:13:44 PM | INFO | Game Build ID: Y7S1.0.0_C6789300_D1434731_S46608_38678526
+3/26/2022 5:13:44 PM | INFO | House: 2014882961216 Hostage: 2014688815664 Easy:2014688815664 Day:2014688815664
+3/26/2022 5:13:46 PM | INFO | border normal 
+3/26/2022 5:13:46 PM | INFO | [PLAYLISTDATA] Sent: border   normal 1773
+3/26/2022 5:17:41 PM | INFO | favela normal 
+3/26/2022 5:17:41 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:17:49 PM | INFO | fortress normal 
+3/26/2022 5:17:49 PM | INFO | [PLAYLISTDATA] Sent: fortress   normal 1773
+3/26/2022 5:17:54 PM | INFO | chalet normal 
+3/26/2022 5:17:54 PM | INFO | [PLAYLISTDATA] Sent: chalet   normal 1773
+3/26/2022 5:18:00 PM | INFO | favela normal 
+3/26/2022 5:18:00 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:23:39 PM | INFO | fortress normal 
+3/26/2022 5:23:39 PM | INFO | [PLAYLISTDATA] Sent: fortress   normal 1773
+3/26/2022 5:23:42 PM | INFO | favela normal 
+3/26/2022 5:23:42 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:23:44 PM | INFO | fortress normal 
+3/26/2022 5:23:44 PM | INFO | [PLAYLISTDATA] Sent: fortress   normal 1773
+3/26/2022 5:29:20 PM | INFO | Liberator Reloaded is Exited!
+3/26/2022 5:33:59 PM | INFO | Liberator Reloaded is Started!
+3/26/2022 5:34:01 PM | INFO | Game Build ID: Y7S1.0.0_C6789300_D1434731_S46608_38678526
+3/26/2022 5:34:01 PM | INFO | House: 2014882961216 Hostage: 2014688815664 Easy:2014688815664 Day:2014688815664
+3/26/2022 5:34:08 PM | INFO | favela normal 
+3/26/2022 5:34:08 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:34:11 PM | INFO | club normal 
+3/26/2022 5:34:11 PM | INFO | [PLAYLISTDATA] Sent: club   normal 1773
+3/26/2022 5:34:14 PM | INFO | favela normal 
+3/26/2022 5:34:14 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:34:16 PM | INFO | favela normal 
+3/26/2022 5:34:16 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:34:16 PM | INFO | favela normal 
+3/26/2022 5:34:16 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:34:18 PM | INFO | oldhereford normal 
+3/26/2022 5:34:18 PM | INFO | [PLAYLISTDATA] Sent: oldhereford   normal 1773
+3/26/2022 5:34:23 PM | INFO | favela normal 
+3/26/2022 5:34:23 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:34:23 PM | INFO | favela normal 
+3/26/2022 5:34:23 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:34:23 PM | INFO | favela normal 
+3/26/2022 5:34:23 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:34:55 PM | INFO | consulate normal 
+3/26/2022 5:34:55 PM | INFO | [PLAYLISTDATA] Sent: consulate   normal 1773
+3/26/2022 5:34:55 PM | INFO | consulate normal 
+3/26/2022 5:34:55 PM | INFO | [PLAYLISTDATA] Sent: consulate   normal 1773
+3/26/2022 5:34:56 PM | INFO | consulate normal 
+3/26/2022 5:34:56 PM | INFO | [PLAYLISTDATA] Sent: consulate   normal 1773
+3/26/2022 5:34:56 PM | INFO | consulate normal 
+3/26/2022 5:34:56 PM | INFO | [PLAYLISTDATA] Sent: consulate   normal 1773
+3/26/2022 5:34:58 PM | INFO | favela normal 
+3/26/2022 5:34:58 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:35:00 PM | INFO | fortress normal 
+3/26/2022 5:35:00 PM | INFO | [PLAYLISTDATA] Sent: fortress   normal 1773
+3/26/2022 5:35:04 PM | INFO | favela normal 
+3/26/2022 5:35:04 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:35:16 PM | INFO | fortress normal 
+3/26/2022 5:35:16 PM | INFO | [PLAYLISTDATA] Sent: fortress   normal 1773
+3/26/2022 5:35:16 PM | INFO | fortress normal 
+3/26/2022 5:35:16 PM | INFO | [PLAYLISTDATA] Sent: fortress   normal 1773
+3/26/2022 5:35:16 PM | INFO | fortress normal 
+3/26/2022 5:35:16 PM | INFO | [PLAYLISTDATA] Sent: fortress   normal 1773
+3/26/2022 5:35:20 PM | INFO | favela normal 
+3/26/2022 5:35:20 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:35:21 PM | INFO | favela normal 
+3/26/2022 5:35:21 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:35:21 PM | INFO | favela normal 
+3/26/2022 5:35:21 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:35:21 PM | INFO | favela normal 
+3/26/2022 5:35:21 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:35:48 PM | INFO | fortress normal 
+3/26/2022 5:35:48 PM | INFO | [PLAYLISTDATA] Sent: fortress   normal 1773
+3/26/2022 5:35:51 PM | INFO | favela normal 
+3/26/2022 5:35:51 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:38:26 PM | INFO | Liberator Reloaded is Exited!
+3/26/2022 5:55:20 PM | INFO | Liberator Reloaded is Started!
+3/26/2022 5:55:22 PM | INFO | Game Build ID: Y7S1.0.0_C6789300_D1434731_S46608_38678526
+3/26/2022 5:55:22 PM | INFO | House: 2014882961216 Hostage: 2014688815664 Easy:2014688815664 Day:2014688815664
+3/26/2022 5:55:28 PM | INFO | kanal normal 
+3/26/2022 5:55:28 PM | INFO | [PLAYLISTDATA] Sent: kanal   normal 1773
+3/26/2022 5:55:31 PM | INFO | favela normal 
+3/26/2022 5:55:31 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 5:55:34 PM | INFO | border normal 
+3/26/2022 5:55:34 PM | INFO | [PLAYLISTDATA] Sent: border   normal 1773
+3/26/2022 5:55:52 PM | INFO | coastline normal 
+3/26/2022 5:55:52 PM | INFO | [PLAYLISTDATA] Sent: coastline   normal 1773
+3/26/2022 5:55:56 PM | INFO | favela normal 
+3/26/2022 5:55:56 PM | INFO | [PLAYLISTDATA] Sent: favela   normal 1773
+3/26/2022 6:11:56 PM | INFO | Game Build ID: Y7S1.0.0_C6789300_D1434731_S46608_38678526
+3/26/2022 6:11:56 PM | INFO | House: 0 Hostage: 0 Easy:0 Day:0
+3/26/2022 6:12:13 PM | INFO | Liberator Reloaded is Exited!

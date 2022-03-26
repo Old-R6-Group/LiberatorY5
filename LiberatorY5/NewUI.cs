@@ -5,7 +5,6 @@ using MaterialSkin;
 using MaterialSkin.Controls;
 using Memory;
 using System.Threading;
-using System.Linq;
 using System.Diagnostics;
 
 namespace LiberatorY5
@@ -40,6 +39,7 @@ namespace LiberatorY5
         public static string HandleDiff;
         public static bool ClientRecieved_Playlist = false;
         public static bool IsUsingNetwork = false;
+        bool isVasAHost = false;
         #endregion
         #region Load + Hooking
         public NewUI()
@@ -164,6 +164,8 @@ namespace LiberatorY5
                 if (version == ShadowLegacy_Global.FuillBuildID) { FulllbuildID = version; }
                 version = m.ReadString(r6mem + NeonDawn_Event.BuildID_Check, "", 43, true);
                 if (version == NeonDawn_Event.FuillBuildID) { FulllbuildID = version; }
+                version = m.ReadString(r6mem + Live_Release.BuildID_Check, "", 42, true);
+                if (version == Live_Release.FuillBuildID) { FulllbuildID = version; }
 
                 if (!string.IsNullOrWhiteSpace(FulllbuildID))
                 {
@@ -295,7 +297,7 @@ namespace LiberatorY5
                 {
                     ClientRecieved_Playlist = false;
                     
-                    SA.randomthing(gamemode, gamemode_parent, mapname, out string mode, out string diff, out string map);
+                    SA.ParentParser(gamemode, gamemode_parent, mapname, out string mode, out string diff, out string map);
                     HandleMap = map;
                     HandleMode = mode;
                     HandleDiff = diff;
@@ -328,7 +330,7 @@ namespace LiberatorY5
         {
             if (SA.SeasonVersion != -1)
             {
-                SA.randomthing("Random", "Random", mapname, out string mode, out string diff, out string map);
+                SA.ParentParser("Random", "Random", mapname, out string mode, out string diff, out string map);
                 HandleMap = map;
                 HandleMode = mode;
                 HandleDiff = diff;
@@ -454,7 +456,7 @@ namespace LiberatorY5
                 NetworkManagement.DisconnectClient(connectedPlayers.SelectedItem.ToString());
             }
         }
-        bool isVasAHost = false;
+
         private void timer_Tick(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(FulllbuildID))

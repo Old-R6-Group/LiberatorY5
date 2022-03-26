@@ -1021,15 +1021,15 @@
         public static string BuildID_Check = "752D690";
         public static string playlistManager = "08B46520"; //079DFA80
         public static string firstOffset = "70";
-        public static string day_Offset = "";
-        public static string easyDifficulty_Offset = "";
+        public static string day_Offset = ""; //daylight no :,(
+        public static string easyDifficulty_Offset = "08B46520";
         public static string house_Offset = "08B46520,188,2A0,6F0,BA8,2A0,8B0,C00";
-        public static string hostage_Offset = "";
+        public static string hostage_Offset = "08B46520,3B0,20,0,FE8,20,30,1F8"; //not work
         private static string playlist = playlistManager + "," + firstOffset;
-        public static string r6_daynight = playlist + ",38,0";
+        public static string r6_daynight = playlist + ",40,0,0";
         public static string r6_map = playlist + ",10";
         public static string r6_gamemode = playlist + ",8";
-        public static string r6_difficulty = playlist + ",30";
+        public static string r6_difficulty = playlist + ",38,0";
         public static string gamestate = ""; //nop
         public static string ConnectedIP = "08C57568,13E";
         public static string InMatch = "7B89530";
@@ -1123,6 +1123,72 @@
             output_map = house;
             output_mode = gamemode;
             //no event
+        }
+        public static void ModeConverter(string mode, long gamemode, out long outmode, out bool isTH)
+        {
+            outmode = 0L;
+            isTH = false;
+            switch (mode)
+            {
+                case "hostage":
+                    outmode = gamemode;
+                    return;
+                case "secure":
+                    outmode = gamemode + 32;
+                    return;
+                case "bomb":
+                    outmode = gamemode - 32;
+                    return;
+                case "warmup":
+                    outmode = gamemode + 376288;
+                    return;
+                case "goldengun":
+                    outmode = gamemode + 376480;
+                    return;
+                case "bombnoprep":
+                    outmode = gamemode + 376448;
+                    return;
+                case "snowfight":
+                    outmode = gamemode + 376704;
+                    return;
+                case "protect":
+                    outmode = gamemode + 128;
+                    isTH = true;
+                    return;
+                case "extract":
+                    outmode = gamemode + 96;
+                    isTH = true;
+                    return;
+                case "elimination":
+                    outmode = gamemode + 192;
+                    isTH = true;
+                    return;
+                case "disarm":
+                    outmode = gamemode + 160;
+                    isTH = true;
+                    return;
+                default:
+                    return;
+
+            }
+        }
+        public static void DiffConverter(string diffname, long diff, out long difficulty)
+        {
+            difficulty = diff;
+            switch (diffname)
+            {
+                case "normal":
+                    difficulty = diff;
+                    return;
+                case "hard":
+                    difficulty = diff + 32;
+                    return;
+                case "realistic":
+                    difficulty = diff + 66688;
+                    return;
+                default:
+                    return;
+            }
         }
     }
     #endregion

@@ -36,6 +36,16 @@ namespace LiberatorY5
 			}
 		}
 
+		public static void SendUnknown(object uknown)
+		{
+			string[] ip_keys = IPS.Keys.ToArray();
+			NetworkMessage unknowndata = new NetworkMessage(uknown);
+			foreach (string ip in ip_keys)
+			{
+				server.Send(ip, ObjectToByteArray(unknowndata));
+			}
+		}
+
 		public static void SendDisconnect(string ip)
 		{
 			NetworkMessage playlist_data = new NetworkMessage(new ExitMessage(HostStatus.Statuses.Disconnected_Kicked, false));
@@ -134,6 +144,9 @@ namespace LiberatorY5
 					return;
 				case ExitMessage:
 					NewUI.HandleExitData((ExitMessage)networkMessage.MessageData);
+					return;
+				case NetworkMessage:
+					NewUI.HandleUnknownData((NetworkMessage)networkMessage.MessageData);
 					return;
 
 			}

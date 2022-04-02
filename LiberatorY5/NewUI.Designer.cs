@@ -139,6 +139,8 @@ namespace LiberatorY5
             this.treeViewMap = new System.Windows.Forms.TreeView();
             this.treeViewGameMode = new System.Windows.Forms.TreeView();
             this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.hostLable = new System.Windows.Forms.Label();
+            this.nameLabel = new System.Windows.Forms.Label();
             this.nameBox = new System.Windows.Forms.TextBox();
             this.discUserButton = new System.Windows.Forms.Button();
             this.connectedPlayers = new System.Windows.Forms.ListBox();
@@ -150,11 +152,13 @@ namespace LiberatorY5
             this.StatusLabel = new System.Windows.Forms.Label();
             this.SoonLabel = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.soonTavLabel = new System.Windows.Forms.Label();
             this.endRoundButton = new System.Windows.Forms.Button();
             this.endMatchButton = new System.Windows.Forms.Button();
             this.daynightCheckbox = new System.Windows.Forms.CheckBox();
             this.randomButton = new System.Windows.Forms.Button();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.label1 = new System.Windows.Forms.Label();
             this.versionLabel = new System.Windows.Forms.Label();
             this.helpers = new System.Windows.Forms.Label();
             this.throwbackLabel = new System.Windows.Forms.LinkLabel();
@@ -164,10 +168,7 @@ namespace LiberatorY5
             this.LabelUpdate = new System.Windows.Forms.Label();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.nameLabel = new System.Windows.Forms.Label();
-            this.hostLable = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.soonTavLabel = new System.Windows.Forms.Label();
+            this.AutoJoinCheckBox = new System.Windows.Forms.CheckBox();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
@@ -534,6 +535,7 @@ namespace LiberatorY5
             // tabPage4
             // 
             this.tabPage4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
+            this.tabPage4.Controls.Add(this.AutoJoinCheckBox);
             this.tabPage4.Controls.Add(this.hostLable);
             this.tabPage4.Controls.Add(this.nameLabel);
             this.tabPage4.Controls.Add(this.nameBox);
@@ -551,6 +553,24 @@ namespace LiberatorY5
             this.tabPage4.Size = new System.Drawing.Size(547, 421);
             this.tabPage4.TabIndex = 1;
             this.tabPage4.Text = "Lan";
+            // 
+            // hostLable
+            // 
+            this.hostLable.AutoSize = true;
+            this.hostLable.Location = new System.Drawing.Point(247, 150);
+            this.hostLable.Name = "hostLable";
+            this.hostLable.Size = new System.Drawing.Size(49, 15);
+            this.hostLable.TabIndex = 26;
+            this.hostLable.Text = "Host IP:";
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Location = new System.Drawing.Point(247, 105);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(70, 15);
+            this.nameLabel.TabIndex = 25;
+            this.nameLabel.Text = "Your name:";
             // 
             // nameBox
             // 
@@ -671,6 +691,15 @@ namespace LiberatorY5
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Extra";
             // 
+            // soonTavLabel
+            // 
+            this.soonTavLabel.AutoSize = true;
+            this.soonTavLabel.Location = new System.Drawing.Point(135, 157);
+            this.soonTavLabel.Name = "soonTavLabel";
+            this.soonTavLabel.Size = new System.Drawing.Size(123, 15);
+            this.soonTavLabel.TabIndex = 19;
+            this.soonTavLabel.Text = "Soon New Extra stuff!";
+            // 
             // endRoundButton
             // 
             this.endRoundButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
@@ -739,6 +768,17 @@ namespace LiberatorY5
             this.tabPage3.Size = new System.Drawing.Size(547, 421);
             this.tabPage3.TabIndex = 3;
             this.tabPage3.Text = "About";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(261, 227);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(104, 105);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "  Helped:\r\n- Gibbo\r\n- Imarealperson\r\n- Mystc\r\n- Tavreth\r\n- AsianStreetMeat\r\n- Ska" +
+    "j?";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // versionLabel
             // 
@@ -830,43 +870,16 @@ namespace LiberatorY5
             this.timer.Interval = 10000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // nameLabel
+            // AutoJoinCheckBox
             // 
-            this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(247, 105);
-            this.nameLabel.Name = "nameLabel";
-            this.nameLabel.Size = new System.Drawing.Size(70, 15);
-            this.nameLabel.TabIndex = 25;
-            this.nameLabel.Text = "Your name:";
-            // 
-            // hostLable
-            // 
-            this.hostLable.AutoSize = true;
-            this.hostLable.Location = new System.Drawing.Point(247, 150);
-            this.hostLable.Name = "hostLable";
-            this.hostLable.Size = new System.Drawing.Size(49, 15);
-            this.hostLable.TabIndex = 26;
-            this.hostLable.Text = "Host IP:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(261, 227);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(104, 105);
-            this.label1.TabIndex = 14;
-            this.label1.Text = "  Helped:\r\n- Gibbo\r\n- Imarealperson\r\n- Mystc\r\n- Tavreth\r\n- AsianStreetMeat\r\n- Ska" +
-    "j?";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // soonTavLabel
-            // 
-            this.soonTavLabel.AutoSize = true;
-            this.soonTavLabel.Location = new System.Drawing.Point(135, 157);
-            this.soonTavLabel.Name = "soonTavLabel";
-            this.soonTavLabel.Size = new System.Drawing.Size(123, 15);
-            this.soonTavLabel.TabIndex = 19;
-            this.soonTavLabel.Text = "Soon New Extra stuff!";
+            this.AutoJoinCheckBox.AutoSize = true;
+            this.AutoJoinCheckBox.Location = new System.Drawing.Point(378, 370);
+            this.AutoJoinCheckBox.Name = "AutoJoinCheckBox";
+            this.AutoJoinCheckBox.Size = new System.Drawing.Size(76, 19);
+            this.AutoJoinCheckBox.TabIndex = 27;
+            this.AutoJoinCheckBox.Text = "Auto Join";
+            this.AutoJoinCheckBox.UseVisualStyleBackColor = true;
+            this.AutoJoinCheckBox.CheckedChanged += new System.EventHandler(this.AutoJoinCheckBox_CheckedChanged);
             // 
             // NewUI
             // 
@@ -944,5 +957,6 @@ namespace LiberatorY5
         private Label hostLable;
         private Label label1;
         private Label soonTavLabel;
+        private CheckBox AutoJoinCheckBox;
     }
 }

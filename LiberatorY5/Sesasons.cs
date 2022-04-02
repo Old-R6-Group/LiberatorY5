@@ -1014,17 +1014,17 @@
         }
     }
     #endregion
-    #region LIVE (Y7S1)
-    internal class Live_Release
+    #region Demon Veil
+    internal class DemonVeil_Release
     {
         public static string FuillBuildID = "Y7S1.0.0_C6789300_D1434731_S46608_38678526";
         public static string BuildID_Check = "752D690";
         public static string playlistManager = "08B46520"; //079DFA80
         public static string firstOffset = "70";
         public static string day_Offset = ""; //daylight no :,(
-        public static string easyDifficulty_Offset = "08B46520";
+        public static string easyDifficulty_Offset = ""; //no idea
         public static string house_Offset = "08B46520,188,2A0,6F0,BA8,2A0,8B0,C00";
-        public static string hostage_Offset = "08B46520,3B0,20,0,FE8,20,30,1F8"; //not work
+        public static string hostage_Offset = "08B46520,208,458,640,50,208,5E0,290";
         private static string playlist = playlistManager + "," + firstOffset;
         public static string r6_daynight = playlist + ",40,0,0";
         public static string r6_map = playlist + ",10";
@@ -1140,31 +1140,28 @@
                     outmode = gamemode - 32;
                     return;
                 case "warmup":
-                    outmode = gamemode + 376288;
+                    outmode = gamemode + 440800;
                     return;
                 case "goldengun":
-                    outmode = gamemode + 376480;
+                    outmode = gamemode + 440992;
                     return;
                 case "bombnoprep":
-                    outmode = gamemode + 376448;
-                    return;
-                case "snowfight":
-                    outmode = gamemode + 376704;
+                    outmode = gamemode + 440960;
                     return;
                 case "protect":
-                    outmode = gamemode + 128;
+                    outmode = gamemode + 440736;
                     isTH = true;
                     return;
                 case "extract":
-                    outmode = gamemode + 96;
+                    outmode = gamemode + 440704;
                     isTH = true;
                     return;
                 case "elimination":
-                    outmode = gamemode + 192;
+                    outmode = gamemode + 440672;
                     isTH = true;
                     return;
                 case "disarm":
-                    outmode = gamemode + 160;
+                    outmode = gamemode + 440768;
                     isTH = true;
                     return;
                 default:
@@ -1181,10 +1178,10 @@
                     difficulty = diff;
                     return;
                 case "hard":
-                    difficulty = diff + 32;
+                    difficulty = diff + 128;
                     return;
                 case "realistic":
-                    difficulty = diff + 66688;
+                    difficulty = diff + 256;
                     return;
                 default:
                     return;

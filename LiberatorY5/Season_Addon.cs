@@ -176,22 +176,22 @@ namespace LiberatorY5
                     EventView = NeonDawn_Event.EventView;
                     return;
                 case 1773:
-                    FuillBuildID = Live_Release.FuillBuildID;
-                    BuildID_Check = Live_Release.BuildID_Check;
-                    day_Offset = Live_Release.day_Offset;
-                    easyDifficulty_Offset = Live_Release.easyDifficulty_Offset;
-                    house_Offset = Live_Release.house_Offset;
-                    hostage_Offset = Live_Release.hostage_Offset;
-                    r6_daynight = Live_Release.r6_daynight;
-                    r6_map = Live_Release.r6_map;
-                    r6_gamemode = Live_Release.r6_gamemode;
-                    r6_difficulty = Live_Release.r6_difficulty;
-                    gamestate = Live_Release.gamestate;
-                    ConnectedIP = Live_Release.ConnectedIP;
-                    InMatch = Live_Release.InMatch;
-                    InHost = Live_Release.InHost;
-                    EventView_Tag = Live_Release.EventView_Tag;
-                    EventView = Live_Release.EventView;
+                    FuillBuildID = DemonVeil_Release.FuillBuildID;
+                    BuildID_Check = DemonVeil_Release.BuildID_Check;
+                    day_Offset = DemonVeil_Release.day_Offset;
+                    easyDifficulty_Offset = DemonVeil_Release.easyDifficulty_Offset;
+                    house_Offset = DemonVeil_Release.house_Offset;
+                    hostage_Offset = DemonVeil_Release.hostage_Offset;
+                    r6_daynight = DemonVeil_Release.r6_daynight;
+                    r6_map = DemonVeil_Release.r6_map;
+                    r6_gamemode = DemonVeil_Release.r6_gamemode;
+                    r6_difficulty = DemonVeil_Release.r6_difficulty;
+                    gamestate = DemonVeil_Release.gamestate;
+                    ConnectedIP = DemonVeil_Release.ConnectedIP;
+                    InMatch = DemonVeil_Release.InMatch;
+                    InHost = DemonVeil_Release.InHost;
+                    EventView_Tag = DemonVeil_Release.EventView_Tag;
+                    EventView = DemonVeil_Release.EventView;
                     return;
             }
 
@@ -244,7 +244,7 @@ namespace LiberatorY5
                     NeonDawn_Event.DiffConverter(diffname, diff, out difficulty);
                     return;
                 case 1773:
-                    //Live_Release.DiffConverter(diffname, diff, out difficulty);
+                    DemonVeil_Release.DiffConverter(diffname, diff, out difficulty);
                     return;
             }
         }
@@ -271,7 +271,7 @@ namespace LiberatorY5
                     NeonDawn_Event.MapConverter(MapName, house, out output);
                     return;
                 case 1773:
-                    Live_Release.MapConverter(MapName, house, out output);
+                    DemonVeil_Release.MapConverter(MapName, house, out output);
                     return;
             }
         }
@@ -299,7 +299,7 @@ namespace LiberatorY5
                     NeonDawn_Event.EventConverter(EventName, house, gamemode, out output_map, out output_mode);
                     return;
                 case 1773:
-                    Live_Release.EventConverter(EventName, house, gamemode, out output_map, out output_mode);
+                    DemonVeil_Release.EventConverter(EventName, house, gamemode, out output_map, out output_mode);
                     return;
             }
         }
@@ -327,7 +327,7 @@ namespace LiberatorY5
                     NeonDawn_Event.ModeConverter(mode, gamemode, out outmode, out isTH);
                     return;
                 case 1773:
-                    //Live_Release.ModeConverter(mode, gamemode, out outmode, out isTH);
+                    DemonVeil_Release.ModeConverter(mode, gamemode, out outmode, out isTH);
                     return;
             }
         }

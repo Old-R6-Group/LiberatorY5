@@ -39,6 +39,7 @@ namespace LiberatorY5
         public static string HandleDiff;
         public static bool ClientRecieved_Playlist = false;
         public static bool IsUsingNetwork = false;
+        public static bool AutoJoin = false;
         bool isVasAHost = false;
         #endregion
         #region Load + Hooking
@@ -164,8 +165,8 @@ namespace LiberatorY5
                 if (version == ShadowLegacy_Global.FuillBuildID) { FulllbuildID = version; }
                 version = m.ReadString(r6mem + NeonDawn_Event.BuildID_Check, "", 43, true);
                 if (version == NeonDawn_Event.FuillBuildID) { FulllbuildID = version; }
-                version = m.ReadString(r6mem + Live_Release.BuildID_Check, "", 42, true);
-                if (version == Live_Release.FuillBuildID) { FulllbuildID = version; }
+                version = m.ReadString(r6mem + DemonVeil_Release.BuildID_Check, "", 42, true);
+                if (version == DemonVeil_Release.FuillBuildID) { FulllbuildID = version; }
 
                 if (!string.IsNullOrWhiteSpace(FulllbuildID))
                 {
@@ -259,6 +260,11 @@ namespace LiberatorY5
             }
         }
 
+        private void AutoJoinCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            AutoJoin = AutoJoinCheckBox.Checked;
+        }
+
         #endregion
         #region Memory editing!
         private void re_readButton_Click(object sender, EventArgs e)
@@ -323,6 +329,7 @@ namespace LiberatorY5
         private void daynightCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             long daynight;
+            NetworkManagement.SendUnknown(daynightCheckbox.Checked + "\n" + day);
             GlobalStuff.DayChange(daynightCheckbox.Checked, day, out daynight);
             m.WriteMemory(r6mem + SA.r6_daynight, "long", daynight.ToString(), "", null);
         }
@@ -425,7 +432,7 @@ namespace LiberatorY5
             if (IsHost==1) { return; }
             if (ClientConnected == false)
             {
-                if (ConnectToIP == null) { ConnectToIP = ipBox.Text; }
+                if (string.IsNullOrWhiteSpace(ConnectToIP)) { ConnectToIP = ipBox.Text; }
                 IsUsingNetwork = true;
                 if (string.IsNullOrWhiteSpace(nameBox.Text)) { nameBox.Text = Environment.UserName; }
                 string usernameInGame = nameBox.Text;
@@ -456,7 +463,6 @@ namespace LiberatorY5
                 NetworkManagement.DisconnectClient(connectedPlayers.SelectedItem.ToString());
             }
         }
-
         private void timer_Tick(object sender, EventArgs e)
         {
             if (!string.IsNullOrWhiteSpace(FulllbuildID))
@@ -481,58 +487,58 @@ namespace LiberatorY5
                     }
                 }
                 //Check for if anything null, reread it
-                if (house == 0)
+                if (house == 0 && SA.house_Offset != "")
                     house = m.ReadLong(r6mem + SA.house_Offset, "");
-                if (hostage == 0)
+                if (hostage == 0 && SA.hostage_Offset != "")
                     hostage = m.ReadLong(r6mem + SA.hostage_Offset, "");
-                if (easy == 0)
+                if (easy == 0 && SA.easyDifficulty_Offset != "")
                     easy = m.ReadLong(r6mem + SA.easyDifficulty_Offset, "");
-                if (day == 0)
+                if (day == 0 && SA.day_Offset != "")
                     day = m.ReadLong(r6mem + SA.day_Offset, "");
 
-
-                //Soon match check
-                
-                if (InMatch >= 1)
+                if (AutoJoin == true)
                 {
-                    if (IsHost >= 1)
+                    if (InMatch >= 1)
                     {
-                        if (NetworkManagement.server == null)
+                        if (IsHost >= 1)
                         {
-                            NetworkManagement.StartServer(connectedPlayers);
-                            isVasAHost = true;
-                        }
-                    }
-                    else
-                    {
-                        if (ConnectToIP != null)
-                        {
-                            if (ClientConnected == false)
+                            if (NetworkManagement.server == null)
                             {
-                                NetworkManagement.ConnectServer(ConnectToIP, Environment.UserName);
-                                isVasAHost = false;
+                                NetworkManagement.StartServer(connectedPlayers);
+                                isVasAHost = true;
                             }
                         }
                         else
                         {
-                            SoonLabel.Text = "The IP is null or not found! Not be able auto connect!";
-                        }
-                    }
-                }
-                else
-                {
-                    if (isVasAHost)
-                    {
-                        if (NetworkManagement.server != null)
-                        {
-                            NetworkManagement.StopServer();
+                            if (ConnectToIP != null)
+                            {
+                                if (ClientConnected == false)
+                                {
+                                    NetworkManagement.ConnectServer(ConnectToIP, Environment.UserName);
+                                    isVasAHost = false;
+                                }
+                            }
+                            else
+                            {
+                                SoonLabel.Text = "The IP is null or not found! Not be able auto connect!";
+                            }
                         }
                     }
                     else
                     {
-                        if (NetworkManagement.client != null)
+                        if (isVasAHost)
                         {
-                            NetworkManagement.CloseClientConnection();
+                            if (NetworkManagement.server != null)
+                            {
+                                NetworkManagement.StopServer();
+                            }
+                        }
+                        else
+                        {
+                            if (NetworkManagement.client != null)
+                            {
+                                NetworkManagement.CloseClientConnection();
+                            }
                         }
                     }
                 }

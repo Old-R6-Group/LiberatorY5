@@ -17,12 +17,9 @@ namespace LiberatorY5
 	public class PlaylistNetworkData
 	{
 		public string Map;
-
 		public string Gamemode;
-
 		public string EventMode;
 		public string Difficulty;
-
 		public int SAVersion { get; set; } = -1;
 
 		public PlaylistNetworkData(string Map, string Gamemode, string eventmode, string difficulty, int sa_version)

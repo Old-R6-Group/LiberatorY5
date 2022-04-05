@@ -174,10 +174,14 @@ namespace LiberatorY5
                     rpc.ChangeAssetByVersion(FulllbuildID);
                     SA.Seasons_Changer(FulllbuildID);
                     SA.SetInternal();
-                    house = m.ReadLong(r6mem + SA.house_Offset, "");
-                    hostage = m.ReadLong(r6mem + SA.hostage_Offset, "");
-                    easy = m.ReadLong(r6mem + SA.easyDifficulty_Offset, "");
-                    day = m.ReadLong(r6mem + SA.day_Offset, "");
+                    if (house == long.MaxValue && SA.house_Offset != "")
+                        house = m.ReadLong(r6mem + SA.house_Offset, "");
+                    if (hostage == long.MaxValue && SA.hostage_Offset != "")
+                        hostage = m.ReadLong(r6mem + SA.hostage_Offset, "");
+                    if (easy == long.MaxValue && SA.easyDifficulty_Offset != "")
+                        easy = m.ReadLong(r6mem + SA.easyDifficulty_Offset, "");
+                    if (day == long.MaxValue && SA.day_Offset != "")
+                        day = m.ReadLong(r6mem + SA.day_Offset, "");
                     logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
                 }
             }
@@ -201,6 +205,7 @@ namespace LiberatorY5
                 }
                 events = null;
                 labelEvent.Text = "Event";
+                logs.WriteLog("Gamemode Selected: " + gamemode + gamemode_parent);
             }
         }
         private void treeViewMap_AfterSelect(object sender, TreeViewEventArgs e)
@@ -211,6 +216,7 @@ namespace LiberatorY5
                 mapname = treeViewMap.SelectedNode.Tag.ToString();
                 events = null;
                 labelEvent.Text = "Event";
+                logs.WriteLog("Map Selected: " + mapname);
             }
         }
         private void treeViewEvents_AfterSelect(object sender, TreeViewEventArgs e)
@@ -223,6 +229,7 @@ namespace LiberatorY5
                 gamemode = null;
                 labelGameMode.Text = "Game Mode";
                 labelMap.Text = "Map";
+                logs.WriteLog("Event Selected: " + events);
             }
         }
         private void checkBoxClientMode_CheckedChanged(object sender, EventArgs e)
@@ -259,12 +266,11 @@ namespace LiberatorY5
                 endRoundButton.Visible = true;
             }
         }
-
         private void AutoJoinCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             AutoJoin = AutoJoinCheckBox.Checked;
+            logs.WriteLog("AutoJoin Set to: " + AutoJoin);
         }
-
         #endregion
         #region Memory editing!
         private void re_readButton_Click(object sender, EventArgs e)
@@ -281,10 +287,14 @@ namespace LiberatorY5
                     treeViewEvents.Nodes.Add(item);
                     treeViewEvents.Nodes[index].Tag = item2;
                 }
-                house = m.ReadLong(r6mem + SA.house_Offset, "");
-                hostage = m.ReadLong(r6mem + SA.hostage_Offset, "");
-                easy = m.ReadLong(r6mem + SA.easyDifficulty_Offset, "");
-                day = m.ReadLong(r6mem + SA.day_Offset, "");
+                if (house == long.MaxValue | house == 0 && SA.house_Offset != "")
+                    house = m.ReadLong(r6mem + SA.house_Offset, "");
+                if (hostage == long.MaxValue | hostage == 0 && SA.hostage_Offset != "")
+                    hostage = m.ReadLong(r6mem + SA.hostage_Offset, "");
+                if (easy == long.MaxValue | easy == 0 && SA.easyDifficulty_Offset != "")
+                    easy = m.ReadLong(r6mem + SA.easyDifficulty_Offset, "");
+                if (day == long.MaxValue | day == 0 && SA.day_Offset != "")
+                    day = m.ReadLong(r6mem + SA.day_Offset, "");
                 if (SA.FuillBuildID == "Y5S4.2.0_C5914517_D1181197_S40892_15241382")
                 {
                     if (treeViewMap.Nodes.ContainsKey("NodeOldHouse")) { treeViewMap.Nodes.Find("NodeOldHouse", true)[0].Remove(); }
@@ -311,7 +321,7 @@ namespace LiberatorY5
                     HandleSA_ver = SA.SeasonVersion;
 
                     NetworkManagement.SendPlaylistLoop(HandleMap, HandleMode, events, HandleDiff, SA.SeasonVersion);
-                    logs.WriteLog("[PLAYLISTDATA] Sent: " + HandleMap + " " + HandleMode + " " + events + " " + HandleDiff + " " + SA.SeasonVersion);
+                    logs.WriteLog($"[PLAYLISTDATA] Sent: Map {HandleMap}, Mode {HandleMode}, Difficulty {HandleDiff}, Event {events}, Version {SA.SeasonVersion}");
                     WritePlayList(m, SA);
 
                 }
@@ -565,7 +575,7 @@ namespace LiberatorY5
 
             if (ClientRecieved_Playlist)
             {
-                logs.WriteLog("Your Version: " +season_addon.SeasonVersion + " Server Sent version: " + HandleSA_ver);
+                logs.WriteLog("Your Version: " + season_addon.SeasonVersion + " Server Sent version: " + HandleSA_ver);
                 if (season_addon.SeasonVersion != HandleSA_ver)
                 {
                     NetworkManagement.StatusPublic = HostStatus.Statuses.Disconnected_Version;

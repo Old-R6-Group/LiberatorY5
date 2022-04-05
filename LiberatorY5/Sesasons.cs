@@ -93,7 +93,7 @@
                         output = house - 1088;
                         return;
                     case "grandlarceny":
-                        output = house - 355037440;
+                        output = house - 389375936;
                         return;
                     case "oldhereford":
                         output = house - 319051520;
@@ -114,7 +114,7 @@
             switch (EventName)
             {
                 case "grandlarceny":
-                    output_map = house - 355037440;
+                    output_map = house - 389375936;
                     output_mode = gamemode + 328640;
                     return;
                 case "goldengun":

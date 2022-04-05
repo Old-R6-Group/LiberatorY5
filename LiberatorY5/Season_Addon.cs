@@ -331,7 +331,7 @@ namespace LiberatorY5
                     return;
             }
         }
-        public void GameModeConverter(string ModeName, string ParentMode, long gamemode, long diffmode, out long output_mode, out long difficulty)
+        public void GameModeConverter(string ModeName, string DiffName, long gamemode, long diffmode, out long output_mode, out long difficulty)
         {
             output_mode = gamemode;
             difficulty = diffmode;
@@ -339,8 +339,8 @@ namespace LiberatorY5
             var modes = new[] { "hostage", "secure", "bomb", "warmup", "goldengun", "bombnoprep" };
             if (difss.Any(ModeName.Contains))
             {
-                ModeConverter(ParentMode, gamemode, out output_mode, out bool isTH);
-                DiffConverter(ModeName, diffmode, out difficulty);
+                ModeConverter(ModeName, gamemode, out output_mode, out bool isTH);
+                DiffConverter(DiffName, diffmode, out difficulty);
 
             }
             if (ModeName == "bombnoprep")
@@ -377,6 +377,7 @@ namespace LiberatorY5
             map = MapName;
             diff = "normal";
             string CasOrRanked = null;
+
             if (ParentMode == ModeName)
             {
                 switch (ParentMode)
@@ -406,9 +407,8 @@ namespace LiberatorY5
                 {
                     map = Randomizer.RandomMap(1, RandomizerVer);
                 }
-                logs.WriteLog(map + " " + diff + " " + mode);
             }
-
+            logs.WriteLog($"{map} {diff} {mode}");
         }
     }
     #region Random and Global stuff

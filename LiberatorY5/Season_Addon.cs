@@ -544,6 +544,7 @@ namespace LiberatorY5
     {
         public static void DayChange(bool dayornight, long day, out long daynight)
         {
+            // dayornight is true so Night!
             if (dayornight)
             {
                 daynight = day + 32;

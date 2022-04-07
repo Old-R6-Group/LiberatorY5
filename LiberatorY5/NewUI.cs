@@ -35,6 +35,7 @@ namespace LiberatorY5
         public static string HandleMap;
         public static string HandleMode;
         public static string HandleSpecial;
+        public static bool HandleDay;
         public static int HandleSA_ver = -1;
         public static string HandleDiff;
         public static bool ClientRecieved_Playlist = false;
@@ -273,6 +274,8 @@ namespace LiberatorY5
         }
         #endregion
         #region Memory editing!
+
+        #region Re-Reading
         private void re_readButton_Click(object sender, EventArgs e)
         {
             Once_BuildID();
@@ -305,6 +308,24 @@ namespace LiberatorY5
                 LabelUpdate.Text = "Reading addresses again!";
             }
         }
+        private void RDayButton_Click(object sender, EventArgs e)
+        {
+            day = m.ReadLong(r6mem + SA.r6_daynight, "");
+        }
+        private void RDiffButton_Click(object sender, EventArgs e)
+        {
+            easy = m.ReadLong(r6mem + SA.r6_difficulty, "");
+        }
+        private void RMapButton_Click(object sender, EventArgs e)
+        {
+            house = m.ReadLong(r6mem + SA.r6_map, "");
+        }
+        private void RGModeButton_Click(object sender, EventArgs e)
+        {
+            hostage = m.ReadLong(r6mem + SA.r6_gamemode, "");
+        }
+        #endregion
+
         private void sendtoR6Button_Click(object sender, EventArgs e)
         {
             if (procOpen)
@@ -338,10 +359,30 @@ namespace LiberatorY5
         }
         private void daynightCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            long daynight;
-            NetworkManagement.SendUnknown(daynightCheckbox.Checked + "\n" + day);
-            GlobalStuff.DayChange(daynightCheckbox.Checked, day, out daynight);
-            m.WriteMemory(r6mem + SA.r6_daynight, "long", daynight.ToString(), "", null);
+            if (procOpen)
+            {
+                if (SA.SeasonVersion != -1)
+                {
+                    ClientRecieved_Playlist = false;
+
+                    HandleSA_ver = SA.SeasonVersion;
+                    NetworkManagement.SendDayData(daynightCheckbox.Checked, HandleSA_ver);
+                    logs.WriteLog($"[DAYDATA] Sent: Day or Night(0 is Day, 1 is Night) {daynightCheckbox.Checked}, Version {SA.SeasonVersion}");
+                    WritePlayList(m, SA);
+
+
+                }
+                else
+                {
+                    LabelUpdate.Text = "Build Currently NOT supported";
+                }
+            }
+            else
+            {
+                LabelUpdate.Text = "Can't find siege";
+                FulllbuildID = null;
+            }
+
         }
         private void randomButton_Click(object sender, EventArgs e)
         {
@@ -404,6 +445,15 @@ namespace LiberatorY5
             logs.WriteLog("[PLAYLISTDATA] Recieved: " + HandleMap + " " + HandleMode + " " + HandleSpecial + " " + HandleDiff + " " + HandleSA_ver);
             HostStatus.ChangeStatus(HostStatus.Statuses.DataRecieved);
             WritePlayList(m,SA);
+        }
+        public static void HandleDayData(DayData Data)
+        {
+            HandleDay = Data.IsDay;
+            HandleSA_ver = Data.SAVersion;
+            ClientRecieved_Playlist = true;
+            logs.WriteLog("[DayData] Recieved: " + HandleDay + " " + HandleSA_ver);
+            HostStatus.ChangeStatus(HostStatus.Statuses.DataRecieved);
+            WriteDayData(m, SA);
         }
         public static void HandleExitData(ExitMessage Data)
         {
@@ -662,6 +712,53 @@ namespace LiberatorY5
                 mem.CloseProcess();
             }
         }
+        public static void WriteDayData(Mem mem, Season_Addon season_addon)
+        {
+            //Returning if something goes wrong
+            bool OpenedInVoid = false;
+            if (mem == null) return;
+            if (season_addon == null) return;
+            if (procOpen == false) { procOpen = mem.OpenProcess(r6processname); OpenedInVoid = true; }
+
+            if (OpenedInVoid)
+            {
+                logs.WriteLog("Opened!");
+                BuildIDCheck();
+                //Setting internal parameters
+                season_addon.Seasons_Changer(FulllbuildID);
+                season_addon.SetInternal();
+            }
+
+            if (string.IsNullOrWhiteSpace(FulllbuildID)) return;
+
+            if (ClientRecieved_Playlist)
+            {
+                logs.WriteLog("Your Version: " + season_addon.SeasonVersion + " Server Sent version: " + HandleSA_ver);
+                if (season_addon.SeasonVersion != HandleSA_ver)
+                {
+                    NetworkManagement.StatusPublic = HostStatus.Statuses.Disconnected_Version;
+                    if (ClientConnected)
+                    {
+                        ClientConnected = false;
+                        NetworkManagement.CloseClientConnection();
+                    }
+                    return;
+                }
+            }
+
+            //Writing
+            if (season_addon.SeasonVersion == HandleSA_ver)
+            {
+                GlobalStuff.DayChange(HandleDay,day,out long daynight);
+                mem.WriteMemory(r6mem + season_addon.r6_daynight, "long", daynight.ToString(), "", null);
+            }
+
+            if (OpenedInVoid)
+            {
+                mem.CloseProcess();
+            }
+        }
         #endregion
+
     }
 }

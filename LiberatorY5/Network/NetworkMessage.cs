@@ -44,4 +44,16 @@ namespace LiberatorY5
 			this.ClientDisconneted = clientdisc;
 		}
 	}
+
+	[Serializable]
+	public class DayData
+	{
+		public bool IsDay;
+		public int SAVersion { get; set; } = -1;
+		public DayData(bool isday, int sa_version)
+		{
+			this.IsDay = isday;
+			this.SAVersion = sa_version;
+		}
+	}
 }

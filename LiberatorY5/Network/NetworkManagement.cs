@@ -35,7 +35,18 @@ namespace LiberatorY5
 				}
 			}
 		}
-
+		public static void SendDayData(bool day, int sa_version)
+		{
+			if (NewUI.InMatch == 1)
+			{
+				string[] ip_keys = IPS.Keys.ToArray();
+				NetworkMessage day_data = new NetworkMessage(new DayData(day, sa_version));
+				foreach (string ip in ip_keys)
+				{
+					server.Send(ip, ObjectToByteArray(day_data));
+				}
+			}
+		}
 		public static void SendUnknown(object uknown)
 		{
 			string[] ip_keys = IPS.Keys.ToArray();
@@ -147,6 +158,9 @@ namespace LiberatorY5
 					return;
 				case NetworkMessage:
 					NewUI.HandleUnknownData((NetworkMessage)networkMessage.MessageData);
+					return;
+				case DayData:
+					NewUI.HandleDayData((DayData)networkMessage.MessageData);
 					return;
 
 			}

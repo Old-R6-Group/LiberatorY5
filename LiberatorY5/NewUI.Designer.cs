@@ -153,6 +153,12 @@ namespace LiberatorY5
             this.StatusLabel = new System.Windows.Forms.Label();
             this.SoonLabel = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.SMWrong = new System.Windows.Forms.Label();
+            this.RInfoLabel = new System.Windows.Forms.Label();
+            this.RGModeButton = new System.Windows.Forms.Button();
+            this.RMapButton = new System.Windows.Forms.Button();
+            this.RDiffButton = new System.Windows.Forms.Button();
+            this.RDayButton = new System.Windows.Forms.Button();
             this.soonTavLabel = new System.Windows.Forms.Label();
             this.endRoundButton = new System.Windows.Forms.Button();
             this.endMatchButton = new System.Windows.Forms.Button();
@@ -169,17 +175,14 @@ namespace LiberatorY5
             this.LabelUpdate = new System.Windows.Forms.Label();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.RDayButton = new System.Windows.Forms.Button();
-            this.RDiffButton = new System.Windows.Forms.Button();
-            this.RMapButton = new System.Windows.Forms.Button();
-            this.RGModeButton = new System.Windows.Forms.Button();
-            this.RInfoLabel = new System.Windows.Forms.Label();
-            this.SMWrong = new System.Windows.Forms.Label();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.label2 = new System.Windows.Forms.Label();
             this.materialTabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // materialTabSelector2
@@ -199,6 +202,7 @@ namespace LiberatorY5
             this.materialTabControl1.Controls.Add(this.tabPage4);
             this.materialTabControl1.Controls.Add(this.tabPage2);
             this.materialTabControl1.Controls.Add(this.tabPage3);
+            this.materialTabControl1.Controls.Add(this.tabPage5);
             this.materialTabControl1.Depth = 0;
             this.materialTabControl1.Location = new System.Drawing.Point(0, 110);
             this.materialTabControl1.MouseState = MaterialSkin.MouseState.HOVER;
@@ -714,10 +718,78 @@ namespace LiberatorY5
             this.tabPage2.TabIndex = 2;
             this.tabPage2.Text = "Extra";
             // 
+            // SMWrong
+            // 
+            this.SMWrong.AutoSize = true;
+            this.SMWrong.Location = new System.Drawing.Point(24, 355);
+            this.SMWrong.Name = "SMWrong";
+            this.SMWrong.Size = new System.Drawing.Size(144, 15);
+            this.SMWrong.TabIndex = 25;
+            this.SMWrong.Text = "Something is wrong with:\r\n";
+            // 
+            // RInfoLabel
+            // 
+            this.RInfoLabel.AutoSize = true;
+            this.RInfoLabel.Location = new System.Drawing.Point(24, 283);
+            this.RInfoLabel.Name = "RInfoLabel";
+            this.RInfoLabel.Size = new System.Drawing.Size(302, 60);
+            this.RInfoLabel.TabIndex = 24;
+            this.RInfoLabel.Text = "Reading: (Or Re-Reading)\r\nBefore you press the button,please make sure\r\nyou are i" +
+    "n House-Day-Hostage.\r\nOr if you use difficulty, go to THunt with normal difficul" +
+    "ty";
+            // 
+            // RGModeButton
+            // 
+            this.RGModeButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.RGModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.RGModeButton.Location = new System.Drawing.Point(334, 376);
+            this.RGModeButton.Name = "RGModeButton";
+            this.RGModeButton.Size = new System.Drawing.Size(110, 25);
+            this.RGModeButton.TabIndex = 23;
+            this.RGModeButton.Text = "Read GMode";
+            this.RGModeButton.UseVisualStyleBackColor = true;
+            this.RGModeButton.Click += new System.EventHandler(this.RGModeButton_Click);
+            // 
+            // RMapButton
+            // 
+            this.RMapButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.RMapButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.RMapButton.Location = new System.Drawing.Point(334, 345);
+            this.RMapButton.Name = "RMapButton";
+            this.RMapButton.Size = new System.Drawing.Size(110, 25);
+            this.RMapButton.TabIndex = 22;
+            this.RMapButton.Text = "Read Map";
+            this.RMapButton.UseVisualStyleBackColor = true;
+            this.RMapButton.Click += new System.EventHandler(this.RMapButton_Click);
+            // 
+            // RDiffButton
+            // 
+            this.RDiffButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.RDiffButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.RDiffButton.Location = new System.Drawing.Point(334, 314);
+            this.RDiffButton.Name = "RDiffButton";
+            this.RDiffButton.Size = new System.Drawing.Size(110, 25);
+            this.RDiffButton.TabIndex = 21;
+            this.RDiffButton.Text = "Read Difficulty";
+            this.RDiffButton.UseVisualStyleBackColor = true;
+            this.RDiffButton.Click += new System.EventHandler(this.RDiffButton_Click);
+            // 
+            // RDayButton
+            // 
+            this.RDayButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.RDayButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.RDayButton.Location = new System.Drawing.Point(334, 283);
+            this.RDayButton.Name = "RDayButton";
+            this.RDayButton.Size = new System.Drawing.Size(110, 25);
+            this.RDayButton.TabIndex = 20;
+            this.RDayButton.Text = "Read Day";
+            this.RDayButton.UseVisualStyleBackColor = true;
+            this.RDayButton.Click += new System.EventHandler(this.RDayButton_Click);
+            // 
             // soonTavLabel
             // 
             this.soonTavLabel.AutoSize = true;
-            this.soonTavLabel.Location = new System.Drawing.Point(135, 157);
+            this.soonTavLabel.Location = new System.Drawing.Point(24, 116);
             this.soonTavLabel.Name = "soonTavLabel";
             this.soonTavLabel.Size = new System.Drawing.Size(123, 15);
             this.soonTavLabel.TabIndex = 19;
@@ -893,72 +965,24 @@ namespace LiberatorY5
             this.timer.Interval = 10000;
             this.timer.Tick += new System.EventHandler(this.timer_Tick);
             // 
-            // RDayButton
+            // tabPage5
             // 
-            this.RDayButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.RDayButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.RDayButton.Location = new System.Drawing.Point(381, 236);
-            this.RDayButton.Name = "RDayButton";
-            this.RDayButton.Size = new System.Drawing.Size(110, 25);
-            this.RDayButton.TabIndex = 20;
-            this.RDayButton.Text = "Read Day";
-            this.RDayButton.UseVisualStyleBackColor = true;
-            this.RDayButton.Click += new System.EventHandler(this.RDayButton_Click);
+            this.tabPage5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(47)))), ((int)(((byte)(51)))));
+            this.tabPage5.Controls.Add(this.label2);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(547, 421);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Tav\'s Tab";
             // 
-            // RDiffButton
+            // label2
             // 
-            this.RDiffButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.RDiffButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.RDiffButton.Location = new System.Drawing.Point(381, 267);
-            this.RDiffButton.Name = "RDiffButton";
-            this.RDiffButton.Size = new System.Drawing.Size(110, 25);
-            this.RDiffButton.TabIndex = 21;
-            this.RDiffButton.Text = "Read Difficulty";
-            this.RDiffButton.UseVisualStyleBackColor = true;
-            this.RDiffButton.Click += new System.EventHandler(this.RDiffButton_Click);
-            // 
-            // RMapButton
-            // 
-            this.RMapButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.RMapButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.RMapButton.Location = new System.Drawing.Point(381, 298);
-            this.RMapButton.Name = "RMapButton";
-            this.RMapButton.Size = new System.Drawing.Size(110, 25);
-            this.RMapButton.TabIndex = 22;
-            this.RMapButton.Text = "Read Map";
-            this.RMapButton.UseVisualStyleBackColor = true;
-            this.RMapButton.Click += new System.EventHandler(this.RMapButton_Click);
-            // 
-            // RGModeButton
-            // 
-            this.RGModeButton.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.RGModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.RGModeButton.Location = new System.Drawing.Point(381, 329);
-            this.RGModeButton.Name = "RGModeButton";
-            this.RGModeButton.Size = new System.Drawing.Size(110, 25);
-            this.RGModeButton.TabIndex = 23;
-            this.RGModeButton.Text = "Read GMode";
-            this.RGModeButton.UseVisualStyleBackColor = true;
-            this.RGModeButton.Click += new System.EventHandler(this.RGModeButton_Click);
-            // 
-            // RInfoLabel
-            // 
-            this.RInfoLabel.AutoSize = true;
-            this.RInfoLabel.Location = new System.Drawing.Point(71, 236);
-            this.RInfoLabel.Name = "RInfoLabel";
-            this.RInfoLabel.Size = new System.Drawing.Size(302, 60);
-            this.RInfoLabel.TabIndex = 24;
-            this.RInfoLabel.Text = "Reading:\r\nBefore you press the button,please make sure\r\nyou are in House-Day-Host" +
-    "age.\r\nOr if you use difficulty, go to THunt with normal difficulty";
-            // 
-            // SMWrong
-            // 
-            this.SMWrong.AutoSize = true;
-            this.SMWrong.Location = new System.Drawing.Point(90, 340);
-            this.SMWrong.Name = "SMWrong";
-            this.SMWrong.Size = new System.Drawing.Size(144, 30);
-            this.SMWrong.TabIndex = 25;
-            this.SMWrong.Text = "Something is wrong with:\r\n-";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(153, 132);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(205, 15);
+            this.label2.TabIndex = 20;
+            this.label2.Text = "Thank you Tav! Future things is here!";
             // 
             // NewUI
             // 
@@ -988,6 +1012,8 @@ namespace LiberatorY5
             this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1043,5 +1069,7 @@ namespace LiberatorY5
         private Button RDayButton;
         private Label RInfoLabel;
         private Label SMWrong;
+        private TabPage tabPage5;
+        private Label label2;
     }
 }

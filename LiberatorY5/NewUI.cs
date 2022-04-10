@@ -22,26 +22,26 @@ namespace LiberatorY5
         string gamemode;
         string gamemode_parent;
         string mapname;
-        static string FulllbuildID;
-        public static long house = long.MaxValue;
-        public static long hostage = long.MaxValue;
-        public static long easy = long.MaxValue;
-        public static long day = long.MaxValue;
-        public static bool ClientConnected = false;
-        public static int IsHost = 0;
-        public static int InMatch;
-        public static byte eventHostBool = 0;
         string ConnectToIP = null;
+        static string FulllbuildID;
+        public static long house = 0;
+        public static long hostage = 0;
+        public static long easy = 0;
+        public static long day = 0;
+        public static int IsHost = 0;
+        public static int InMatch = 0;
+        public static byte eventHostBool = 0;
         public static string HandleMap;
         public static string HandleMode;
         public static string HandleSpecial;
+        public static string HandleDiff;
         public static bool HandleDay;
         public static int HandleSA_ver = -1;
-        public static string HandleDiff;
+        public static bool ClientConnected = false;
         public static bool ClientRecieved_Playlist = false;
         public static bool IsUsingNetwork = false;
         public static bool AutoJoin = false;
-        bool isVasAHost = false;
+        bool itWasAHost = false;
         #endregion
         #region Load + Hooking
         public NewUI()
@@ -109,12 +109,14 @@ namespace LiberatorY5
                 {
                     rpc.client.UpdateState("Version Not supported!");
                     LabelUpdate.Text = "This Build is NOT supported! or Currently Reading from your Game";
+
                 }
             }
             else
             {
                 LabelUpdate.Text = "Can't find siege. Make sure Battleye is disabled and the game is at the main menu!";
                 FulllbuildID = null;
+                SMWrong.Text = "Something is wrong with:";
                 rpc.client.UpdateDetails("Liberator Reloaded!");
                 rpc.client.UpdateState("Waiting for a game!");
                 rpc.client.UpdateLargeAsset("base", "Waiting...");
@@ -175,13 +177,13 @@ namespace LiberatorY5
                     rpc.ChangeAssetByVersion(FulllbuildID);
                     SA.Seasons_Changer(FulllbuildID);
                     SA.SetInternal();
-                    if (house == long.MaxValue && SA.house_Offset != "")
+                    if (SA.house_Offset != "")
                         house = m.ReadLong(r6mem + SA.house_Offset, "");
-                    if (hostage == long.MaxValue && SA.hostage_Offset != "")
+                    if (SA.hostage_Offset != "")
                         hostage = m.ReadLong(r6mem + SA.hostage_Offset, "");
-                    if (easy == long.MaxValue && SA.easyDifficulty_Offset != "")
+                    if (SA.easyDifficulty_Offset != "")
                         easy = m.ReadLong(r6mem + SA.easyDifficulty_Offset, "");
-                    if (day == long.MaxValue && SA.day_Offset != "")
+                    if (SA.day_Offset != "")
                         day = m.ReadLong(r6mem + SA.day_Offset, "");
                     logs.WriteLog("House: " + house.ToString() + " Hostage: " + hostage.ToString() + " Easy:" + easy.ToString() + " Day:" + day.ToString());
                 }
@@ -290,13 +292,13 @@ namespace LiberatorY5
                     treeViewEvents.Nodes.Add(item);
                     treeViewEvents.Nodes[index].Tag = item2;
                 }
-                if (house == long.MaxValue | house == 0 && SA.house_Offset != "")
+                if (SA.house_Offset != "")
                     house = m.ReadLong(r6mem + SA.house_Offset, "");
-                if (hostage == long.MaxValue | hostage == 0 && SA.hostage_Offset != "")
+                if (SA.hostage_Offset != "")
                     hostage = m.ReadLong(r6mem + SA.hostage_Offset, "");
-                if (easy == long.MaxValue | easy == 0 && SA.easyDifficulty_Offset != "")
+                if ( SA.easyDifficulty_Offset != "")
                     easy = m.ReadLong(r6mem + SA.easyDifficulty_Offset, "");
-                if (day == long.MaxValue | day == 0 && SA.day_Offset != "")
+                if (SA.day_Offset != "")
                     day = m.ReadLong(r6mem + SA.day_Offset, "");
                 if (SA.FuillBuildID == "Y5S4.2.0_C5914517_D1181197_S40892_15241382")
                 {
@@ -311,18 +313,22 @@ namespace LiberatorY5
         private void RDayButton_Click(object sender, EventArgs e)
         {
             day = m.ReadLong(r6mem + SA.r6_daynight, "");
+            logs.WriteLog("Newly read Day value: " + day);
         }
         private void RDiffButton_Click(object sender, EventArgs e)
         {
             easy = m.ReadLong(r6mem + SA.r6_difficulty, "");
+            logs.WriteLog("Newly read Easy value: " + easy);
         }
         private void RMapButton_Click(object sender, EventArgs e)
         {
             house = m.ReadLong(r6mem + SA.r6_map, "");
+            logs.WriteLog("Newly read House value: " + house);
         }
         private void RGModeButton_Click(object sender, EventArgs e)
         {
             hostage = m.ReadLong(r6mem + SA.r6_gamemode, "");
+            logs.WriteLog("Newly read Hostage value: " + hostage);
         }
         #endregion
 
@@ -355,6 +361,7 @@ namespace LiberatorY5
             {
                 LabelUpdate.Text = "Can't find siege";
                 FulllbuildID = null;
+                SMWrong.Text = "Something is wrong with:";
             }
         }
         private void daynightCheckbox_CheckedChanged(object sender, EventArgs e)
@@ -381,6 +388,7 @@ namespace LiberatorY5
             {
                 LabelUpdate.Text = "Can't find siege";
                 FulllbuildID = null;
+                SMWrong.Text = "Something is wrong with:";
             }
 
         }
@@ -451,7 +459,7 @@ namespace LiberatorY5
             HandleDay = Data.IsDay;
             HandleSA_ver = Data.SAVersion;
             ClientRecieved_Playlist = true;
-            logs.WriteLog("[DayData] Recieved: " + HandleDay + " " + HandleSA_ver);
+            logs.WriteLog("[DAYDATA] Recieved: " + HandleDay + " " + HandleSA_ver);
             HostStatus.ChangeStatus(HostStatus.Statuses.DataRecieved);
             WriteDayData(m, SA);
         }
@@ -548,13 +556,33 @@ namespace LiberatorY5
                 }
                 //Check for if anything null, reread it
                 if (house == 0 && SA.house_Offset != "")
+                {
                     house = m.ReadLong(r6mem + SA.house_Offset, "");
+                    logs.WriteLog("House was 0, now new House: " + house);
+                }
+
                 if (hostage == 0 && SA.hostage_Offset != "")
+                {
                     hostage = m.ReadLong(r6mem + SA.hostage_Offset, "");
+                    logs.WriteLog("Hostage was 0, now new Hostage: " + hostage);
+                }
+
                 if (easy == 0 && SA.easyDifficulty_Offset != "")
+                {
                     easy = m.ReadLong(r6mem + SA.easyDifficulty_Offset, "");
+                    logs.WriteLog("Easy was 0, now new Easy: " + easy);
+                }
+
                 if (day == 0 && SA.day_Offset != "")
+                {
                     day = m.ReadLong(r6mem + SA.day_Offset, "");
+                    logs.WriteLog("Day was 0, now new Day: " + day);
+                }
+
+                if (day == 0) { if (!SMWrong.Text.Contains("Day")) { SMWrong.Text += "\nDay"; } }
+                if (house == 0) { if (!SMWrong.Text.Contains("Map")) { SMWrong.Text += "\nMap"; } }
+                if (hostage == 0) { if (!SMWrong.Text.Contains("GameMode")) { SMWrong.Text += "\nGameMode"; } }
+                if (easy == 0) { if (!SMWrong.Text.Contains("Difficulty")) { SMWrong.Text += "\nDifficulty"; } }
 
                 if (AutoJoin == true)
                 {
@@ -565,7 +593,7 @@ namespace LiberatorY5
                             if (NetworkManagement.server == null)
                             {
                                 NetworkManagement.StartServer(connectedPlayers);
-                                isVasAHost = true;
+                                itWasAHost = true;
                             }
                         }
                         else
@@ -575,7 +603,7 @@ namespace LiberatorY5
                                 if (ClientConnected == false)
                                 {
                                     NetworkManagement.ConnectServer(ConnectToIP, Environment.UserName);
-                                    isVasAHost = false;
+                                    itWasAHost = false;
                                 }
                             }
                             else
@@ -586,7 +614,7 @@ namespace LiberatorY5
                     }
                     else
                     {
-                        if (isVasAHost)
+                        if (itWasAHost)
                         {
                             if (NetworkManagement.server != null)
                             {

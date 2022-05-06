@@ -355,24 +355,9 @@ namespace LiberatorY5
                 ModeConverter(ModeName, gamemode, out output_mode, out bool isTH);
             }
         }
-        public void MatchMaking(string CasOrRanked, string mode, long house, long gamemode, out long outmode, out long outmap, out bool isTH)
-        {
-            outmode = 0L;
-            outmap = 0L;
-            isTH = false;
-            if (CasOrRanked == "Casual")
-            {
-                ModeConverter(mode, gamemode, out outmode, out isTH);
-                MapConverter(Randomizer.RandomMap(0, RandomizerVer), house, out outmap);
-            }
-            if (CasOrRanked == "Ranked")
-            {
-                ModeConverter(mode, gamemode, out outmode, out isTH);
-                MapConverter(Randomizer.RandomMap(1, RandomizerVer), house, out outmap);
-            }
-        }
         public void ParentParser(string ModeName, string ParentMode, string MapName, out string mode, out string diff, out string map)
         {
+            var difss = new[] { "normal", "hard", "realistic" };
             mode = ModeName;
             map = MapName;
             diff = "normal";
@@ -387,6 +372,7 @@ namespace LiberatorY5
                         break;
                     case "TerroristHunt":
                         diff = Randomizer.RandomDifficulty();
+                        mode = Randomizer.RandomModeTH();
                         break;
                     case "Matchmaking":
                         CasOrRanked = Randomizer.RandomMM();
@@ -407,6 +393,11 @@ namespace LiberatorY5
                 {
                     map = Randomizer.RandomMap(1, RandomizerVer);
                 }
+            }
+            if (difss.Any(ModeName.Contains))
+            {
+                diff = ModeName;
+                mode = ParentMode;
             }
             logs.WriteLog($"{map} {diff} {mode}");
         }
@@ -514,6 +505,16 @@ namespace LiberatorY5
             Random rnd = new Random();
             string modes = "hostage,secure,bomb";
             int numb = rnd.Next(0, 2);
+            string[] splittedmaps = modes.Split(',');
+            string mode = splittedmaps[numb];
+            logs.WriteLog("Random Mode (MM): " + mode);
+            return mode;
+        }
+        public static string RandomModeTH()
+        {
+            Random rnd = new Random();
+            string modes = "protect,elimination,extract,disarm";
+            int numb = rnd.Next(0,3);
             string[] splittedmaps = modes.Split(',');
             string mode = splittedmaps[numb];
             logs.WriteLog("Random Mode (MM): " + mode);

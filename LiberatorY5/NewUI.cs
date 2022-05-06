@@ -208,7 +208,7 @@ namespace LiberatorY5
                 }
                 events = null;
                 labelEvent.Text = "Event";
-                logs.WriteLog("Gamemode Selected: " + gamemode + gamemode_parent);
+                logs.WriteLog("Gamemode Selected: " + gamemode + " " + gamemode_parent);
             }
         }
         private void treeViewMap_AfterSelect(object sender, TreeViewEventArgs e)
@@ -539,8 +539,11 @@ namespace LiberatorY5
                 {
                     ConnectToIP = GlobalStuff.LongToIP(m.ReadLong(r6mem + SA.ConnectedIP));
                 }
-                IsHost = m.ReadByte(r6mem + SA.InHost);
-                InMatch = m.ReadByte(r6mem + SA.InMatch);
+
+                if (SA.InHost != "")
+                    IsHost = m.ReadByte(r6mem + SA.InHost);
+                if (SA.InMatch != "")
+                    InMatch = m.ReadByte(r6mem + SA.InMatch);
 
                 if (SA.FuillBuildID == "Y5S3.3.1_C5789341_D1135607_S40332_15018155")
                 {
@@ -787,6 +790,5 @@ namespace LiberatorY5
             }
         }
         #endregion
-
     }
 }

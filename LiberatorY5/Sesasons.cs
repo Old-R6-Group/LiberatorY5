@@ -485,6 +485,7 @@
                         output = house + 192;
                         return;
                     case "oldhereford":
+                        output = house + 4592096;
                         return;
                     default:
                         return;
@@ -502,7 +503,7 @@
             switch (EventName)
             {
                 case "mute":
-                    output_map = house - 192;
+                    output_map = house + 192;
                     output_mode = gamemode + 345152;
                     return;
                 case "attrition":

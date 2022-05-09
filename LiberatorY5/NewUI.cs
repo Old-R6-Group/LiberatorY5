@@ -6,6 +6,9 @@ using MaterialSkin.Controls;
 using Memory;
 using System.Threading;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace LiberatorY5
 {
@@ -101,8 +104,10 @@ namespace LiberatorY5
                     {
                         ConnectToIP = GlobalStuff.LongToIP(m.ReadLong(r6mem + SA.ConnectedIP));
                     }
-                    IsHost = m.ReadByte(r6mem+ SA.InHost);
-                    InMatch = m.ReadByte(r6mem + SA.InMatch);
+                    if (SA.InHost != "")
+                        IsHost = m.ReadByte(r6mem + SA.InHost);
+                    if (SA.InMatch != "")
+                        InMatch = m.ReadByte(r6mem + SA.InMatch);
                     timer.Start();
                 }
                 else
@@ -339,11 +344,21 @@ namespace LiberatorY5
                 if (SA.SeasonVersion != -1)
                 {
                     ClientRecieved_Playlist = false;
-                    
-                    SA.ParentParser(gamemode, gamemode_parent, mapname, out string mode, out string diff, out string map);
-                    HandleMap = map;
-                    HandleMode = mode;
-                    HandleDiff = diff;
+
+                    if (events == null)
+                    {
+                        SA.ParentParser(gamemode, gamemode_parent, mapname, out string mode, out string diff, out string map);
+                        HandleMap = map;
+                        HandleMode = mode;
+                        HandleDiff = diff;
+                        
+                    }
+                    else
+                    {
+                        HandleMap = null;
+                        HandleMode = null;
+                        HandleDiff = null;
+                    }
                     HandleSpecial = events;
                     HandleSA_ver = SA.SeasonVersion;
 
@@ -551,10 +566,12 @@ namespace LiberatorY5
                     if (checklumaply == 1)
                     {
                         m.CloseProcess();
-                        Process[] ps = Process.GetProcessesByName(r6processname);
+                        logs.WriteLog("Game shutted down, lumaplay still up");
+                        MessageBox.Show("Your Game is not completly closed!\nPlease exit or kill your game! (TASKKILL.EXE /IM RainbowSix.exe /F)");
+                        //Process[] ps = Process.GetProcessesByName(r6processname);
 
-                        foreach (Process p in ps)
-                            p.Kill();
+                        //foreach (Process p in ps)
+                            //p.Kill();
                     }
                 }
                 //Check for if anything null, reread it
@@ -789,6 +806,9 @@ namespace LiberatorY5
                 mem.CloseProcess();
             }
         }
+        #endregion
+        #region ForgeSwap
+        //  If Needed I Upload this section, all things is on SlejmSaved.txt (That are not showed on Github) [KEYBASE PRIVATE]
         #endregion
     }
 }

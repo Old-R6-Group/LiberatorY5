@@ -1014,6 +1014,31 @@
             }
         }
     }
+
+    internal class NeonDawn_MUSHEY
+    { 
+    
+    }
+    #endregion
+    #region Crimson Heist
+    internal class ToyRainbow
+    {
+    }
+    #endregion
+    #region North Star
+    internal class NestDestruction
+    {
+    }
+    #endregion
+    #region Crystal Guard
+    internal class EventMix
+    {
+    }
+    #endregion
+    #region High Calibre
+    internal class Stadiums
+    {
+    }
     #endregion
     #region Demon Veil
     internal class DemonVeil_Release
@@ -1188,6 +1213,10 @@
                     return;
             }
         }
+    }
+
+    internal class TOKY
+    { 
     }
     #endregion
 }

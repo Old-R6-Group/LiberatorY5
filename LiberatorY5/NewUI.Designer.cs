@@ -923,7 +923,7 @@ namespace LiberatorY5
             this.supportLabel.AutoSize = true;
             this.supportLabel.Location = new System.Drawing.Point(15, 55);
             this.supportLabel.Name = "supportLabel";
-            this.supportLabel.Size = new System.Drawing.Size(510, 135);
+            this.supportLabel.Size = new System.Drawing.Size(520, 135);
             this.supportLabel.TabIndex = 9;
             this.supportLabel.Text = resources.GetString("supportLabel.Text");
             this.supportLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

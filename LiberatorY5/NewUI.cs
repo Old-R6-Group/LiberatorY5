@@ -807,8 +807,43 @@ namespace LiberatorY5
             }
         }
         #endregion
+
         #region ForgeSwap
         //  If Needed I Upload this section, all things is on SlejmSaved.txt (That are not showed on Github) [KEYBASE PRIVATE]
         #endregion
+
+        private long disable_list = 8430738504862873958;
+        private long enable_list = 8430738504594372966;
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+
+            if (FulllbuildID == "Y5S3.3.1_C5789341_D1135607_S40332_15018155")
+            {
+                int state = m.ReadInt(r6mem + ShadowLegacy_Global.gamestate);
+                if (state >= 2)
+                {
+                    string base_address = "6DC2718";
+                    //3BCF4EA Primary/Secondary Gadgets
+                    //3BCF7FA Primary/Secondary Weapons
+                    switch (checkBox1.Checked)
+                    {
+                        case true:
+                            m.WriteMemory(r6mem + "3BCF4EA", "long", enable_list.ToString());
+                            m.WriteMemory(r6mem + "3BCF7FA", "long", enable_list.ToString());
+                            break;
+                        case false:
+                            m.WriteMemory(r6mem + "3BCF4EA", "long", disable_list.ToString());
+                            m.WriteMemory(r6mem + "3BCF7FA", "long", disable_list.ToString());
+                            break;
+                    }
+
+
+                    MessageBox.Show("Yey");
+                }
+            }
+        }
     }
 }

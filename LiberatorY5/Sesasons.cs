@@ -977,18 +977,22 @@
                 case "protect":
                     outmode = gamemode + 128;
                     isTH = true;
+                    logs.WriteLog("portect");
                     return;
                 case "extract":
                     outmode = gamemode + 96;
                     isTH = true;
+                    logs.WriteLog("extract");
                     return;
                 case "elimination":
                     outmode = gamemode + 192;
                     isTH = true;
+                    logs.WriteLog("elimination");
                     return;
                 case "disarm":
                     outmode = gamemode + 160;
                     isTH = true;
+                    logs.WriteLog("disarm");
                     return;
                 default:
                     return;

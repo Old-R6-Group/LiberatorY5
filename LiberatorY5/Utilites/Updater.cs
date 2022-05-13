@@ -59,11 +59,10 @@ namespace LiberatorY5
             }
             return Version;
         }
-        private static string FileTime = File.GetLastWriteTime(Assembly.GetExecutingAssembly().Location).ToString("yyyyMMdd");
 #if DEBUG
-        public static string Version = "DEV-" + FileTime;
+        public static string Version = "DEV-Version";
 #else
-        public static string Version = FileTime + ".0";
+        public static string Version = "20220513.0";
 #endif
         public static bool VersionCheck() //give back true is version is good, give back false if not
         {

@@ -336,7 +336,7 @@ namespace LiberatorY5
             output_mode = gamemode;
             difficulty = diffmode;
             var difss = new[] { "normal", "hard", "realistic" };
-            var modes = new[] { "hostage", "secure", "bomb", "warmup", "goldengun", "bombnoprep" };
+            var modes = new[] { "hostage", "secure", "bomb", "warmup", "goldengun", "bombnoprep", "protect", "extract", "elimination", "disarm" };
             if (difss.Any(ModeName.Contains))
             {
                 ModeConverter(ModeName, gamemode, out output_mode, out bool isTH);
@@ -350,9 +350,10 @@ namespace LiberatorY5
                 return;
 
             }
-            else if (modes.Any(ModeName.Contains))
+            if (modes.Any(ModeName.Contains))
             {
                 ModeConverter(ModeName, gamemode, out output_mode, out bool isTH);
+                DiffConverter(DiffName, diffmode, out difficulty);
             }
         }
         public void ParentParser(string ModeName, string ParentMode, string MapName, out string mode, out string diff, out string map)

@@ -839,7 +839,9 @@ namespace LiberatorY5
                             m.WriteMemory(r6mem + "3BCF7FA", "long", disable_list.ToString());
                             break;
                     }
+                    // GUN LIST VALUE SET TO WEAPON LIST PTR ADDRESS
 
+                    // SELECTED GUN on WEAPON LIST VALUE
 
                     MessageBox.Show("Yey");
                 }

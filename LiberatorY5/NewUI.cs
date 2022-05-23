@@ -818,8 +818,6 @@ namespace LiberatorY5
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-
             if (FulllbuildID == "Y5S3.3.1_C5789341_D1135607_S40332_15018155")
             {
                 int state = m.ReadInt(r6mem + ShadowLegacy_Global.gamestate);
@@ -843,8 +841,24 @@ namespace LiberatorY5
 
                     // SELECTED GUN on WEAPON LIST VALUE
 
-                    MessageBox.Show("Yey");
+                    //MessageBox.Show("Yey");
+                    SLInventory_Button.Enabled = true;
                 }
+            }
+        }
+
+        private void SLInventory_Button_Click(object sender, EventArgs e)
+        {
+            //Little Hack
+            if (Application.OpenForms.OfType<SL>().Any())
+            {
+                SL sl = new();
+                sl.Close();
+            }
+            else
+            {
+                SL sl = new();
+                sl.Show();
             }
         }
     }

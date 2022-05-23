@@ -114,6 +114,12 @@
     <Compile Include="Network\NetworkManagement.cs" />
     <Compile Include="Network\NetworkMessage.cs" />
     <Compile Include="Season_Addon.cs" />
+    <Compile Include="SL.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SL.Designer.cs">
+      <DependentUpon>SL.cs</DependentUpon>
+    </Compile>
     <Compile Include="Utilites\rpc.cs" />
     <Compile Include="Utilites\logs.cs" />
     <Compile Include="NewUI.cs">
@@ -139,6 +145,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SL.resx">
+      <DependentUpon>SL.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

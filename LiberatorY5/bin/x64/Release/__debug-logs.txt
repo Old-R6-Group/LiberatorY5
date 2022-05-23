@@ -1,0 +1,204 @@
+5/12/2022 6:47:11 PM | INFO | Liberator Reloaded is Started!
+5/12/2022 6:47:13 PM | INFO | Game Build ID: Y5S3.3.1_C5789341_D1135607_S40332_15018155
+5/12/2022 6:47:13 PM | INFO | House: 1593690241440 Hostage: 1594086580480 Easy:1594086556768 Day:0
+5/12/2022 6:47:23 PM | INFO | Day was 0, now new Day: 0
+5/12/2022 6:47:30 PM | INFO | Liberator Reloaded is Exited!
+5/13/2022 4:30:58 PM | INFO | Liberator Reloaded is Started!
+5/13/2022 4:31:00 PM | INFO | Game Build ID: Y5S4.2.0_C5914517_D1181197_S40892_15241382
+5/13/2022 4:31:00 PM | INFO | House: 0 Hostage: 0 Easy:0 Day:0
+5/13/2022 4:31:10 PM | INFO | House was 0, now new House: 0
+5/13/2022 4:31:10 PM | INFO | Hostage was 0, now new Hostage: 0
+5/13/2022 4:31:10 PM | INFO | Easy was 0, now new Easy: 0
+5/13/2022 4:31:10 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:31:20 PM | INFO | House was 0, now new House: 2658788253088
+5/13/2022 4:31:20 PM | INFO | Hostage was 0, now new Hostage: 2656470931520
+5/13/2022 4:31:20 PM | INFO | Easy was 0, now new Easy: 2656470906464
+5/13/2022 4:31:20 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:31:27 PM | INFO | Gamemode Selected: Multiplayer Multiplayer
+5/13/2022 4:31:30 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:31:40 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:31:42 PM | INFO | Gamemode Selected: hard protect
+5/13/2022 4:31:44 PM | INFO | Map Selected: oregon
+5/13/2022 4:31:44 PM | INFO | oregon hard protect
+5/13/2022 4:31:44 PM | INFO | [PLAYLISTDATA] Sent: Map oregon, Mode protect, Difficulty hard, Event , Version 5
+5/13/2022 4:31:49 PM | INFO | Gamemode Selected: normal extract
+5/13/2022 4:31:50 PM | INFO | oregon normal extract
+5/13/2022 4:31:50 PM | INFO | [PLAYLISTDATA] Sent: Map oregon, Mode extract, Difficulty normal, Event , Version 5
+5/13/2022 4:31:50 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:32:00 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:32:10 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:32:20 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:32:30 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:32:40 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:32:41 PM | INFO | Gamemode Selected: hostage Multiplayer
+5/13/2022 4:32:41 PM | INFO | Map Selected: bank
+5/13/2022 4:32:43 PM | INFO | bank normal hostage
+5/13/2022 4:32:43 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode hostage, Difficulty normal, Event , Version 5
+5/13/2022 4:32:50 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:33:00 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:33:03 PM | INFO | Newly read Day value: 2656470905856
+5/13/2022 4:33:14 PM | INFO | Gamemode Selected: secure Multiplayer
+5/13/2022 4:33:16 PM | INFO | bank normal secure
+5/13/2022 4:33:16 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode secure, Difficulty normal, Event , Version 5
+5/13/2022 4:33:19 PM | INFO | Gamemode Selected: bomb Multiplayer
+5/13/2022 4:33:20 PM | INFO | bank normal bomb
+5/13/2022 4:33:20 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode bomb, Difficulty normal, Event , Version 5
+5/13/2022 4:33:22 PM | INFO | Gamemode Selected: warmup Multiplayer
+5/13/2022 4:33:24 PM | INFO | bank normal warmup
+5/13/2022 4:33:24 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode warmup, Difficulty normal, Event , Version 5
+5/13/2022 4:33:26 PM | INFO | Gamemode Selected: bomb Multiplayer
+5/13/2022 4:33:28 PM | INFO | bank normal bomb
+5/13/2022 4:33:28 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode bomb, Difficulty normal, Event , Version 5
+5/13/2022 4:33:30 PM | INFO | Gamemode Selected: secure Multiplayer
+5/13/2022 4:33:31 PM | INFO | bank normal secure
+5/13/2022 4:33:31 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode secure, Difficulty normal, Event , Version 5
+5/13/2022 4:34:37 PM | INFO | Gamemode Selected: bomb Multiplayer
+5/13/2022 4:34:38 PM | INFO | bank normal bomb
+5/13/2022 4:34:38 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode bomb, Difficulty normal, Event , Version 5
+5/13/2022 4:34:40 PM | INFO | Gamemode Selected: hostage Multiplayer
+5/13/2022 4:34:41 PM | INFO | bank normal hostage
+5/13/2022 4:34:41 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode hostage, Difficulty normal, Event , Version 5
+5/13/2022 4:34:43 PM | INFO | Gamemode Selected: normal protect
+5/13/2022 4:34:44 PM | INFO | bank normal protect
+5/13/2022 4:34:44 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode protect, Difficulty normal, Event , Version 5
+5/13/2022 4:34:47 PM | INFO | Gamemode Selected: hard protect
+5/13/2022 4:34:47 PM | INFO | bank hard protect
+5/13/2022 4:34:47 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode protect, Difficulty hard, Event , Version 5
+5/13/2022 4:34:49 PM | INFO | Gamemode Selected: protect TerroristHunt
+5/13/2022 4:34:50 PM | INFO | bank normal protect
+5/13/2022 4:34:50 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode protect, Difficulty normal, Event , Version 5
+5/13/2022 4:34:56 PM | INFO | Gamemode Selected: normal disarm
+5/13/2022 4:34:56 PM | INFO | bank normal disarm
+5/13/2022 4:34:56 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode disarm, Difficulty normal, Event , Version 5
+5/13/2022 4:35:12 PM | INFO | Gamemode Selected: hard disarm
+5/13/2022 4:35:13 PM | INFO | bank hard disarm
+5/13/2022 4:35:13 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode disarm, Difficulty hard, Event , Version 5
+5/13/2022 4:35:15 PM | INFO | Gamemode Selected: realistic extract
+5/13/2022 4:35:16 PM | INFO | bank realistic extract
+5/13/2022 4:35:16 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode extract, Difficulty realistic, Event , Version 5
+5/13/2022 4:35:20 PM | INFO | Gamemode Selected: warmup Multiplayer
+5/13/2022 4:35:21 PM | INFO | bank normal warmup
+5/13/2022 4:35:21 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode warmup, Difficulty normal, Event , Version 5
+5/13/2022 4:35:23 PM | INFO | Gamemode Selected: normal protect
+5/13/2022 4:35:24 PM | INFO | bank normal protect
+5/13/2022 4:35:24 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode protect, Difficulty normal, Event , Version 5
+5/13/2022 4:35:26 PM | INFO | Gamemode Selected: hard protect
+5/13/2022 4:35:27 PM | INFO | bank hard protect
+5/13/2022 4:35:27 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode protect, Difficulty hard, Event , Version 5
+5/13/2022 4:35:30 PM | INFO | Gamemode Selected: realistic protect
+5/13/2022 4:35:30 PM | INFO | bank realistic protect
+5/13/2022 4:35:30 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode protect, Difficulty realistic, Event , Version 5
+5/13/2022 4:36:49 PM | INFO | Gamemode Selected: hard protect
+5/13/2022 4:36:50 PM | INFO | bank hard protect
+5/13/2022 4:36:50 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode protect, Difficulty hard, Event , Version 5
+5/13/2022 4:37:30 PM | INFO | Gamemode Selected: secure Multiplayer
+5/13/2022 4:37:30 PM | INFO | Gamemode Selected: hostage Multiplayer
+5/13/2022 4:37:43 PM | INFO | Gamemode Selected: secure Multiplayer
+5/13/2022 4:37:46 PM | INFO | bank normal secure
+5/13/2022 4:37:46 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode secure, Difficulty normal, Event , Version 5
+5/13/2022 4:37:50 PM | INFO | Gamemode Selected: normal protect
+5/13/2022 4:37:52 PM | INFO | bank normal protect
+5/13/2022 4:37:52 PM | INFO | [PLAYLISTDATA] Sent: Map bank, Mode protect, Difficulty normal, Event , Version 5
+5/13/2022 4:40:01 PM | INFO | Liberator Reloaded is Exited!
+5/13/2022 4:40:14 PM | INFO | Liberator Reloaded is Started!
+5/13/2022 4:40:16 PM | INFO | Game Build ID: Y5S4.2.0_C5914517_D1181197_S40892_15241382
+5/13/2022 4:40:16 PM | INFO | House: 2658788253088 Hostage: 2656470931520 Easy:2656470906464 Day:0
+5/13/2022 4:40:20 PM | INFO | Gamemode Selected: normal protect
+5/13/2022 4:40:21 PM | INFO | Map Selected: fortress
+5/13/2022 4:40:22 PM | INFO | fortress normal protect
+5/13/2022 4:40:22 PM | INFO | [PLAYLISTDATA] Sent: Map fortress, Mode protect, Difficulty normal, Event , Version 5
+5/13/2022 4:40:22 PM | INFO | protect normal
+5/13/2022 4:40:26 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:40:36 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:40:46 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:40:56 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:41:06 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:41:10 PM | INFO | Liberator Reloaded is Exited!
+5/13/2022 4:42:37 PM | INFO | Liberator Reloaded is Started!
+5/13/2022 4:42:39 PM | INFO | Game Build ID: Y5S4.2.0_C5914517_D1181197_S40892_15241382
+5/13/2022 4:42:39 PM | INFO | House: 2658788253088 Hostage: 2656470931520 Easy:2656470906464 Day:0
+5/13/2022 4:42:41 PM | INFO | Gamemode Selected: normal protect
+5/13/2022 4:42:43 PM | INFO |  normal protect
+5/13/2022 4:42:43 PM | INFO | [PLAYLISTDATA] Sent: Map , Mode protect, Difficulty normal, Event , Version 5
+5/13/2022 4:42:43 PM | INFO | protect normal 2656470931520
+5/13/2022 4:42:45 PM | INFO | Map Selected: favela
+5/13/2022 4:42:45 PM | INFO | favela normal protect
+5/13/2022 4:42:45 PM | INFO | [PLAYLISTDATA] Sent: Map favela, Mode protect, Difficulty normal, Event , Version 5
+5/13/2022 4:42:45 PM | INFO | protect normal 2656470931520
+5/13/2022 4:42:49 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:42:59 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:43:09 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:43:19 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:43:26 PM | INFO | Gamemode Selected: hard protect
+5/13/2022 4:43:27 PM | INFO | favela hard protect
+5/13/2022 4:43:27 PM | INFO | [PLAYLISTDATA] Sent: Map favela, Mode protect, Difficulty hard, Event , Version 5
+5/13/2022 4:43:27 PM | INFO | protect hard 2656470931520
+5/13/2022 4:43:29 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:43:32 PM | INFO | Gamemode Selected: realistic protect
+5/13/2022 4:43:33 PM | INFO | favela realistic protect
+5/13/2022 4:43:33 PM | INFO | [PLAYLISTDATA] Sent: Map favela, Mode protect, Difficulty realistic, Event , Version 5
+5/13/2022 4:43:33 PM | INFO | protect realistic 2656470931520
+5/13/2022 4:43:39 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:43:49 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:43:59 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:44:09 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:44:19 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:44:29 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:44:39 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:44:49 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:44:59 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:45:09 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:45:19 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:45:29 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:45:39 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:45:49 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:45:59 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:46:09 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:46:19 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:46:25 PM | INFO | Liberator Reloaded is Exited!
+5/13/2022 4:46:31 PM | INFO | Liberator Reloaded is Started!
+5/13/2022 4:46:33 PM | INFO | Game Build ID: Y5S4.2.0_C5914517_D1181197_S40892_15241382
+5/13/2022 4:46:33 PM | INFO | House: 2658788253088 Hostage: 2656470931520 Easy:2656470906464 Day:0
+5/13/2022 4:46:37 PM | INFO | Gamemode Selected: normal protect
+5/13/2022 4:46:38 PM | INFO | Map Selected: consulate
+5/13/2022 4:46:39 PM | INFO | consulate normal protect
+5/13/2022 4:46:39 PM | INFO | [PLAYLISTDATA] Sent: Map consulate, Mode protect, Difficulty normal, Event , Version 5
+5/13/2022 4:46:39 PM | INFO | portect
+5/13/2022 4:46:39 PM | INFO | 2222 protect normal 2656470931648
+5/13/2022 4:46:39 PM | INFO | protect normal 2656470931648
+5/13/2022 4:46:43 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:46:53 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:46:57 PM | INFO | Gamemode Selected: hard protect
+5/13/2022 4:47:02 PM | INFO | consulate hard protect
+5/13/2022 4:47:02 PM | INFO | [PLAYLISTDATA] Sent: Map consulate, Mode protect, Difficulty hard, Event , Version 5
+5/13/2022 4:47:02 PM | INFO | portect
+5/13/2022 4:47:02 PM | INFO | 2222 protect hard 2656470931648
+5/13/2022 4:47:02 PM | INFO | protect hard 2656470931648
+5/13/2022 4:47:03 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:47:04 PM | INFO | Gamemode Selected: realistic protect
+5/13/2022 4:47:05 PM | INFO | consulate realistic protect
+5/13/2022 4:47:05 PM | INFO | [PLAYLISTDATA] Sent: Map consulate, Mode protect, Difficulty realistic, Event , Version 5
+5/13/2022 4:47:05 PM | INFO | portect
+5/13/2022 4:47:05 PM | INFO | 2222 protect realistic 2656470931648
+5/13/2022 4:47:05 PM | INFO | protect realistic 2656470931648
+5/13/2022 4:47:08 PM | INFO | Gamemode Selected: extract TerroristHunt
+5/13/2022 4:47:10 PM | INFO | consulate normal extract
+5/13/2022 4:47:10 PM | INFO | [PLAYLISTDATA] Sent: Map consulate, Mode extract, Difficulty normal, Event , Version 5
+5/13/2022 4:47:10 PM | INFO | extract
+5/13/2022 4:47:10 PM | INFO | 2222 extract normal 2656470931616
+5/13/2022 4:47:10 PM | INFO | extract normal 2656470931616
+5/13/2022 4:47:12 PM | INFO | Gamemode Selected: disarm TerroristHunt
+5/13/2022 4:47:13 PM | INFO | consulate normal disarm
+5/13/2022 4:47:13 PM | INFO | [PLAYLISTDATA] Sent: Map consulate, Mode disarm, Difficulty normal, Event , Version 5
+5/13/2022 4:47:13 PM | INFO | disarm
+5/13/2022 4:47:13 PM | INFO | 2222 disarm normal 2656470931680
+5/13/2022 4:47:13 PM | INFO | disarm normal 2656470931680
+5/13/2022 4:47:13 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:47:14 PM | INFO | Gamemode Selected: elimination TerroristHunt
+5/13/2022 4:47:15 PM | INFO | consulate normal elimination
+5/13/2022 4:47:15 PM | INFO | [PLAYLISTDATA] Sent: Map consulate, Mode elimination, Difficulty normal, Event , Version 5
+5/13/2022 4:47:15 PM | INFO | elimination
+5/13/2022 4:47:15 PM | INFO | 2222 elimination normal 2656470931712
+5/13/2022 4:47:15 PM | INFO | elimination normal 2656470931712
+5/13/2022 4:47:23 PM | INFO | Day was 0, now new Day: 0
+5/13/2022 4:47:24 PM | INFO | Liberator Reloaded is Exited!

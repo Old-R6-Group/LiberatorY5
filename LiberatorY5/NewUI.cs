@@ -852,12 +852,12 @@ namespace LiberatorY5
             //Little Hack
             if (Application.OpenForms.OfType<SL>().Any())
             {
-                SL sl = new();
+                SL sl = new(m);
                 sl.Close();
             }
             else
             {
-                SL sl = new();
+                SL sl = new(m);
                 sl.Show();
             }
         }

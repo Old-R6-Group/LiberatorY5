@@ -823,7 +823,6 @@ namespace LiberatorY5
                 int state = m.ReadInt(r6mem + ShadowLegacy_Global.gamestate);
                 if (state >= 2)
                 {
-                    string base_address = "6DC2718";
                     //3BCF4EA Primary/Secondary Gadgets
                     //3BCF7FA Primary/Secondary Weapons
                     switch (checkBox1.Checked)

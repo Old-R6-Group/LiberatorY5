@@ -789,11 +789,10 @@
     }
     internal class ShadowLegacy_Event
     {
-        // added but need to redownload cus fuck ubisoft
-        public static string FuillBuildID = "";
-        public static string BuildID_Check = "";
-        public static string playlistManager = "";
-        public static string firstOffset = "";
+        public static string FuillBuildID = "Y5S3.3.0_C5693974_D1104170_S39737_14902238";
+        public static string BuildID_Check = "56B4130"; //5F11930
+        public static string playlistManager = "06E3D4A0"; // 05E00F28(100) 05D85A18(120) 06B84328(120)
+        public static string firstOffset = "100"; //120
         public static string day_Offset = "";
         public static string easyDifficulty_Offset = "";
         public static string house_Offset = "";

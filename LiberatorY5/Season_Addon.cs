@@ -196,30 +196,6 @@ namespace LiberatorY5
             }
 
         }
-        public Object GetSeason()
-        {
-            switch (SeasonVersion)
-            {
-                default:
-                    return null;
-                case int.MaxValue:
-                    return null;
-                case 0:
-                    return new VoidEdge_Shey();
-                case 1:
-                    return new VoidEdge_MU();
-                case 2:
-                    return new SteelWave();
-                case 3:
-                    return new ShadowLegacy_Global();
-                case 4:
-                    return new ShadowLegacy_Event();
-                case 5:
-                    return new NeonDawn_Event();
-            }
-
-        }
-
         //Sesason swapping stuff
         public void DiffConverter(string diffname, long diff, out long difficulty)
         {

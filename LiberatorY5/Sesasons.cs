@@ -793,22 +793,196 @@
         public static string BuildID_Check = "56B4130"; //5F11930
         public static string playlistManager = "06E3D4A0"; // 05E00F28(100) 05D85A18(120) 06B84328(120)
         public static string firstOffset = "100"; //120
-        public static string day_Offset = "";
-        public static string easyDifficulty_Offset = "";
-        public static string house_Offset = "";
-        public static string hostage_Offset = "";
+        public static string day_Offset = "05F6EEB0,90,10,DB8,200";
+        public static string easyDifficulty_Offset = "06DC5BD0,D48,320,330";
+        public static string house_Offset = "06B88FC0,430,A60,540";
+        public static string hostage_Offset = "0581F418,90,DE0,DA0,CF0,160"; //Not 100%%!!
         private static string playlist = playlistManager + "," + firstOffset;
         public static string r6_daynight = playlist + ",38,0";
         public static string r6_map = playlist + ",10";
         public static string r6_gamemode = playlist + ",8";
         public static string r6_difficulty = playlist + ",30";
-        public static string gamestate = "";
-        public static string ConnectedIP = "";
-        public static string InMatch = "";
-        public static string InHost = "";
+        public static string gamestate = "06E3D4A0,150";
+        public static string ConnectedIP = ""; //need 2 plp
+        public static string InMatch = ""; //need 2 plp
+        public static string InHost = ""; //need 2 plp
 
         public static string[] EventView_Tag = { "goldengun", "legacy", "sugarfright" };
         public static string[] EventView = { "Golden Gun", "Legacy Event", "Sugar Fright" };
+
+        public static void MapConverter(string MapName, long house, out long output)
+        {
+            output = 0L;
+            if (MapName != "house")
+            {
+                switch (MapName)
+                {
+                    case "hereford":
+                        output = house + 64;
+                        return;
+                    case "plane":
+                        output = house + 128;
+                        return;
+                    case "university":
+                        output = house + 320;
+                        return;
+                    case "favela":
+                        output = house + 416;
+                        return;
+                    case "tower":
+                        output = house + 544;
+                        return;
+                    case "club":
+                        output = house + 96;
+                        return;
+                    case "oregon":
+                        output = house + 32;
+                        return;
+                    case "yacht":
+                        output = house + 160;
+                        return;
+                    case "consulate":
+                        output = house + 192;
+                        return;
+                    case "bank":
+                        output = house + 224;
+                        return;
+                    case "kanal":
+                        output = house + 256;
+                        return;
+                    case "chalet":
+                        output = house + 288;
+                        return;
+                    case "cafe":
+                        output = house + 352;
+                        return;
+                    case "border":
+                        output = house + 384;
+                        return;
+                    case "skyscraper":
+                        output = house + 448;
+                        return;
+                    case "coastline":
+                        output = house + 480;
+                        return;
+                    case "theme":
+                        output = house + 512;
+                        return;
+                    case "villa":
+                        output = house + 576;
+                        return;
+                    case "fortress":
+                        output = house + 608;
+                        return;
+                    case "outback":
+                        output = house + 640;
+                        return;
+                    case "sugarfright":
+                        output = house + 672;
+                        return;
+                    case "oldhereford":
+                        output = house + 704;
+                        return;
+                    default:
+                        return;
+                }
+            }
+            else
+            {
+                output = house;
+            }
+        }
+        public static void EventConverter(string EventName, long house, long gamemode, out long output_map, out long output_mode)
+        {
+            output_map = 0L;
+            output_mode = 0L;
+            switch (EventName)
+            {
+                case "legacy":
+                    output_map = house + 704;
+                    output_mode = gamemode + 361632;
+                    return;
+                case "sugarfright":
+                    output_map = house + 672;
+                    output_mode = gamemode + 361536;
+                    return;
+                case "goldengun":
+                    output_map = house - 1536; //goldengun only oregon? Need make random for most goldengun maps
+                    output_mode = gamemode + 361440;
+                    return;
+                default:
+                    return;
+            }
+        }
+        public static void ModeConverter(string mode, long gamemode, out long outmode, out bool isTH)
+        {
+            outmode = 0L;
+            isTH = false;
+            switch (mode)
+            {
+                case "hostage":
+                    outmode = gamemode;
+                    return;
+                case "secure":
+                    outmode = gamemode + 32;
+                    return;
+                case "bomb":
+                    outmode = gamemode - 32;
+                    return;
+                case "warmup":
+                    outmode = gamemode + 361248;
+                    return;
+                case "goldengun":
+                    outmode = gamemode + 361440;
+                    return;
+                case "bombnoprep":
+                    outmode = gamemode + 361408;
+                    return;
+                case "legacy":
+                    outmode = gamemode + 361632;
+                    return;
+                case "sugarfright":
+                    outmode = gamemode + 361536;
+                    return;
+                case "protect":
+                    outmode = gamemode + 128;
+                    isTH = true;
+                    return;
+                case "extract":
+                    outmode = gamemode + 96;
+                    isTH = true;
+                    return;
+                case "elimination":
+                    outmode = gamemode + 192;
+                    isTH = true;
+                    return;
+                case "disarm":
+                    outmode = gamemode + 160;
+                    isTH = true;
+                    return;
+                default:
+                    return;
+
+            }
+        }
+        public static void DiffConverter(string diffname, long diff, out long difficulty)
+        {
+            difficulty = diff;
+            switch (diffname)
+            {
+                case "normal":
+                    difficulty = diff;
+                    return;
+                case "hard":
+                    difficulty = diff + 32;
+                    return;
+                case "realistic":
+                    difficulty = diff - 576;
+                    return;
+                default:
+                    return;
+            }
+        }
     }
     #endregion
     #region Neon Dawn

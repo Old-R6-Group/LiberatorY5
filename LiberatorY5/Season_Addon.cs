@@ -43,7 +43,7 @@ namespace LiberatorY5
                     RandomizerVer = 2;
                     SeasonVersion = 3;
                     return;
-                case "Y5S3.3.1_C5789341_D1135232321155": //SL Event
+                case "Y5S3.3.0_C5693974_D1104170_S39737_14902238": //SL Event
                     RandomizerVer = 2;
                     SeasonVersion = 4;
                     return;
@@ -216,6 +216,9 @@ namespace LiberatorY5
                 case 3:
                     ShadowLegacy_Global.DiffConverter(diffname, diff, out difficulty);
                     return;
+                case 4:
+                    ShadowLegacy_Event.DiffConverter(diffname, diff, out difficulty);
+                    return;
                 case 5:
                     NeonDawn_Event.DiffConverter(diffname, diff, out difficulty);
                     return;
@@ -242,6 +245,9 @@ namespace LiberatorY5
                     return;
                 case 3:
                     ShadowLegacy_Global.MapConverter(MapName, house, out output);
+                    return;
+                case 4:
+                    ShadowLegacy_Event.MapConverter(MapName, house, out output);
                     return;
                 case 5:
                     NeonDawn_Event.MapConverter(MapName, house, out output);
@@ -271,6 +277,9 @@ namespace LiberatorY5
                 case 3:
                     ShadowLegacy_Global.EventConverter(EventName, house, gamemode, out output_map, out output_mode);
                     return;
+                case 4:
+                    ShadowLegacy_Event.EventConverter(EventName, house, gamemode, out output_map, out output_mode);
+                    return;
                 case 5:
                     NeonDawn_Event.EventConverter(EventName, house, gamemode, out output_map, out output_mode);
                     return;
@@ -298,6 +307,9 @@ namespace LiberatorY5
                     return;
                 case 3:
                     ShadowLegacy_Global.ModeConverter(mode, gamemode, out outmode, out isTH);
+                    return;
+                case 4:
+                    ShadowLegacy_Event.ModeConverter(mode, gamemode, out outmode, out isTH);
                     return;
                 case 5:
                     NeonDawn_Event.ModeConverter(mode, gamemode, out outmode, out isTH);

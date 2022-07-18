@@ -171,6 +171,8 @@ namespace LiberatorY5
                 if (version == SteelWave.FuillBuildID) { FulllbuildID = version; }
                 version = m.ReadString(r6mem + ShadowLegacy_Global.BuildID_Check, "", 43, true);
                 if (version == ShadowLegacy_Global.FuillBuildID) { FulllbuildID = version; }
+                version = m.ReadString(r6mem + ShadowLegacy_Event.BuildID_Check, "", 43, true);
+                if (version == ShadowLegacy_Event.FuillBuildID) { FulllbuildID = version; }
                 version = m.ReadString(r6mem + NeonDawn_Event.BuildID_Check, "", 43, true);
                 if (version == NeonDawn_Event.FuillBuildID) { FulllbuildID = version; }
                 version = m.ReadString(r6mem + DemonVeil_Release.BuildID_Check, "", 42, true);
